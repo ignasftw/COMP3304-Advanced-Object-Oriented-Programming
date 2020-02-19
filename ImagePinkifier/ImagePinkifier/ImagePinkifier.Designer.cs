@@ -100,6 +100,7 @@
             this.zoomAutoButton.TabIndex = 4;
             this.zoomAutoButton.Text = "A";
             this.zoomAutoButton.UseVisualStyleBackColor = true;
+            this.zoomAutoButton.Click += new System.EventHandler(this.zoomAutoButton_Click);
             // 
             // zoomOutButton
             // 

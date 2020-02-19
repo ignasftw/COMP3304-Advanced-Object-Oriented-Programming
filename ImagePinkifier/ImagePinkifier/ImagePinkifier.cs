@@ -25,34 +25,15 @@ namespace WindowsFormsApp1
         }
 
 
-        private void leftButton_Click(object sender, EventArgs e)
-        {
-            //Display the previous image on the list
-            currentImageIndex -= 1;
-
-            //Loop around to the last one if you get to the beginning
-            if (currentImageIndex < 0) currentImageIndex = images.Count-1;
-
-            pictureBox.Image = images[currentImageIndex];
-
-        }
-
-        private void rightButton_Click(object sender, EventArgs e)
-        {
-            //Display the next image on the list
-            currentImageIndex += 1;
-
-            //Loop around to the first one if you get to the end
-            if (currentImageIndex > images.Count-1) currentImageIndex = 0;
-
-            pictureBox.Image = images[currentImageIndex];
-        }
-
         private void saveButton_Click(object sender, EventArgs e)
         {
             //Open file picker dialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.DefaultExt = "jpg";
+            saveFileDialog.ShowDialog();
 
             //Save the image currently shown to whatever path
+            imfac.Save(saveFileDialog.FileName);
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)
@@ -67,11 +48,52 @@ namespace WindowsFormsApp1
             //Display the most recently added image
             currentImageIndex = images.Count - 1;
             pictureBox.Image = images[currentImageIndex];
+
+            //Load the current image to the imageprocessor (ready to be processed)
+            imfac.Load(images[currentImageIndex]);
             
         }
 
+        private void leftButton_Click(object sender, EventArgs e)
+        {
+            //Display the previous image on the list
+            currentImageIndex -= 1;
+
+            //Loop around to the last one if you get to the beginning
+            if (currentImageIndex < 0) currentImageIndex = images.Count - 1;
+
+            pictureBox.Image = images[currentImageIndex];
+
+            //Load the current image to the imageprocessor (ready to be processed)
+            imfac.Load(images[currentImageIndex]);
+
+        }
+
+        private void rightButton_Click(object sender, EventArgs e)
+        {
+            //Display the next image on the list
+            currentImageIndex += 1;
+
+            //Loop around to the first one if you get to the end
+            if (currentImageIndex > images.Count - 1) currentImageIndex = 0;
+
+            pictureBox.Image = images[currentImageIndex];
+
+            //Load the current image to the imageprocessor (ready to be processed)
+            imfac.Load(images[currentImageIndex]);
+        }
+
+        private void zoomAutoButton_Click(object sender, EventArgs e)
+        {
+            autoResizeImage();
+        }
+
+        private void autoResizeImage()
+        {
+            imfac.Resize(pictureBox.Size);
+            pictureBox.Image = imfac.Image;
+        }
+
         
-
-
     }
 }
