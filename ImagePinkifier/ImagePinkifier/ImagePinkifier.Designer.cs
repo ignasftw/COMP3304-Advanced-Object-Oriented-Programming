@@ -91,6 +91,7 @@
             this.zoomInButton.TabIndex = 4;
             this.zoomInButton.Text = "+";
             this.zoomInButton.UseVisualStyleBackColor = true;
+            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
             // 
             // zoomAutoButton
             // 
@@ -110,6 +111,7 @@
             this.zoomOutButton.TabIndex = 4;
             this.zoomOutButton.Text = "-";
             this.zoomOutButton.UseVisualStyleBackColor = true;
+            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
             // 
             // saveImageButton
             // 

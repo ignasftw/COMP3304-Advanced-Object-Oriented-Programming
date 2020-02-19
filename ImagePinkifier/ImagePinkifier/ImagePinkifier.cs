@@ -1,4 +1,5 @@
 ﻿using ImageProcessor;
+using SizeMultiplier;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -94,6 +95,16 @@ namespace WindowsFormsApp1
             pictureBox.Image = imfac.Image;
         }
 
-        
+        private void zoomInButton_Click(object sender, EventArgs e)
+        {
+            imfac.Resize(pictureBox.Image.Size.Multiply(1.1));
+            pictureBox.Image = imfac.Image;
+        }
+
+        private void zoomOutButton_Click(object sender, EventArgs e)
+        {
+            imfac.Resize(pictureBox.Image.Size.Multiply(0.9));
+            pictureBox.Image = imfac.Image;
+        }
     }
 }

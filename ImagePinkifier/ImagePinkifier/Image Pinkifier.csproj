@@ -83,5 +83,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\COMP3304Workshops\SizeMultiplier\SizeMultiplier.csproj">
+      <Project>{b3012de3-2f09-42a2-90fe-ce854db2af88}</Project>
+      <Name>SizeMultiplier</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
