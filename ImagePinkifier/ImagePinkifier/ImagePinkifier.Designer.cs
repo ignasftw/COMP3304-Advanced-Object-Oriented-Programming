@@ -133,6 +133,7 @@
             this.makePinkerButton.TabIndex = 2;
             this.makePinkerButton.Text = "Make Pinker";
             this.makePinkerButton.UseVisualStyleBackColor = true;
+            this.makePinkerButton.Click += new System.EventHandler(this.makePinkerButton_Click);
             // 
             // ImagePinkifier
             // 

@@ -106,5 +106,11 @@ namespace WindowsFormsApp1
             imfac.Resize(pictureBox.Image.Size.Multiply(0.9));
             pictureBox.Image = imfac.Image;
         }
+
+        private void makePinkerButton_Click(object sender, EventArgs e)
+        {
+            imfac.Tint(Color.Pink);
+            pictureBox.Image = imfac.Image;
+        }
     }
 }
