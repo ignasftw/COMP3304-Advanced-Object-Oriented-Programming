@@ -23,6 +23,12 @@ namespace WindowsFormsApp1
         public ImagePinkifier()
         {
             InitializeComponent();
+
+            //Begin the list of images with one blank image
+            images.Add(new Bitmap(1, 1));
+            //Load the blank image to stop controls crashing if they have no image to affect
+            pictureBox.Image = images[currentImageIndex];
+            imfac.Load(images[currentImageIndex]);
         }
 
 
@@ -43,8 +49,17 @@ namespace WindowsFormsApp1
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
 
-            //Add the image chosen to the list of images
-            images.Add(Image.FromFile(openFileDialog.FileName));
+            try {
+                //Delete placeholder image
+                if (images[0].Width == 1 && images[0].Height == 1) images.RemoveAt(0);
+
+                //Add the image chosen to the list of images
+                images.Add(Image.FromFile(openFileDialog.FileName));
+            }
+            catch (Exception ex) {
+                MessageBox.Show("No image chosen");
+                return;
+            }
 
             //Display the most recently added image
             currentImageIndex = images.Count - 1;
