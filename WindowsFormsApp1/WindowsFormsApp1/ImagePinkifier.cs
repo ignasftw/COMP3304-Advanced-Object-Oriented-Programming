@@ -24,27 +24,44 @@ namespace WindowsFormsApp1
 
         private void leftButton_Click(object sender, EventArgs e)
         {
+            //Display the previous image on the list
 
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void loadImageButton_Click(object sender, EventArgs e)
-        {
+            //Loop around to the last one if you get to the beginning
 
         }
 
         private void rightButton_Click(object sender, EventArgs e)
         {
+            //Display the next image on the list
+
+            //Loop around to the first one if you get to the end
 
         }
 
-        private void zoomInButton_MouseCaptureChanged(object sender, EventArgs e)
+        private void saveButton_Click(object sender, EventArgs e)
         {
+            //Open file picker dialog
+
+            //Save the image currently shown to whatever path
+        }
+
+        private void loadImageButton_Click(object sender, EventArgs e)
+        {
+            //Open file picker dialog
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+
+            pictureBox.Image = Image.FromFile(openFileDialog.FileName);
+
+            //Add the image chosen to the list of images
+
+
+            //Display the most recently added image
 
         }
+
+        
+
+
     }
 }

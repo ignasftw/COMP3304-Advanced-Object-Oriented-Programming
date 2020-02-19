@@ -32,13 +32,13 @@
             this.leftButton = new System.Windows.Forms.Button();
             this.rightButton = new System.Windows.Forms.Button();
             this.loadImageButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.zoomInButton = new System.Windows.Forms.Button();
             this.zoomAutoButton = new System.Windows.Forms.Button();
             this.zoomOutButton = new System.Windows.Forms.Button();
             this.saveImageButton = new System.Windows.Forms.Button();
             this.makePinkerButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // leftButton
@@ -72,14 +72,14 @@
             this.loadImageButton.UseVisualStyleBackColor = true;
             this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
             // 
-            // pictureBox1
+            // pictureBox
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(50, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(575, 375);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pictureBox.Location = new System.Drawing.Point(50, 25);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(575, 375);
+            this.pictureBox.TabIndex = 3;
+            this.pictureBox.TabStop = false;
             // 
             // zoomInButton
             // 
@@ -137,7 +137,7 @@
             this.Controls.Add(this.zoomOutButton);
             this.Controls.Add(this.zoomAutoButton);
             this.Controls.Add(this.zoomInButton);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.makePinkerButton);
             this.Controls.Add(this.saveImageButton);
             this.Controls.Add(this.loadImageButton);
@@ -146,7 +146,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ImagePinkifier";
             this.Text = "\'); DROP TABLE \"Teams\"; -- Image Pinkifier";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -156,7 +156,7 @@
         private System.Windows.Forms.Button leftButton;
         private System.Windows.Forms.Button rightButton;
         private System.Windows.Forms.Button loadImageButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button zoomInButton;
         private System.Windows.Forms.Button zoomAutoButton;
         private System.Windows.Forms.Button zoomOutButton;
