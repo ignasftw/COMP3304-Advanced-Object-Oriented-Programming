@@ -74,10 +74,12 @@
             // 
             // pictureBox
             // 
+            this.pictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox.Location = new System.Drawing.Point(50, 25);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(575, 375);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 3;
             this.pictureBox.TabStop = false;
             // 
