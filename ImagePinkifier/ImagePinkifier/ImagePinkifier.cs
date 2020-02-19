@@ -112,5 +112,11 @@ namespace WindowsFormsApp1
             imfac.Tint(Color.Pink);
             pictureBox.Image = imfac.Image;
         }
+
+        private void reloadButton_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = images[currentImageIndex];
+            imfac.Load(images[currentImageIndex]);
+        }
     }
 }

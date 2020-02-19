@@ -38,6 +38,7 @@
             this.zoomOutButton = new System.Windows.Forms.Button();
             this.saveImageButton = new System.Windows.Forms.Button();
             this.makePinkerButton = new System.Windows.Forms.Button();
+            this.reloadButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,11 +136,22 @@
             this.makePinkerButton.UseVisualStyleBackColor = true;
             this.makePinkerButton.Click += new System.EventHandler(this.makePinkerButton_Click);
             // 
+            // reloadButton
+            // 
+            this.reloadButton.Location = new System.Drawing.Point(381, 451);
+            this.reloadButton.Name = "reloadButton";
+            this.reloadButton.Size = new System.Drawing.Size(21, 21);
+            this.reloadButton.TabIndex = 5;
+            this.reloadButton.Text = "⟳";
+            this.reloadButton.UseVisualStyleBackColor = true;
+            this.reloadButton.Click += new System.EventHandler(this.reloadButton_Click);
+            // 
             // ImagePinkifier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 486);
+            this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.zoomOutButton);
             this.Controls.Add(this.zoomAutoButton);
             this.Controls.Add(this.zoomInButton);
@@ -168,6 +180,7 @@
         private System.Windows.Forms.Button zoomOutButton;
         private System.Windows.Forms.Button saveImageButton;
         private System.Windows.Forms.Button makePinkerButton;
+        private System.Windows.Forms.Button reloadButton;
     }
 }
 
