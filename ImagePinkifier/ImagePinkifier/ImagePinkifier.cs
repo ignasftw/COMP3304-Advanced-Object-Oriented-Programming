@@ -16,6 +16,9 @@ namespace WindowsFormsApp1
 
         ImageFactory imfac = new ImageFactory();
 
+        List<Image> images = new List<Image>();
+        int currentImageIndex = 0;
+
         public ImagePinkifier()
         {
             InitializeComponent();
@@ -25,17 +28,24 @@ namespace WindowsFormsApp1
         private void leftButton_Click(object sender, EventArgs e)
         {
             //Display the previous image on the list
+            currentImageIndex -= 1;
 
             //Loop around to the last one if you get to the beginning
+            if (currentImageIndex < 0) currentImageIndex = images.Count-1;
+
+            pictureBox.Image = images[currentImageIndex];
 
         }
 
         private void rightButton_Click(object sender, EventArgs e)
         {
             //Display the next image on the list
+            currentImageIndex += 1;
 
             //Loop around to the first one if you get to the end
+            if (currentImageIndex > images.Count-1) currentImageIndex = 0;
 
+            pictureBox.Image = images[currentImageIndex];
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -51,13 +61,13 @@ namespace WindowsFormsApp1
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
 
-            pictureBox.Image = Image.FromFile(openFileDialog.FileName);
-
             //Add the image chosen to the list of images
-
+            images.Add(Image.FromFile(openFileDialog.FileName));
 
             //Display the most recently added image
-
+            currentImageIndex = images.Count - 1;
+            pictureBox.Image = images[currentImageIndex];
+            
         }
 
         
