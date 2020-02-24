@@ -64,7 +64,7 @@ namespace WindowsFormsApp1
 
         private void zoomAutoButton_Click(object sender, EventArgs e)
         {
-            _scaling.autoResizeImage(pictureBox.Size, _imfac);
+            pictureBox.Image = _scaling.autoResizeImage(pictureBox.Size, _imfac);
         }
 
         private void zoomInButton_Click(object sender, EventArgs e)
