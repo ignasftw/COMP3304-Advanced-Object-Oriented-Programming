@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAutoScale.cs" />
+    <Compile Include="ICustomScale.cs" />
     <Compile Include="ImagePinkifier.cs">
       <SubType>Form</SubType>
     </Compile>

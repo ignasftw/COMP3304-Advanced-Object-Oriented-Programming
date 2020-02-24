@@ -20,22 +20,25 @@ namespace WindowsFormsApp1
         private List<Image> _images = new List<Image>();
         private int _currentImageIndex = 0;
 
+        private ImageScale _scaling = new ImageScale();
+
         public ImagePinkifier()
         {
+            //Initialises all the buttons and other GUI
             InitializeComponent();
 
-            //Begin the list of images with one blank image
+            //Begin the list of images with one blank image to stop controls crashing if they have no image to affect
             _images.Add(new Bitmap(1, 1));
-            //Load the blank image to stop controls crashing if they have no image to affect
+            //Load the blank image 
             pictureBox.Image = _images[_currentImageIndex];
-            _imfac.Load(_images[_currentImageIndex]);
         }
 
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            //Open file picker dialog
+            //Open file select dialog
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //Let the dialog form assume that the default extension is "jpg"
             saveFileDialog.DefaultExt = "jpg";
 
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -106,25 +109,17 @@ namespace WindowsFormsApp1
 
         private void zoomAutoButton_Click(object sender, EventArgs e)
         {
-            autoResizeImage();
-        }
-
-        private void autoResizeImage()
-        {
-            _imfac.Resize(pictureBox.Size);
-            pictureBox.Image = _imfac.Image;
+            _scaling.autoResizeImage(pictureBox,_imfac);
         }
 
         private void zoomInButton_Click(object sender, EventArgs e)
         {
-            _imfac.Resize(pictureBox.Image.Size.Multiply(1.1));
-            pictureBox.Image = _imfac.Image;
+            ((ICustomScale)_scaling).CustomScale(pictureBox, _imfac, 1.1);
         }
 
         private void zoomOutButton_Click(object sender, EventArgs e)
         {
-            _imfac.Resize(pictureBox.Image.Size.Multiply(0.9));
-            pictureBox.Image = _imfac.Image;
+            ((ICustomScale)_scaling).CustomScale(pictureBox, _imfac, 0.9);
         }
 
         private void makePinkerButton_Click(object sender, EventArgs e)
