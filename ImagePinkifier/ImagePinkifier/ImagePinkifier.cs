@@ -15,20 +15,20 @@ namespace WindowsFormsApp1
     public partial class ImagePinkifier : Form
     {
 
-        ImageFactory imfac = new ImageFactory();
+        private ImageFactory _imfac = new ImageFactory();
 
-        List<Image> images = new List<Image>();
-        int currentImageIndex = 0;
+        private List<Image> _images = new List<Image>();
+        private int _currentImageIndex = 0;
 
         public ImagePinkifier()
         {
             InitializeComponent();
 
             //Begin the list of images with one blank image
-            images.Add(new Bitmap(1, 1));
+            _images.Add(new Bitmap(1, 1));
             //Load the blank image to stop controls crashing if they have no image to affect
-            pictureBox.Image = images[currentImageIndex];
-            imfac.Load(images[currentImageIndex]);
+            pictureBox.Image = _images[_currentImageIndex];
+            _imfac.Load(_images[_currentImageIndex]);
         }
 
 
@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 //Save the image currently shown to whatever path
-                imfac.Save(saveFileDialog.FileName);
+                _imfac.Save(saveFileDialog.FileName);
             }
         }
 
@@ -54,20 +54,20 @@ namespace WindowsFormsApp1
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 //Delete placeholder image
-                if (images[0].Width == 1 && images[0].Height == 1) images.RemoveAt(0);
+                if (_images[0].Width == 1 && _images[0].Height == 1) _images.RemoveAt(0);
 
                 //Add the image chosen to the list of images
                 foreach (string fileName in openFileDialog.FileNames)
                 {
-                    images.Add(Image.FromFile(fileName));
+                    _images.Add(Image.FromFile(fileName));
                 }
 
                 //Display the most recently added image
-                currentImageIndex = images.Count - 1;
-                pictureBox.Image = images[currentImageIndex];
+                _currentImageIndex = _images.Count - 1;
+                pictureBox.Image = _images[_currentImageIndex];
 
                 //Load the current image to the imageprocessor (ready to be processed)
-                imfac.Load(images[currentImageIndex]);
+                _imfac.Load(_images[_currentImageIndex]);
             } else
             {
                 MessageBox.Show("No image chosen");
@@ -111,32 +111,32 @@ namespace WindowsFormsApp1
 
         private void autoResizeImage()
         {
-            imfac.Resize(pictureBox.Size);
-            pictureBox.Image = imfac.Image;
+            _imfac.Resize(pictureBox.Size);
+            pictureBox.Image = _imfac.Image;
         }
 
         private void zoomInButton_Click(object sender, EventArgs e)
         {
-            imfac.Resize(pictureBox.Image.Size.Multiply(1.1));
-            pictureBox.Image = imfac.Image;
+            _imfac.Resize(pictureBox.Image.Size.Multiply(1.1));
+            pictureBox.Image = _imfac.Image;
         }
 
         private void zoomOutButton_Click(object sender, EventArgs e)
         {
-            imfac.Resize(pictureBox.Image.Size.Multiply(0.9));
-            pictureBox.Image = imfac.Image;
+            _imfac.Resize(pictureBox.Image.Size.Multiply(0.9));
+            pictureBox.Image = _imfac.Image;
         }
 
         private void makePinkerButton_Click(object sender, EventArgs e)
         {
-            imfac.Tint(Color.Pink);
-            pictureBox.Image = imfac.Image;
+            _imfac.Tint(Color.Pink);
+            pictureBox.Image = _imfac.Image;
         }
 
         private void reloadButton_Click(object sender, EventArgs e)
         {
-            pictureBox.Image = images[currentImageIndex];
-            imfac.Load(images[currentImageIndex]);
+            pictureBox.Image = _images[_currentImageIndex];
+            _imfac.Load(_images[_currentImageIndex]);
         }
     }
 }
