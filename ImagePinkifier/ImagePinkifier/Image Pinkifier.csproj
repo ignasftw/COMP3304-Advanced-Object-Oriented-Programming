@@ -53,7 +53,9 @@
     <Compile Include="ICustomScale.cs" />
     <Compile Include="IImageGallery.cs" />
     <Compile Include="IImageSaver.cs" />
+    <Compile Include="ILoader.cs" />
     <Compile Include="ImageGallery.cs" />
+    <Compile Include="ImageLoader.cs" />
     <Compile Include="ImagePinkifier.cs">
       <SubType>Form</SubType>
     </Compile>

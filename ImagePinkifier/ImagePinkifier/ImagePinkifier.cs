@@ -21,7 +21,7 @@ namespace WindowsFormsApp1
 
         private ImageFactory _imfac = new ImageFactory();
 
-        
+        private ILoader _loading = new ImageLoader();
 
         private ImageScale _scaling = new ImageScale();
 
@@ -46,31 +46,7 @@ namespace WindowsFormsApp1
 
         private void loadImageButton_Click(object sender, EventArgs e)
         {
-            //Open file picker dialog
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                //Delete placeholder image
-                if (imageGallery.CurrentImage.Width == 1 && imageGallery.CurrentImage.Height == 1) imageGallery.DeleteImage();
-
-                //Add the image chosen to the list of images
-                foreach (string fileName in openFileDialog.FileNames)
-                {
-                    imageGallery.AddImage(fileName);
-                }
-
-                //Display the most recently added image
-                pictureBox.Image = imageGallery.CurrentImage;
-
-                //Load the current image to the imageprocessor (ready to be processed)
-                _imfac.Load(pictureBox.Image);
-            } else
-            {
-                MessageBox.Show("No image chosen");
-            }
-
+            _loading.Load(imageGallery,pictureBox,_imfac);
         }
 
         private void leftButton_Click(object sender, EventArgs e)
