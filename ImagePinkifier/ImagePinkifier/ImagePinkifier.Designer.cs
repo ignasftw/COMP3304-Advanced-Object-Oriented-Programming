@@ -161,8 +161,11 @@
             this.Controls.Add(this.loadImageButton);
             this.Controls.Add(this.rightButton);
             this.Controls.Add(this.leftButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ImagePinkifier";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "\'); DROP TABLE \"Teams\"; -- Image Pinkifier";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
