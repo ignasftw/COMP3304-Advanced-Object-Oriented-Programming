@@ -17,6 +17,8 @@ namespace WindowsFormsApp1
 
         IImageGallery imageGallery;
 
+        IImageSaver imageSaver;
+
         private ImageFactory _imfac = new ImageFactory();
 
         
@@ -31,21 +33,15 @@ namespace WindowsFormsApp1
             //Initialise the image gallery
             imageGallery = new ImageGallery(imageCounter);
 
+            //Initialise the image saver
+            imageSaver = new ImageSaver(_imfac);
+
         }
 
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            //Open file select dialog
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //Let the dialog form assume that the default extension is "jpg"
-            saveFileDialog.DefaultExt = "jpg";
-
-            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                //Save the image currently shown to whatever path
-                _imfac.Save(saveFileDialog.FileName);
-            }
+            imageSaver.SaveImage();
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)
