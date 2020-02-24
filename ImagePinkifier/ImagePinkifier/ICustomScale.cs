@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ImageProcessor;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace WindowsFormsApp1
 {
     interface ICustomScale
     {
-        void CustomScale(PictureBox guiImage, ImageFactory factor, double scale);
+        Image CustomScale(Image guiImage, ImageFactory factor, double scale);
     }
 }

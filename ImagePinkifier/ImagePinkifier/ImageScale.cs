@@ -33,10 +33,20 @@ namespace WindowsFormsApp1
         }
 
 
-        public void CustomScale(PictureBox guiImage, ImageFactory factor, double scale)
+        public Image CustomScale(Image guiImage, ImageFactory factor, double scale)
         {
-            factor.Resize(guiImage.Image.Size.Multiply(scale));
-            guiImage.Image = factor.Image;
+            try
+            {
+                factor.Resize(guiImage.Size.Multiply(scale));
+                guiImage = factor.Image;
+                return guiImage;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("No image found. Message: {0}",e);
+                return null;
+            }
+
         }
     }
 }

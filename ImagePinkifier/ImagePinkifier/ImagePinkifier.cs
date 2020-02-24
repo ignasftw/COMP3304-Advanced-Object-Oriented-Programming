@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
 
         private ILoader _loading = new ImageLoader();
 
-        private ImageScale _scaling = new ImageScale();
+        private IAutoScale _scaling = new ImageScale();
 
         public ImagePinkifier()
         {
@@ -35,7 +35,6 @@ namespace WindowsFormsApp1
 
             //Initialise the image saver
             _imageSaver = new ImageSaver(_imfac);
-
         }
 
 
@@ -70,12 +69,12 @@ namespace WindowsFormsApp1
 
         private void zoomInButton_Click(object sender, EventArgs e)
         {
-            ((ICustomScale)_scaling).CustomScale(pictureBox, _imfac, 1.1);
+            pictureBox.Image = ((ICustomScale)_scaling).CustomScale(pictureBox.Image, _imfac, 1.1);
         }
 
         private void zoomOutButton_Click(object sender, EventArgs e)
         {
-            ((ICustomScale)_scaling).CustomScale(pictureBox, _imfac, 0.9);
+            pictureBox.Image = ((ICustomScale)_scaling).CustomScale(pictureBox.Image, _imfac, 0.9);
         }
 
         private void makePinkerButton_Click(object sender, EventArgs e)

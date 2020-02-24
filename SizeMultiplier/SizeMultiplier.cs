@@ -11,7 +11,7 @@ namespace SizeMultiplier
     {
         public static Size Multiply(this Size size, double factor)
         {
-            System.Diagnostics.Debug.WriteLine(size.Width);
+            //System.Diagnostics.Debug.WriteLine(size.Width);
             return new Size((int)(size.Width * factor), (int)(size.Height * factor));
         }
     }
