@@ -37,37 +37,42 @@ namespace WindowsFormsApp1
             //Open file picker dialog
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.DefaultExt = "jpg";
-            saveFileDialog.ShowDialog();
 
-            //Save the image currently shown to whatever path
-            imfac.Save(saveFileDialog.FileName);
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                //Save the image currently shown to whatever path
+                imfac.Save(saveFileDialog.FileName);
+            }
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)
         {
             //Open file picker dialog
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
+            openFileDialog.Multiselect = true;
 
-            try {
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
                 //Delete placeholder image
                 if (images[0].Width == 1 && images[0].Height == 1) images.RemoveAt(0);
 
                 //Add the image chosen to the list of images
-                images.Add(Image.FromFile(openFileDialog.FileName));
-            }
-            catch (Exception ex) {
+                foreach (string fileName in openFileDialog.FileNames)
+                {
+                    images.Add(Image.FromFile(fileName));
+                }
+
+                //Display the most recently added image
+                currentImageIndex = images.Count - 1;
+                pictureBox.Image = images[currentImageIndex];
+
+                //Load the current image to the imageprocessor (ready to be processed)
+                imfac.Load(images[currentImageIndex]);
+            } else
+            {
                 MessageBox.Show("No image chosen");
-                return;
             }
 
-            //Display the most recently added image
-            currentImageIndex = images.Count - 1;
-            pictureBox.Image = images[currentImageIndex];
-
-            //Load the current image to the imageprocessor (ready to be processed)
-            imfac.Load(images[currentImageIndex]);
-            
         }
 
         private void leftButton_Click(object sender, EventArgs e)
