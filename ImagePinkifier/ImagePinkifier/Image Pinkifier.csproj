@@ -55,6 +55,7 @@
     <Compile Include="ImagePinkifier.Designer.cs">
       <DependentUpon>ImagePinkifier.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageScale.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ImagePinkifier.resx">
