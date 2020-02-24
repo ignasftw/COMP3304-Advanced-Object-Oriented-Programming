@@ -15,20 +15,19 @@ namespace WindowsFormsApp1
     public partial class ImagePinkifier : Form
     {
 
+        ImageGallery imageGallery;
+
         private ImageFactory _imfac = new ImageFactory();
 
-        private List<Image> _images = new List<Image>();
-        private int _currentImageIndex = 0;
+        
 
         public ImagePinkifier()
         {
             InitializeComponent();
 
-            //Begin the list of images with one blank image
-            _images.Add(new Bitmap(1, 1));
-            //Load the blank image to stop controls crashing if they have no image to affect
-            pictureBox.Image = _images[_currentImageIndex];
-            _imfac.Load(_images[_currentImageIndex]);
+            //Initialise the image gallery
+            imageGallery = new ImageGallery(imageCounter);
+
         }
 
 
@@ -54,20 +53,19 @@ namespace WindowsFormsApp1
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 //Delete placeholder image
-                if (_images[0].Width == 1 && _images[0].Height == 1) _images.RemoveAt(0);
+                if (imageGallery.CurrentImage.Width == 1 && imageGallery.CurrentImage.Height == 1) imageGallery.deleteImage();
 
                 //Add the image chosen to the list of images
                 foreach (string fileName in openFileDialog.FileNames)
                 {
-                    _images.Add(Image.FromFile(fileName));
+                    imageGallery.AddImage(fileName);
                 }
 
                 //Display the most recently added image
-                _currentImageIndex = _images.Count - 1;
-                pictureBox.Image = _images[_currentImageIndex];
+                pictureBox.Image = imageGallery.CurrentImage;
 
                 //Load the current image to the imageprocessor (ready to be processed)
-                _imfac.Load(_images[_currentImageIndex]);
+                _imfac.Load(pictureBox.Image);
             } else
             {
                 MessageBox.Show("No image chosen");
@@ -77,32 +75,17 @@ namespace WindowsFormsApp1
 
         private void leftButton_Click(object sender, EventArgs e)
         {
-            //Display the previous image on the list
-            _currentImageIndex -= 1;
-
-            //Loop around to the last one if you get to the beginning
-            if (_currentImageIndex < 0) _currentImageIndex = _images.Count - 1;
-
-            pictureBox.Image = _images[_currentImageIndex];
-
-            //Load the current image to the imageprocessor (ready to be processed)
-            _imfac.Load(_images[_currentImageIndex]);
-
+            pictureBox.Image = imageGallery.changeImage(-1);
+            _imfac.Load(pictureBox.Image);
         }
 
         private void rightButton_Click(object sender, EventArgs e)
         {
-            //Display the next image on the list
-            _currentImageIndex += 1;
-
-            //Loop around to the first one if you get to the end
-            if (_currentImageIndex > _images.Count - 1) _currentImageIndex = 0;
-
-            pictureBox.Image = _images[_currentImageIndex];
-
-            //Load the current image to the imageprocessor (ready to be processed)
-            _imfac.Load(_images[_currentImageIndex]);
+            pictureBox.Image = imageGallery.changeImage(1);
+            _imfac.Load(pictureBox.Image);
         }
+
+       
 
         private void zoomAutoButton_Click(object sender, EventArgs e)
         {
@@ -135,8 +118,8 @@ namespace WindowsFormsApp1
 
         private void reloadButton_Click(object sender, EventArgs e)
         {
-            pictureBox.Image = _images[_currentImageIndex];
-            _imfac.Load(_images[_currentImageIndex]);
+            pictureBox.Image = imageGallery.CurrentImage;
+            _imfac.Load(pictureBox.Image);
         }
     }
 }

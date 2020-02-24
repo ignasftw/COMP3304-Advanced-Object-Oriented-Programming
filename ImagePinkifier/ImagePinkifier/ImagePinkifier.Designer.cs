@@ -39,6 +39,7 @@
             this.saveImageButton = new System.Windows.Forms.Button();
             this.makePinkerButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
+            this.imageCounter = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,11 +147,21 @@
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.reloadButton_Click);
             // 
+            // imageCounter
+            // 
+            this.imageCounter.Location = new System.Drawing.Point(256, 420);
+            this.imageCounter.Name = "imageCounter";
+            this.imageCounter.Size = new System.Drawing.Size(163, 23);
+            this.imageCounter.TabIndex = 6;
+            this.imageCounter.Text = "No images loaded";
+            this.imageCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ImagePinkifier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 486);
+            this.Controls.Add(this.imageCounter);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.zoomOutButton);
             this.Controls.Add(this.zoomAutoButton);
@@ -184,6 +195,7 @@
         private System.Windows.Forms.Button saveImageButton;
         private System.Windows.Forms.Button makePinkerButton;
         private System.Windows.Forms.Button reloadButton;
+        private System.Windows.Forms.Label imageCounter;
     }
 }
 

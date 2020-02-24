@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageGallery.cs" />
     <Compile Include="ImagePinkifier.cs">
       <SubType>Form</SubType>
     </Compile>
