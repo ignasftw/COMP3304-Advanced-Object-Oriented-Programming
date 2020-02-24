@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     public partial class ImagePinkifier : Form
     {
 
-        ImageGallery imageGallery;
+        IImageGallery imageGallery;
 
         private ImageFactory _imfac = new ImageFactory();
 

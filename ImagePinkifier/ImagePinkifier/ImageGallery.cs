@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    class ImageGallery
+    class ImageGallery : IImageGallery
     {
         //The purpose of this class is to store a list of images and remember which image is currently selected
 
