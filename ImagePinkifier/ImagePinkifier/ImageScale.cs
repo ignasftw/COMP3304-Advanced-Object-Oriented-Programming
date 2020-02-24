@@ -22,24 +22,32 @@ namespace WindowsFormsApp1
         /// <summary>
         /// Set the image to fit the window
         /// </summary>
-        /// <param name="guiImage">Image of the guiImage which will have to be changed</param>
+        /// <param name="image">Image of the guiImage which will have to be changed</param>
         /// <param name="factor">ImageFactory which will be asked to return scaled image</param>
-        public void autoResizeImage(PictureBox guiImage, ImageFactory factor)
-        {
-            //Ask factory to resize the image to the size of the window
-            factor.Resize(guiImage.Size);
-            //Ask guiImage to be changed into a scaled image
-            guiImage.Image = factor.Image;
-        }
-
-
-        public Image CustomScale(Image guiImage, ImageFactory factor, double scale)
+        public Image autoResizeImage(Size size, ImageFactory factor)
         {
             try
             {
-                factor.Resize(guiImage.Size.Multiply(scale));
-                guiImage = factor.Image;
-                return guiImage;
+                //Ask factory to resize the image to the size of the window
+                factor.Resize(size);
+                //Ask guiImage to be changed into a scaled image
+                return factor.Image;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("No image found. Message: {0}", e);
+                return null;
+            }
+        }
+
+
+        public Image CustomScale(Image image, ImageFactory factor, double scale)
+        {
+            try
+            {
+                factor.Resize(image.Size.Multiply(scale));
+                image = factor.Image;
+                return image;
             }
             catch (Exception e)
             {
