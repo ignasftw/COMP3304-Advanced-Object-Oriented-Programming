@@ -10,6 +10,7 @@ namespace WindowsFormsApp1
 {
     class ImageGallery
     {
+        //The purpose of this class is to store a list of images and remember which image is currently selected
 
         private List<Image> _images = new List<Image>();
         private int _currentImageIndex = 0;
@@ -32,7 +33,7 @@ namespace WindowsFormsApp1
 
         public Image CurrentImage { get { return _images[_currentImageIndex]; } }
 
-        public Image changeImage(int amount)
+        public Image ChangeImage(int amount)
         {
             //Display the previous image on the list
             _currentImageIndex += amount;
@@ -43,7 +44,7 @@ namespace WindowsFormsApp1
             //Loop around to the first one if you get to the end
             if (_currentImageIndex > _images.Count - 1) _currentImageIndex = 0;
 
-            updateImageCounter();
+            UpdateImageCounter();
 
             return CurrentImage;
         }
@@ -57,16 +58,15 @@ namespace WindowsFormsApp1
         {
             _images.Add(image);
 
-            updateImageCounter();
+            UpdateImageCounter();
         }
 
-        public void deleteImage()
+        public void DeleteImage()
         {
             _images.RemoveAt(0);
         }
 
-
-        void updateImageCounter()
+        private void UpdateImageCounter()
         {
             if (_imageCounter != null)
             {
