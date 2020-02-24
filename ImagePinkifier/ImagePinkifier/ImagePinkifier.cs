@@ -15,9 +15,9 @@ namespace WindowsFormsApp1
     public partial class ImagePinkifier : Form
     {
 
-        IImageGallery imageGallery;
+        private IImageGallery _imageGallery;
 
-        IImageSaver imageSaver;
+        private IImageSaver _imageSaver;
 
         private ImageFactory _imfac = new ImageFactory();
 
@@ -31,33 +31,33 @@ namespace WindowsFormsApp1
             InitializeComponent();
 
             //Initialise the image gallery
-            imageGallery = new ImageGallery(imageCounter);
+            _imageGallery = new ImageGallery(imageCounter);
 
             //Initialise the image saver
-            imageSaver = new ImageSaver(_imfac);
+            _imageSaver = new ImageSaver(_imfac);
 
         }
 
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            imageSaver.SaveImage();
+            _imageSaver.SaveImage();
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)
         {
-            _loading.Load(imageGallery,pictureBox,_imfac);
+            _loading.Load(_imageGallery,pictureBox,_imfac);
         }
 
         private void leftButton_Click(object sender, EventArgs e)
         {
-            pictureBox.Image = imageGallery.ChangeImage(-1);
+            pictureBox.Image = _imageGallery.ChangeImage(-1);
             _imfac.Load(pictureBox.Image);
         }
 
         private void rightButton_Click(object sender, EventArgs e)
         {
-            pictureBox.Image = imageGallery.ChangeImage(1);
+            pictureBox.Image = _imageGallery.ChangeImage(1);
             _imfac.Load(pictureBox.Image);
         }
 
@@ -86,7 +86,7 @@ namespace WindowsFormsApp1
 
         private void reloadButton_Click(object sender, EventArgs e)
         {
-            pictureBox.Image = imageGallery.CurrentImage;
+            pictureBox.Image = _imageGallery.CurrentImage;
             _imfac.Load(pictureBox.Image);
         }
     }
