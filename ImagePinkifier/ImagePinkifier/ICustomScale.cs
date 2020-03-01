@@ -11,6 +11,6 @@ namespace WindowsFormsApp1
 {
     interface ICustomScale
     {
-        Image CustomScale(Image guiImage, ImageFactory factor, double scale);
+        Image CustomScale(Image guiImage, IImageFactoryLocal factor, double scale);
     }
 }

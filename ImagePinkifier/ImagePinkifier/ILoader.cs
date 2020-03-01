@@ -10,6 +10,6 @@ namespace WindowsFormsApp1
 {
     interface ILoader
     {
-        void Load(IImageGallery imageGallery, PictureBox pictureBox, ImageFactory imagefactor);
+        void Load(IImageGallery imageGallery, PictureBox pictureBox, IImageFactoryLocal imagefactor);
     }
 }

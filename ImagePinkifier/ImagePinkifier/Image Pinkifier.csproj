@@ -49,11 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\ComponentFactory.cs" />
+    <Compile Include="Factory\IComponentFactory.cs" />
     <Compile Include="IAutoScale.cs" />
+    <Compile Include="IComponent.cs" />
     <Compile Include="ICustomScale.cs" />
+    <Compile Include="IImageFactoryLocal.cs" />
     <Compile Include="IImageGallery.cs" />
     <Compile Include="IImageSaver.cs" />
     <Compile Include="ILoader.cs" />
+    <Compile Include="ImageFactoryLocal.cs" />
     <Compile Include="ImageGallery.cs" />
     <Compile Include="ImageLoader.cs" />
     <Compile Include="ImagePinkifier.cs">
@@ -64,6 +69,7 @@
     </Compile>
     <Compile Include="ImageSaver.cs" />
     <Compile Include="ImageScale.cs" />
+    <Compile Include="IModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ImagePinkifier.resx">

@@ -17,9 +17,9 @@ namespace WindowsFormsApp1
         /// <summary>
         /// This is the factory that will be used to save the image
         /// </summary>
-        private ImageFactory _imageFactory;
+        private IImageFactoryLocal _imageFactory;
 
-        public ImageSaver(ImageFactory imageFactory)
+        public ImageSaver(IImageFactoryLocal imageFactory)
         {
             _imageFactory = imageFactory;
         }

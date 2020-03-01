@@ -11,6 +11,6 @@ namespace WindowsFormsApp1
 {
     interface IAutoScale
     {
-        Image autoResizeImage(Size size, ImageFactory factor);
+        Image autoResizeImage(Size size, IImageFactoryLocal factor);
     }
 }

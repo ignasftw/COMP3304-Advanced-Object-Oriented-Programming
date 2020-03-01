@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
         {
 
         }
-        public void Load(IImageGallery imageGallery, PictureBox pictureBox, ImageFactory imagefactor)
+        public void Load(IImageGallery imageGallery, PictureBox pictureBox, IImageFactoryLocal imagefactor)
         {
             //Open file picker dialog
             OpenFileDialog openFileDialog = new OpenFileDialog();

@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
 
         private IImageSaver _imageSaver;
 
-        private ImageFactory _imfac = new ImageFactory();
+        private IImageFactoryLocal _imfac = new ImageFactoryLocal();
 
         private ILoader _loading = new ImageLoader();
 
@@ -80,7 +80,7 @@ namespace WindowsFormsApp1
         private void makePinkerButton_Click(object sender, EventArgs e)
         {
             _imfac.Tint(Color.Pink);
-            pictureBox.Image = _imfac.Image;
+            pictureBox.Image = _imfac.GetImage();
         }
 
         private void reloadButton_Click(object sender, EventArgs e)

@@ -24,14 +24,14 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="image">Image of the guiImage which will have to be changed</param>
         /// <param name="factor">ImageFactory which will be asked to return scaled image</param>
-        public Image autoResizeImage(Size size, ImageFactory factor)
+        public Image autoResizeImage(Size size, IImageFactoryLocal factor)
         {
             try
             {
                 //Ask factory to resize the image to the size of the window
                 factor.Resize(size);
                 //Ask guiImage to be changed into a scaled image
-                return factor.Image;
+                return factor.GetImage();
             }
             catch (Exception e)
             {
@@ -41,12 +41,12 @@ namespace WindowsFormsApp1
         }
 
 
-        public Image CustomScale(Image image, ImageFactory factor, double scale)
+        public Image CustomScale(Image image, IImageFactoryLocal factor, double scale)
         {
             try
             {
                 factor.Resize(image.Size.Multiply(scale));
-                image = factor.Image;
+                image = factor.GetImage();
                 return image;
             }
             catch (Exception e)
