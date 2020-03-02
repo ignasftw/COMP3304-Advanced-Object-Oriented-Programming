@@ -17,6 +17,8 @@ namespace WindowsFormsApp1
         /// <summary>
         /// This is the factory that will be used to save the image
         /// </summary>
+
+        //Declaire an IImageFactoryLocal which will be a link for a library which didn't have an interface
         private IImageFactoryLocal _imageFactory;
 
         public ImageSaver(IImageFactoryLocal imageFactory)
@@ -24,6 +26,9 @@ namespace WindowsFormsApp1
             _imageFactory = imageFactory;
         }
 
+        /// <summary>
+        /// Save a current Image selected
+        /// </summary>
         public void SaveImage()
         {
             //Open file select dialog

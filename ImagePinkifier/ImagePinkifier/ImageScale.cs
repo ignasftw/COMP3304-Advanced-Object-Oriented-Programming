@@ -19,8 +19,9 @@ namespace WindowsFormsApp1
         public ImageScale()
         {
         }
+
         /// <summary>
-        /// Set the image to fit the window
+        /// A method which will Set the image to fit the window
         /// </summary>
         /// <param name="image">Image of the guiImage which will have to be changed</param>
         /// <param name="factor">ImageFactory which will be asked to return scaled image</param>
@@ -40,7 +41,13 @@ namespace WindowsFormsApp1
             }
         }
 
-
+        /// <summary>
+        /// A method which scales an image depending on scale
+        /// </summary>
+        /// <param name="image">An Image which will have to be scaled</param>
+        /// <param name="factor">A factory which will be asked to modufy the image</param>
+        /// <param name="scale">A double which is scale multiplier, 1.1 will increase the size by 10% and 0.9 will decrease by 10%</param>
+        /// <returns>A scaled version of an Image</returns>
         public Image CustomScale(Image image, IImageFactoryLocal factor, double scale)
         {
             try
