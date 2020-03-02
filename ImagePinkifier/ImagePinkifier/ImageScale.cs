@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="image">Image of the guiImage which will have to be changed</param>
         /// <param name="factor">ImageFactory which will be asked to return scaled image</param>
-        public Image autoResizeImage(Size size, IImageFactoryLocal factor)
+        public Image AutoResizeImage(Size size, IImageFactoryLocal factor)
         {
             try
             {
