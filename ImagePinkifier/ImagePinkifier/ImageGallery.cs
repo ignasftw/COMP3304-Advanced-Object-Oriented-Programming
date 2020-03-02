@@ -30,11 +30,15 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// Retrieve a current image from the list while providing the id
+        /// Retrieves the current image from the list
         /// </summary>
         public Image CurrentImage { get { return _images[_currentImageIndex]; } }
 
-
+        /// <summary>
+        /// Changes which image is currently selected
+        /// </summary>
+        /// <param name="amount">The amount to change the index by, can be positive or negative</param>
+        /// <returns>Returns the currently selected image</returns>
         public Image ChangeImage(int amount)
         {
             //Display the previous image on the list
@@ -51,12 +55,18 @@ namespace WindowsFormsApp1
             return CurrentImage;
         }
 
+        /// <summary>
+        /// Adds an image to the gallery of images from a file
+        /// </summary>
+        /// <param name="fileName">The path of the file to add</param>
         public void AddImage(string fileName)
         {
             AddImage(Image.FromFile(fileName));
         }
-
-
+        /// <summary>
+        /// Adds an image to the gallery of images
+        /// </summary>
+        /// <param name="image">The image to add</param>
         public void AddImage(Image image)
         {
             _images.Add(image);
@@ -64,11 +74,17 @@ namespace WindowsFormsApp1
             UpdateImageCounter();
         }
 
+        /// <summary>
+        /// Deletes the first image in the gallery
+        /// </summary>
         public void DeleteImage()
         {
             _images.RemoveAt(0);
         }
 
+        /// <summary>
+        /// Updates the text of the image counter GUI element to reflect the count of images, both which is selected and how many there are in total
+        /// </summary>
         private void UpdateImageCounter()
         {
             if (_imageCounter != null)
