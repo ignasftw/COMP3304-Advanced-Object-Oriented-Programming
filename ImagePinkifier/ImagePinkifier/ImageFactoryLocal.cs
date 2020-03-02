@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
     /// </summary>
     class ImageFactoryLocal : IImageFactoryLocal, IComponent, IDisposable
     {
-        //Declaire an ImageFactory
+        //Declare an ImageFactory
         private ImageFactory _imfac = new ImageFactory();
 
         /// <summary>

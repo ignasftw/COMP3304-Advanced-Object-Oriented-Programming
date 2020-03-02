@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         /// This is the factory that will be used to save the image
         /// </summary>
 
-        //Declaire an IImageFactoryLocal which will be a link for a library which didn't have an interface
+        //Declare an IImageFactoryLocal which will be a link for a library which didn't have an interface
         private IImageFactoryLocal _imageFactory;
 
         public ImageSaver(IImageFactoryLocal imageFactory)

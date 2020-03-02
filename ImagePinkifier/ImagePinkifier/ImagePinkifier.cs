@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
 {
     public partial class ImagePinkifier : Form
     {
-        //Declaire a factory which will be creating and returning components, call it'_factory'
+        //Declare a factory which will be creating and returning components, call it'_factory'
         private Factory.IComponentFactory _factory = new Factory.ComponentFactory();
 
         /*These components could be stored in a dictionary and then called depending on a key*/

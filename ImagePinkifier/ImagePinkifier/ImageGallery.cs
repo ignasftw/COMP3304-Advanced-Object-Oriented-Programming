@@ -10,11 +10,11 @@ namespace WindowsFormsApp1
 {
     class ImageGallery : IImageGallery, IComponent
     {
-        //Declaire a List of Image, store a list of images, call it '_images'
+        //Declare a List of Image, store a list of images, call it '_images'
         private List<Image> _images = new List<Image>();
-        //Declaire an int, this is id of which image is currently selected, call it '_currentImageIndex'
+        //Declare an int, this is id of which image is currently selected, call it '_currentImageIndex'
         private int _currentImageIndex = 0;
-        //Declaire a Label which will display image count in current select, call it '_imageCounter'
+        //Declare a Label which will display image count in current select, call it '_imageCounter'
         private Label _imageCounter;
 
         /// <summary>
