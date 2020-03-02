@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
         /// <summary>
         /// A method which will Set the image to fit the window
         /// </summary>
-        /// <param name="image">Image of the guiImage which will have to be changed</param>
+        /// <param name="image">Image of the guiImage which will be changed</param>
         /// <param name="factor">ImageFactory which will be asked to return scaled image</param>
         public Image AutoResizeImage(Size size, IImageFactoryLocal factor)
         {
