@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
     /// <summary>
     /// Class which contains library class, so it could implement an interface without modifying a library and keeping encapsulation
     /// </summary>
-    class ImageFactoryLocal : IImageFactoryLocal, IComponent
+    class ImageFactoryLocal : IImageFactoryLocal, IComponent, IDisposable
     {
         //Declaire an ImageFactory
         private ImageFactory _imfac = new ImageFactory();
