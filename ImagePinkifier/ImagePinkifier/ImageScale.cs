@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
     /// <summary>
     /// Purpose of this class is to return a scaled image upon request
     /// </summary>
-    class ImageScale : IAutoScale, ICustomScale
+    class ImageScale : IAutoScale, ICustomScale, IComponent
     {
         public ImageScale()
         {

@@ -8,6 +8,6 @@ namespace WindowsFormsApp1.Factory
 {
     interface IComponentFactory
     {
-
+        IComponent Get<T>() where T : IComponent, new();
     }
 }

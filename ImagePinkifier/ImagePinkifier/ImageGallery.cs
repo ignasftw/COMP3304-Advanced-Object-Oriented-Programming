@@ -8,30 +8,32 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    class ImageGallery : IImageGallery
+    class ImageGallery : IImageGallery, IComponent
     {
-        //The purpose of this class is to store a list of images and remember which image is currently selected
-
+        //Declaire a List of Image, store a list of images, call it '_images'
         private List<Image> _images = new List<Image>();
+        //Declaire an int, this is id of which image is currently selected, call it '_currentImageIndex'
         private int _currentImageIndex = 0;
-        
+        //Declaire a Label which will display image count in current select, call it '_imageCounter'
         private Label _imageCounter;
 
+        /// <summary>
+        /// Contructor for creating an ImageGallery, on default it should contain a default image so using UI early wouldn't throw an exception
+        /// </summary>
+        /// <param name="imageCounter"></param>
         public ImageGallery(Label imageCounter)
         {
             _imageCounter = imageCounter;
 
-            //Begin the list of images with one blank image
+            //Begin the list of images with one default image
             _images.Add(new Bitmap(1, 1));
         }
 
-        public ImageGallery()
-            : this(null)
-        {
-            
-        }
-
+        /// <summary>
+        /// Retrieve a current image from the list while providing the id
+        /// </summary>
         public Image CurrentImage { get { return _images[_currentImageIndex]; } }
+
 
         public Image ChangeImage(int amount)
         {
@@ -53,6 +55,7 @@ namespace WindowsFormsApp1
         {
             AddImage(Image.FromFile(fileName));
         }
+
 
         public void AddImage(Image image)
         {

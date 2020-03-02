@@ -8,12 +8,19 @@ using ImageProcessor;
 
 namespace WindowsFormsApp1
 {
-    class ImageLoader : ILoader
+    class ImageLoader : ILoader, IComponent
     {
         public ImageLoader()
         {
 
         }
+
+        /// <summary>
+        /// Loading an Image from OpenFileDialog and then adding it to the Image list and display the most recent one
+        /// </summary>
+        /// <param name="imageGallery">The galery that all the images will be displayed in</param>
+        /// <param name="pictureBox">The PictureBox where the most secent upload will be displayed</param>
+        /// <param name="imagefactor">The imagefactory will be asked to load the Image</param>
         public void Load(IImageGallery imageGallery, PictureBox pictureBox, IImageFactoryLocal imagefactor)
         {
             //Open file picker dialog

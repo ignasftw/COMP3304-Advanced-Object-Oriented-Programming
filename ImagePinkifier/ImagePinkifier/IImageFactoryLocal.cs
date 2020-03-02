@@ -8,6 +8,9 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
+    /*
+     Code snippets were taken out of SizeMultiplier project to create an interface for IImageFactoryLocal
+         */
     interface IImageFactoryLocal
     {
         //

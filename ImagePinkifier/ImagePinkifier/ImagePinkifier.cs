@@ -14,28 +14,40 @@ namespace WindowsFormsApp1
 {
     public partial class ImagePinkifier : Form
     {
+        //Declaire a factory which will be creating and returning components, call it'_factory'
+        private Factory.IComponentFactory _factory = new Factory.ComponentFactory();
+
+        /*These components could be stored in a dictionary and then called depending on a key*/
         private IImageGallery _imageGallery;
 
         private IImageSaver _imageSaver;
 
-        private IImageFactoryLocal _imfac = new ImageFactoryLocal();
+        private IImageFactoryLocal _imfac;
 
-        private ILoader _loading = new ImageLoader();
+        private ILoader _loading;
 
-        private IAutoScale _scaling = new ImageScale();
+        private IAutoScale _scaling;
 
         /// <summary>
         /// ImagePinkifier's constructor which will initialise the Component for User-Interface, an ImageGallery, an ImageSaver
         /// </summary>
         public ImagePinkifier()
         {
+            //Initialising components through a factory
+            //TO-DO these components should be stored in a dictionary where later only a required component should be required
+            _imfac = (IImageFactoryLocal)_factory.Get<ImageFactoryLocal>();
+            _loading = (ILoader)_factory.Get<ImageLoader>();
+            _scaling = (IAutoScale)_factory.Get<ImageScale>();
+
             //Initialises all the buttons and other GUI
             InitializeComponent();
 
             //Initialise the image gallery
+            //Creating through factory doesn't allow to pass any variables
             _imageGallery = new ImageGallery(imageCounter);
 
             //Initialise the image saver
+            //Creating through factory doesn't allow to pass any variables
             _imageSaver = new ImageSaver(_imfac);
         }
 
@@ -56,7 +68,7 @@ namespace WindowsFormsApp1
         /// <param name="e"></param>
         private void loadImageButton_Click(object sender, EventArgs e)
         {
-            _loading.Load(_imageGallery,pictureBox,_imfac);
+            _loading.Load(_imageGallery,pictureBox, _imfac);
         }
 
         /// <summary>
