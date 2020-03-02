@@ -42,7 +42,7 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// A method which scales an image depending on scale
+        /// A method which scales an image's width and height depending on a double: "scale"
         /// </summary>
         /// <param name="image">An Image which will have to be scaled</param>
         /// <param name="factor">A factory which will be asked to modufy the image</param>
