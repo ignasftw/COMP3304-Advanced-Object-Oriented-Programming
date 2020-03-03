@@ -113,11 +113,10 @@ namespace WindowsFormsApp1
             if (_imageCounter != null)
             {
                 _imageCounter.Text = _currentImageIndex + 1 + " / " + _images.Count;
-                try
+                if (_images.Count > _currentImageIndex)
                 {
                     _imageName.Text = _images.ElementAt(_currentImageIndex).Key;
                 }
-                catch { }
             }
         }
 
