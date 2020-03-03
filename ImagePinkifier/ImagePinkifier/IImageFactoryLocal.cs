@@ -17,13 +17,13 @@ namespace WindowsFormsApp1
         /// Gets or the local image for manipulation.
         /// </summary>
         /// <returns></returns>
-        Image GetImage();
+        Image GetImage { get; }
 
         /// <summary>
         /// Gets the path to the local image for manipulation.
         /// </summary>
         /// <returns></returns>
-        string GetImagePath();
+        string GetImagePath { get; }
 
         /// <summary>
         /// Disposes the object and frees resources for the Garbage Collector.
