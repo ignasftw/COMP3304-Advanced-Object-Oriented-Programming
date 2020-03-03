@@ -11,7 +11,9 @@ namespace WindowsFormsApp1
     class ImageGallery : IImageGallery, IComponent
     {
         //Declare a List of Image, store a list of images, call it '_images'
-        private List<Image> _images = new List<Image>();
+        private Dictionary<int, Image> _images = new Dictionary<int, Image>();
+        //Declare an int, this is id of the image, call it '_id'
+        private int _id = 0;
         //Declare an int, this is id of which image is currently selected, call it '_currentImageIndex'
         private int _currentImageIndex = 0;
         //Declare a Label which will display image count in current select, call it '_imageCounter'
@@ -24,15 +26,16 @@ namespace WindowsFormsApp1
         public ImageGallery(Label imageCounter)
         {
             _imageCounter = imageCounter;
-
             //Begin the list of images with one default image
-            _images.Add(new Bitmap(1, 1));
+            _images.Add(_id, new Bitmap(1, 1));
+            _id++;
+
         }
 
         /// <summary>
         /// Retrieves the current image from the list
         /// </summary>
-        public Image CurrentImage { get { return _images[_currentImageIndex]; } }
+        public Image CurrentImage { get { return _images.ElementAt(_currentImageIndex).Value; } }
 
         /// <summary>
         /// Changes which image is currently selected
@@ -69,9 +72,16 @@ namespace WindowsFormsApp1
         /// <param name="image">The image to add</param>
         public void AddImage(Image image)
         {
-            _images.Add(image);
+            //Begin the list of images with one default image
 
+            if (!_images.ContainsKey(_id)) 
+            {
+            _images.Add(_id, image);
             UpdateImageCounter();
+            _id++;
+            Console.WriteLine("Image was loaded with id:{0}", _currentImageIndex);
+            }
+
         }
 
         /// <summary>
@@ -79,7 +89,11 @@ namespace WindowsFormsApp1
         /// </summary>
         public void DeleteImage()
         {
-            _images.RemoveAt(0);
+            if (_images.ContainsKey(0))
+            {
+                _images.Remove(0);
+            }
+            UpdateImageCounter();
         }
 
         /// <summary>
