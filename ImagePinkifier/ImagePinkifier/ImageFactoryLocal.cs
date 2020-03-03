@@ -28,19 +28,13 @@ namespace WindowsFormsApp1
         ///Gets or the local image for manipulation.
         /// </summary>
         /// <returns></returns>
-        public Image GetImage()
-        {
-            return _imfac.Image;
-        }
+        public Image GetImage { get { return _imfac.Image; } }
 
         /// <summary>
         /// Gets the path to the local image for manipulation.
         /// </summary>
         /// <returns></returns>
-        public string GetImagePath()
-        {
-            return _imfac.ImagePath;
-        }
+        public string GetImagePath { get { return _imfac.ImagePath; } }
 
         /// <summary>
         /// Disposes the object and frees resources for the Garbage Collector.

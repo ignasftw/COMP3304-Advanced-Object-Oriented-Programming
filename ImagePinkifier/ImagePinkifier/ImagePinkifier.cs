@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         /*These components could be stored in a dictionary and then called depending on a key*/
         private IImageGallery _imageGallery;
 
+        //Declare an IImageSaver
         private IImageSaver _imageSaver;
 
         private IImageFactoryLocal _imfac;
