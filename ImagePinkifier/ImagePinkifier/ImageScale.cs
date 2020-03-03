@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
                 //Ask factory to resize the image to the size of the window
                 factor.Resize(size);
                 //Ask guiImage to be changed into a scaled image
-                return factor.GetImage();
+                return factor.GetImage;
             }
             catch (Exception e)
             {
@@ -53,7 +53,7 @@ namespace WindowsFormsApp1
             try
             {
                 factor.Resize(image.Size.Multiply(scale));
-                image = factor.GetImage();
+                image = factor.GetImage;
                 return image;
             }
             catch (Exception e)

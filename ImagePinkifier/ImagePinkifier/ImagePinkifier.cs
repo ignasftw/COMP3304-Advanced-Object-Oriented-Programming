@@ -134,7 +134,7 @@ namespace WindowsFormsApp1
         private void makePinkerButton_Click(object sender, EventArgs e)
         {
             _imfac.Tint(Color.Pink);
-            pictureBox.Image = _imfac.GetImage();
+            pictureBox.Image = _imfac.GetImage;
         }
 
         /// <summary>
