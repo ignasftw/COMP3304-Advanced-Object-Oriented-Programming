@@ -11,19 +11,21 @@ namespace WindowsFormsApp1
         /// Adds an image 
         /// </summary>
         /// <param name="image"></param>
-        void AddImage(Image image);
+        string AddImage(Image image);
 
         /// <summary>
         /// Adds an image from path
         /// </summary>
         /// <param name="fileName">string of a path of the image</param>
-        void AddImage(string fileName);
+        string AddImage(string fileName);
+
         /// <summary>
         /// Changes the image 
         /// </summary>
         /// <param name="amount"></param>
         /// <returns></returns>
         Image ChangeImage(int amount);
+
         /// <summary>
         /// Removes the current image 
         /// </summary>

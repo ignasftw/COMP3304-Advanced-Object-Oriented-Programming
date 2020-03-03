@@ -5,31 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IDGenerator;
 
 namespace WindowsFormsApp1
 {
-    class ImageGallery : IImageGallery, IComponent
+    class ImageGallery : IImageGallery, IComponent, IModel
     {
         //Declare a List of Image, store a list of images, call it '_images'
-        private Dictionary<int, Image> _images = new Dictionary<int, Image>();
+        private Dictionary<string, Image> _images = new Dictionary<string, Image>();
         //Declare an int, this is id of the image, call it '_id'
-        private int _id = 0;
+        private string _id = "";
         //Declare an int, this is id of which image is currently selected, call it '_currentImageIndex'
         private int _currentImageIndex = 0;
         //Declare a Label which will display image count in current select, call it '_imageCounter'
         private Label _imageCounter;
 
+        private Label _imageName;
+
         /// <summary>
         /// Contructor for creating an ImageGallery, on default it should contain a default image so using UI early wouldn't throw an exception
         /// </summary>
         /// <param name="imageCounter"></param>
-        public ImageGallery(Label imageCounter)
+        public ImageGallery(Label imageCounter, Label imageName)
         {
             _imageCounter = imageCounter;
+            _imageName = imageName;
             //Begin the list of images with one default image
-            _images.Add(_id, new Bitmap(1, 1));
-            _id++;
-
+            _images.Add("", new Bitmap(1, 1));
+            
         }
 
         /// <summary>
@@ -62,26 +65,32 @@ namespace WindowsFormsApp1
         /// Adds an image to the gallery of images from a file
         /// </summary>
         /// <param name="fileName">The path of the file to add</param>
-        public void AddImage(string fileName)
+        public string AddImage(string fileName)
         {
-            AddImage(Image.FromFile(fileName));
+            return AddImage(Image.FromFile(fileName), fileName);
         }
         /// <summary>
         /// Adds an image to the gallery of images
         /// </summary>
         /// <param name="image">The image to add</param>
-        public void AddImage(Image image)
+        public string AddImage(Image image, string imageName)
         {
             //Begin the list of images with one default image
 
-            if (!_images.ContainsKey(_id)) 
+            if (!_images.ContainsKey(imageName))
             {
-            _images.Add(_id, image);
-            UpdateImageCounter();
-            _id++;
-            Console.WriteLine("Image was loaded with id:{0}", _currentImageIndex);
+                _images.Add(imageName, image);
+                UpdateImageCounter();
+                Console.WriteLine("Image was loaded with id:{0}", imageName);
             }
+            return _id;
+        }
 
+        public string AddImage(Image image)
+        {
+            string id = (_id += IDGenerator.IDGenerator.RandomPhoneme());
+            AddImage(image, id);
+            return id;
         }
 
         /// <summary>
@@ -89,9 +98,9 @@ namespace WindowsFormsApp1
         /// </summary>
         public void DeleteImage()
         {
-            if (_images.ContainsKey(0))
+            if (_images.ContainsKey(""))
             {
-                _images.Remove(0);
+                _images.Remove("");
             }
             UpdateImageCounter();
         }
@@ -104,7 +113,27 @@ namespace WindowsFormsApp1
             if (_imageCounter != null)
             {
                 _imageCounter.Text = _currentImageIndex + 1 + " / " + _images.Count;
+                try
+                {
+                    _imageName.Text = _images.ElementAt(_currentImageIndex).Key;
+                }
+                catch { }
             }
+        }
+
+        public IList<string> Load(IList<string> pathfilenames)
+        {
+            IList<string> ids = new List<string>();
+            foreach (string s in pathfilenames)
+            {
+                ids.Add(AddImage(s));
+            }
+            return ids;
+        }
+
+        public Image GetImage(string key, int frameWidth, int frameHeight)
+        {
+            return _images[key];
         }
     }
 }

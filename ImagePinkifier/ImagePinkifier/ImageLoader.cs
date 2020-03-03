@@ -32,11 +32,7 @@ namespace WindowsFormsApp1
                 //Delete placeholder image
                 if (imageGallery.CurrentImage.Width == 1 && imageGallery.CurrentImage.Height == 1) imageGallery.DeleteImage();
 
-                //Add the image chosen to the list of images
-                foreach (string fileName in openFileDialog.FileNames)
-                {
-                    imageGallery.AddImage(fileName);
-                }
+                ((IModel)imageGallery).Load(openFileDialog.FileNames);
 
                 //Display the most recently added image
                 pictureBox.Image = imageGallery.CurrentImage;

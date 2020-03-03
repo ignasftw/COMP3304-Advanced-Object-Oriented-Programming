@@ -44,7 +44,7 @@ namespace WindowsFormsApp1
 
             //Initialise the image gallery
             //Creating through factory doesn't allow to pass any variables
-            _imageGallery = new ImageGallery(imageCounter);
+            _imageGallery = new ImageGallery(imageCounter, imageName);
 
             //Initialise the image saver
             //Creating through factory doesn't allow to pass any variables

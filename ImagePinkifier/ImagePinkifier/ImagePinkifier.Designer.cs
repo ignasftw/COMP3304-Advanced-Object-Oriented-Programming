@@ -40,6 +40,7 @@
             this.makePinkerButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
             this.imageCounter = new System.Windows.Forms.Label();
+            this.imageName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,9 +79,9 @@
             // 
             this.pictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox.Location = new System.Drawing.Point(50, 25);
+            this.pictureBox.Location = new System.Drawing.Point(50, 40);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(575, 375);
+            this.pictureBox.Size = new System.Drawing.Size(575, 374);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 3;
             this.pictureBox.TabStop = false;
@@ -156,11 +157,22 @@
             this.imageCounter.Text = "No images loaded";
             this.imageCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // imageName
+            // 
+            this.imageName.BackColor = System.Drawing.Color.Transparent;
+            this.imageName.Location = new System.Drawing.Point(47, 9);
+            this.imageName.Name = "imageName";
+            this.imageName.Size = new System.Drawing.Size(578, 28);
+            this.imageName.TabIndex = 7;
+            this.imageName.Text = "No images loaded";
+            this.imageName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // ImagePinkifier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 486);
+            this.Controls.Add(this.imageName);
             this.Controls.Add(this.imageCounter);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.zoomOutButton);
@@ -196,6 +208,7 @@
         private System.Windows.Forms.Button makePinkerButton;
         private System.Windows.Forms.Button reloadButton;
         private System.Windows.Forms.Label imageCounter;
+        private System.Windows.Forms.Label imageName;
     }
 }
 
