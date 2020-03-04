@@ -49,11 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data.cs" />
     <Compile Include="Factory\ComponentFactory.cs" />
     <Compile Include="Factory\IComponentFactory.cs" />
     <Compile Include="IAutoScale.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="ICustomScale.cs" />
+    <Compile Include="IData.cs" />
     <Compile Include="IImageFactoryLocal.cs" />
     <Compile Include="IImageGallery.cs" />
     <Compile Include="IImageSaver.cs" />

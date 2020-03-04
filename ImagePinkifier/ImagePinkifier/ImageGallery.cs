@@ -11,15 +11,15 @@ namespace WindowsFormsApp1
 {
     class ImageGallery : IImageGallery, IComponent, IModel
     {
-        //Declare a List of Image, store a list of images, call it '_images'
-        private Dictionary<string, Image> _images = new Dictionary<string, Image>();
+        //Declare a Data class, for storing Image/Imagepathfile dictionary, call it '_dataStorage'
+        Data _dataStorage = new Data();
         //Declare an int, this is id of the image, call it '_id'
         private string _id = "";
         //Declare an int, this is id of which image is currently selected, call it '_currentImageIndex'
         private int _currentImageIndex = 0;
         //Declare a Label which will display image count in current select, call it '_imageCounter'
         private Label _imageCounter;
-
+        //Declare a Label which will display pathfile name in current select, call it '_imageName'
         private Label _imageName;
 
         /// <summary>
@@ -30,15 +30,14 @@ namespace WindowsFormsApp1
         {
             _imageCounter = imageCounter;
             _imageName = imageName;
-            //Begin the list of images with one default image
-            _images.Add("", new Bitmap(1, 1));
-            
+            //Begin the list of images with one default image which will be deleted after uploading images
+            _dataStorage.AddImage(new Bitmap(1, 1), "");
         }
 
         /// <summary>
         /// Retrieves the current image from the list
         /// </summary>
-        public Image CurrentImage { get { return _images.ElementAt(_currentImageIndex).Value; } }
+        public Image CurrentImage { get { return _dataStorage.GetImage(_currentImageIndex); } }
 
         /// <summary>
         /// Changes which image is currently selected
@@ -51,10 +50,10 @@ namespace WindowsFormsApp1
             _currentImageIndex += amount;
 
             //Loop around to the last one if you get to the beginning
-            if (_currentImageIndex < 0) _currentImageIndex = _images.Count - 1;
+            if (_currentImageIndex < 0) _currentImageIndex = _dataStorage.Count - 1;
 
             //Loop around to the first one if you get to the end
-            if (_currentImageIndex > _images.Count - 1) _currentImageIndex = 0;
+            if (_currentImageIndex > _dataStorage.Count - 1) _currentImageIndex = 0;
 
             UpdateImageCounter();
 
@@ -69,23 +68,12 @@ namespace WindowsFormsApp1
         {
             return AddImage(Image.FromFile(fileName), fileName);
         }
+
         /// <summary>
-        /// Adds an image to the gallery of images
+        /// Adds an image to the gallery of images if the filepath is empty with a generated ID
         /// </summary>
-        /// <param name="image">The image to add</param>
-        public string AddImage(Image image, string imageName)
-        {
-            //Begin the list of images with one default image
-
-            if (!_images.ContainsKey(imageName))
-            {
-                _images.Add(imageName, image);
-                UpdateImageCounter();
-                Console.WriteLine("Image was loaded with id:{0}", imageName);
-            }
-            return _id;
-        }
-
+        /// <param name="image"></param>
+        /// <returns></returns>
         public string AddImage(Image image)
         {
             string id = (_id += IDGenerator.IDGenerator.RandomPhoneme());
@@ -94,14 +82,23 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// Deletes the first image in the gallery
+        /// Adds an image to the gallery of images
+        /// </summary>
+        /// <param name="image">The image to add</param>
+        public string AddImage(Image image, string imageName)
+        {
+            _dataStorage.AddImage(image, imageName);
+            UpdateImageCounter();
+            return imageName;
+        }
+
+
+        /// <summary>
+        /// Asks storage to remove unnecessary images
         /// </summary>
         public void DeleteImage()
         {
-            if (_images.ContainsKey(""))
-            {
-                _images.Remove("");
-            }
+            _dataStorage.RemoveImage();
             UpdateImageCounter();
         }
 
@@ -112,14 +109,19 @@ namespace WindowsFormsApp1
         {
             if (_imageCounter != null)
             {
-                _imageCounter.Text = _currentImageIndex + 1 + " / " + _images.Count;
-                if (_images.Count > _currentImageIndex)
+                _imageCounter.Text = _currentImageIndex + 1 + " / " + _dataStorage.Count;
+                if (_dataStorage.Count > _currentImageIndex)
                 {
-                    _imageName.Text = _images.ElementAt(_currentImageIndex).Key;
+                    _imageName.Text = _dataStorage.GetFileName(_currentImageIndex);
                 }
             }
         }
 
+        /// <summary>
+        /// Loading a list of strings of images. Images and pathfile names will be added to storage. After that return a list with pathfile names
+        /// </summary>
+        /// <param name="pathfilenames"></param>
+        /// <returns>A list of strings with pathfile names</returns>
         public IList<string> Load(IList<string> pathfilenames)
         {
             IList<string> ids = new List<string>();
@@ -130,9 +132,16 @@ namespace WindowsFormsApp1
             return ids;
         }
 
+        /// <summary>
+        /// Implementing IModel which required to return an image of certain width and height, but this is done in a separate class because of Single Responsability Principle
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="frameWidth"></param>
+        /// <param name="frameHeight"></param>
+        /// <returns></returns>
         public Image GetImage(string key, int frameWidth, int frameHeight)
         {
-            return _images[key];
+            return _dataStorage.GetImage(key);
         }
     }
 }
