@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    /// <summary>
+    /// This class controls the GUI for the program, it has references to all the classes that do the actual work
+    /// </summary>
     public partial class ImagePinkifier : Form
     {
         //Declare a factory which will be creating and returning components, call it'_factory'

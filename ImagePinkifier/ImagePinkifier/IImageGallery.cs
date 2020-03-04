@@ -2,6 +2,9 @@
 
 namespace WindowsFormsApp1
 {
+    /// <summary>
+    /// An IImageGallery stores a gallery of images
+    /// </summary>
     interface IImageGallery
     {
         //Returns a currently selected image

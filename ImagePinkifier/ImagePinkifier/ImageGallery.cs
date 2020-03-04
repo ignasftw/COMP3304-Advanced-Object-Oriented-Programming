@@ -9,6 +9,9 @@ using IDGenerator;
 
 namespace WindowsFormsApp1
 {
+    /// <summary>
+    /// ImageGallery stores a gallery of images
+    /// </summary>
     class ImageGallery : IImageGallery, IComponent, IModel
     {
         //Declare a Data class, for storing Image/Imagepathfile dictionary, call it '_dataStorage'
