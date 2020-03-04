@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
     {
         //Declare a List of Image, store a list of images, call it '_images'
         private Dictionary<string, Image> _images = new Dictionary<string, Image>();
-        //Declare an int, this is id of the image, call it '_id'
+        //Declare a string, this is id of an image, call it '_id'
         private string _id = "";
         //Declare an int, this is id of which image is currently selected, call it '_currentImageIndex'
         private int _currentImageIndex = 0;
