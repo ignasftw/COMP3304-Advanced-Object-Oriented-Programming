@@ -8,6 +8,9 @@ using ImageProcessor;
 
 namespace WindowsFormsApp1
 {
+    /// <summary>
+    /// Class which is responsible for loading images from pathfile
+    /// </summary>
     class ImageLoader : ILoader, IComponent
     {
         public ImageLoader()
