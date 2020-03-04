@@ -7,6 +7,9 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
+    /// <summary>
+    /// Data inteface which allows only to add and return and store data
+    /// </summary>
     interface IData
     {
         /// <summary>
