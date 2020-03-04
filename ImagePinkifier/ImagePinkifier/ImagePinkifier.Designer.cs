@@ -52,7 +52,7 @@
             this.leftButton.TabIndex = 0;
             this.leftButton.Text = "⏴";
             this.leftButton.UseVisualStyleBackColor = true;
-            this.leftButton.Click += new System.EventHandler(this.leftButton_Click);
+            this.leftButton.Click += new System.EventHandler(this.LeftButton_Click);
             // 
             // rightButton
             // 
@@ -62,7 +62,7 @@
             this.rightButton.TabIndex = 1;
             this.rightButton.Text = "⏵";
             this.rightButton.UseVisualStyleBackColor = true;
-            this.rightButton.Click += new System.EventHandler(this.rightButton_Click);
+            this.rightButton.Click += new System.EventHandler(this.RightButton_Click);
             // 
             // loadImageButton
             // 
@@ -73,7 +73,7 @@
             this.loadImageButton.TabIndex = 2;
             this.loadImageButton.Text = "Load Image";
             this.loadImageButton.UseVisualStyleBackColor = true;
-            this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
+            this.loadImageButton.Click += new System.EventHandler(this.LoadImageButton_Click);
             // 
             // pictureBox
             // 
@@ -94,7 +94,7 @@
             this.zoomInButton.TabIndex = 4;
             this.zoomInButton.Text = "+";
             this.zoomInButton.UseVisualStyleBackColor = true;
-            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
+            this.zoomInButton.Click += new System.EventHandler(this.ZoomInButton_Click);
             // 
             // zoomAutoButton
             // 
@@ -104,7 +104,7 @@
             this.zoomAutoButton.TabIndex = 4;
             this.zoomAutoButton.Text = "A";
             this.zoomAutoButton.UseVisualStyleBackColor = true;
-            this.zoomAutoButton.Click += new System.EventHandler(this.zoomAutoButton_Click);
+            this.zoomAutoButton.Click += new System.EventHandler(this.ZoomAutoButton_Click);
             // 
             // zoomOutButton
             // 
@@ -114,7 +114,7 @@
             this.zoomOutButton.TabIndex = 4;
             this.zoomOutButton.Text = "-";
             this.zoomOutButton.UseVisualStyleBackColor = true;
-            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
+            this.zoomOutButton.Click += new System.EventHandler(this.ZoomOutButton_Click);
             // 
             // saveImageButton
             // 
@@ -125,7 +125,7 @@
             this.saveImageButton.TabIndex = 2;
             this.saveImageButton.Text = "Save Image";
             this.saveImageButton.UseVisualStyleBackColor = true;
-            this.saveImageButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveImageButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // makePinkerButton
             // 
@@ -136,7 +136,7 @@
             this.makePinkerButton.TabIndex = 2;
             this.makePinkerButton.Text = "Make Pinker";
             this.makePinkerButton.UseVisualStyleBackColor = true;
-            this.makePinkerButton.Click += new System.EventHandler(this.makePinkerButton_Click);
+            this.makePinkerButton.Click += new System.EventHandler(this.MakePinkerButton_Click);
             // 
             // reloadButton
             // 
@@ -146,7 +146,7 @@
             this.reloadButton.TabIndex = 5;
             this.reloadButton.Text = "⟳";
             this.reloadButton.UseVisualStyleBackColor = true;
-            this.reloadButton.Click += new System.EventHandler(this.reloadButton_Click);
+            this.reloadButton.Click += new System.EventHandler(this.ReloadButton_Click);
             // 
             // imageCounter
             // 

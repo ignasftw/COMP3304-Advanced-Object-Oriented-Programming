@@ -57,7 +57,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             _imageSaver.SaveImage();
         }
@@ -67,7 +67,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void loadImageButton_Click(object sender, EventArgs e)
+        private void LoadImageButton_Click(object sender, EventArgs e)
         {
             _loading.Load(_imageGallery,pictureBox, _imfac);
         }
@@ -77,7 +77,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void leftButton_Click(object sender, EventArgs e)
+        private void LeftButton_Click(object sender, EventArgs e)
         {
             pictureBox.Image = _imageGallery.ChangeImage(-1);
             _imfac.Load(pictureBox.Image);
@@ -88,7 +88,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rightButton_Click(object sender, EventArgs e)
+        private void RightButton_Click(object sender, EventArgs e)
         {
             pictureBox.Image = _imageGallery.ChangeImage(1);
             _imfac.Load(pictureBox.Image);
@@ -100,7 +100,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void zoomAutoButton_Click(object sender, EventArgs e)
+        private void ZoomAutoButton_Click(object sender, EventArgs e)
         {
             pictureBox.Image = _scaling.AutoResizeImage(pictureBox.Size, _imfac);
         }
@@ -111,7 +111,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void zoomInButton_Click(object sender, EventArgs e)
+        private void ZoomInButton_Click(object sender, EventArgs e)
         {
             pictureBox.Image = ((ICustomScale)_scaling).CustomScale(pictureBox.Image, _imfac, 1.1);
         }
@@ -121,7 +121,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void zoomOutButton_Click(object sender, EventArgs e)
+        private void ZoomOutButton_Click(object sender, EventArgs e)
         {
             pictureBox.Image = ((ICustomScale)_scaling).CustomScale(pictureBox.Image, _imfac, 0.9);
         }
@@ -131,7 +131,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void makePinkerButton_Click(object sender, EventArgs e)
+        private void MakePinkerButton_Click(object sender, EventArgs e)
         {
             _imfac.Tint(Color.Pink);
             pictureBox.Image = _imfac.GetImage;
@@ -142,7 +142,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void reloadButton_Click(object sender, EventArgs e)
+        private void ReloadButton_Click(object sender, EventArgs e)
         {
             pictureBox.Image = _imageGallery.CurrentImage;
             _imfac.Load(pictureBox.Image);
