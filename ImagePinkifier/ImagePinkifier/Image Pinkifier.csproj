@@ -52,6 +52,7 @@
     <Compile Include="Data.cs" />
     <Compile Include="Factory\ComponentFactory.cs" />
     <Compile Include="Factory\IComponentFactory.cs" />
+    <Compile Include="IAddRemove.cs" />
     <Compile Include="IAutoScale.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="ICustomScale.cs" />
@@ -86,6 +87,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Class Diagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

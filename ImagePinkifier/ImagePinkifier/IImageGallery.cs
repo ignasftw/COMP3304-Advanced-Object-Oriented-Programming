@@ -23,9 +23,9 @@ namespace WindowsFormsApp1
         string AddImage(string fileName);
 
         /// <summary>
-        /// Changes the image 
+        /// Changes the image from the list
         /// </summary>
-        /// <param name="amount"></param>
+        /// <param name="amount">How much to move in the list. amount = 1 would move forward the list by 1. amount = -1 would go back the list by 1.</param>
         /// <returns></returns>
         Image ChangeImage(int amount);
 

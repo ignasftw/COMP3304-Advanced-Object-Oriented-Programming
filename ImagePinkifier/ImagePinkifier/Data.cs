@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
     /// <summary>
     /// Data class which stores a dictionary which contain Images and pathfile names or ID. This class only adds and return and stores data
     /// </summary>
-    class Data
+    class Data : IData, IAddRemove
     {
         //Declare a List of Image, store a list of images and pathfile names, call it '_images'
         private Dictionary<string, Image> _images = new Dictionary<string, Image>();
