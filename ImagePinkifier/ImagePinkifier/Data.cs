@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
     class Data : IData, IAddRemove
     {
         //Declare a List of Image, store a list of images and pathfile names, call it '_images'
-        private Dictionary<string, Image> _images = new Dictionary<string, Image>();
+        public Dictionary<string, Image> _images = new Dictionary<string, Image>();
 
         /// <summary>
         /// Property which returns amount of currently stored images

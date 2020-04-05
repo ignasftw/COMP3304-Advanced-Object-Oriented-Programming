@@ -120,6 +120,7 @@ namespace WindowsFormsApp1
             }
         }
 
+
         /// <summary>
         /// Loading a list of strings of images. Images and pathfile names will be added to storage. After that return a list with pathfile names
         /// </summary>

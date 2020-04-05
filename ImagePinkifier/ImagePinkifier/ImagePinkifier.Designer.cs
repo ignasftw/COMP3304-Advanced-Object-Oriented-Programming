@@ -190,6 +190,7 @@
             this.Name = "ImagePinkifier";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "\'); DROP TABLE \"Teams\"; -- Image Pinkifier";
+            this.Load += new System.EventHandler(this.ImagePinkifier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
