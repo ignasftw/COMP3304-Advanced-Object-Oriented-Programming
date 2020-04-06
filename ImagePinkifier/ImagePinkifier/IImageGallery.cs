@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -28,6 +30,12 @@ namespace WindowsFormsApp1
         /// <param name="amount">How much to move in the list. amount = 1 would move forward the list by 1. amount = -1 would go back the list by 1.</param>
         /// <returns></returns>
         Image ChangeImage(int amount);
+
+        /// <summary>
+        /// Return all images contained insede Data
+        /// </summary>
+        /// <returns></returns>
+        List<Image> GetAllImages();
 
         /// <summary>
         /// Removes the current image 

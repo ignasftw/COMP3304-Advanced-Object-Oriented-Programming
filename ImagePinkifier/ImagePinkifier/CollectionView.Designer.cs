@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CollectionView));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.loadImageButton = new System.Windows.Forms.Button();
+            this.imageCounter = new System.Windows.Forms.Label();
+            this.imageName = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
@@ -40,39 +42,67 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // loadImageButton
+            // 
+            this.loadImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.loadImageButton.AutoSize = true;
+            this.loadImageButton.Location = new System.Drawing.Point(793, 20);
+            this.loadImageButton.Name = "loadImageButton";
+            this.loadImageButton.Size = new System.Drawing.Size(100, 30);
+            this.loadImageButton.TabIndex = 1;
+            this.loadImageButton.Text = "LoadImage";
+            this.loadImageButton.UseVisualStyleBackColor = true;
+            this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
+            // 
+            // imageCounter
+            // 
+            this.imageCounter.Location = new System.Drawing.Point(0, 0);
+            this.imageCounter.Name = "imageCounter";
+            this.imageCounter.Size = new System.Drawing.Size(100, 23);
+            this.imageCounter.TabIndex = 4;
+            // 
+            // imageName
+            // 
+            this.imageName.AutoSize = true;
+            this.imageName.Location = new System.Drawing.Point(16, 439);
+            this.imageName.Name = "imageName";
+            this.imageName.Size = new System.Drawing.Size(96, 20);
+            this.imageName.TabIndex = 3;
+            this.imageName.Text = "ImageName";
+            // 
             // listView1
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.HideSelection = false;
-            this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(13, 13);
+            this.listView1.Location = new System.Drawing.Point(20, 20);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(567, 306);
-            this.listView1.SmallImageList = this.imageList1;
-            this.listView1.StateImageList = this.imageList1;
-            this.listView1.TabIndex = 0;
+            this.listView1.Size = new System.Drawing.Size(767, 416);
+            this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // CollectionView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 331);
+            this.ClientSize = new System.Drawing.Size(915, 498);
             this.Controls.Add(this.listView1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Controls.Add(this.imageName);
+            this.Controls.Add(this.imageCounter);
+            this.Controls.Add(this.loadImageButton);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CollectionView";
             this.Text = "CollectionView";
             this.Load += new System.EventHandler(this.CollectionView_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button loadImageButton;
+        private System.Windows.Forms.Label imageCounter;
+        private System.Windows.Forms.Label imageName;
         private System.Windows.Forms.ListView listView1;
     }
 }

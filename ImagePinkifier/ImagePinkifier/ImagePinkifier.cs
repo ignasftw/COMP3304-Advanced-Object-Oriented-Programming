@@ -52,13 +52,15 @@ namespace WindowsFormsApp1
 
             //Initialise the image gallery
             //Creating through factory doesn't allow to pass any variables
-            _imageGallery = new ImageGallery(imageCounter, imageName);
+            _imageGallery = new ImageGallery(imageCounter, imageName, pictureBox);
 
             //Initialise the image saver
             //Creating through factory doesn't allow to pass any variables
             _imageSaver = new ImageSaver(_imfac);
-            AllowOnlyOneButton(loadImageButton);
         }
+
+        public PictureBox PictureBox { get { return pictureBox; } }
+
 
         /// <summary>
         /// Calling a SaveImage interface after the button is pressed
@@ -78,11 +80,7 @@ namespace WindowsFormsApp1
         private void LoadImageButton_Click(object sender, EventArgs e)
         {
             _loading.Load(_imageGallery,pictureBox, _imfac);
-            
-            if(pictureBox.Image != null)
-            {
-                AllowToUseAllButtons();
-            }
+
         }
 
         /// <summary>
@@ -170,32 +168,6 @@ namespace WindowsFormsApp1
             pictureBox.Image = _imageGallery.CurrentImage;
             //Load the image and update the galery
             _imfac.Load(pictureBox.Image);
-        }
-
-        public void AllowOnlyOneButton(Button exceptionButton)
-        {
-            foreach (Button button in this.Controls.OfType<Button>())
-            {
-                DisableButton(button);
-            }
-            EnableButton(exceptionButton);
-        }
-
-        public void AllowToUseAllButtons()
-        {
-            foreach (Button button in this.Controls.OfType<Button>())
-            {
-                EnableButton(button);
-            }
-        }
-
-        /// <summary>
-        /// Disables buttons which should not be used
-        /// </summary>
-        /// <param name="button">Button which requires it's state to be changed</param>
-        private void DisableButton(Button button)
-        {
-            button.Enabled = false;
         }
 
         /// <summary>

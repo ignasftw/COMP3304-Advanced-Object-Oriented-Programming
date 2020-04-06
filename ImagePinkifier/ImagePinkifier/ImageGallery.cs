@@ -25,12 +25,15 @@ namespace WindowsFormsApp1
         //Declare a Label which will display pathfile name in current select, call it '_imageName'
         private Label _imageName;
 
+        PictureBox _pB;
+
         /// <summary>
         /// Contructor for creating an ImageGallery, on default it should contain a default image so using UI early wouldn't throw an exception
         /// </summary>
         /// <param name="imageCounter"></param>
-        public ImageGallery(Label imageCounter, Label imageName)
+        public ImageGallery(Label imageCounter, Label imageName, PictureBox pictureBox)
         {
+            _pB = pictureBox;
             _imageCounter = imageCounter;
             _imageName = imageName;
             //Begin the list of images with one default image which will be deleted after uploading images
@@ -41,6 +44,8 @@ namespace WindowsFormsApp1
         /// Retrieves the current image from the list
         /// </summary>
         public Image CurrentImage { get { return _dataStorage.GetImage(_currentImageIndex); } }
+
+
 
         /// <summary>
         /// Changes which image is currently selected
@@ -146,6 +151,16 @@ namespace WindowsFormsApp1
         public Image GetImage(string key, int frameWidth, int frameHeight)
         {
             return _dataStorage.GetImage(key);
+        }
+
+        public List<Image> GetAllImages()
+        {
+            List<Image> tempImages = new List<Image>();
+            for (int i = 0; i < _dataStorage.Count; i++)
+            {
+                tempImages.Add(_dataStorage.GetImage(i));
+            }
+            return tempImages;
         }
     }
 }
