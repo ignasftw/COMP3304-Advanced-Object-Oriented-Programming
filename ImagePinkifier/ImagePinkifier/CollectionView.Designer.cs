@@ -38,8 +38,8 @@
             // 
             // imageList1
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(96, 96);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // loadImageButton
@@ -73,9 +73,11 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
+            this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(20, 20);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(767, 416);
+            this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 

@@ -64,24 +64,24 @@ namespace WindowsFormsApp1
 
             if (_displayList != null)
             {
+                imageList1.ImageSize = new Size(96, 96);
                 listView1.View = View.LargeIcon;
-                imageList1.ImageSize = new Size(64, 64);
                 listView1.LargeImageList = this.imageList1;
 
-                DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
-                imageCol.Width = 50;
-                imageCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
+                for (int i = 0; i < _displayList.Count; i++)
+                {
+                    imageList1.Images.Add(_displayList[i]);
+                }
 
-
-                listView1.View = View.LargeIcon;
-                imageList1.ImageSize = new Size(32, 32);
-                listView1.LargeImageList = this.imageList1;
+                //DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
+                //imageCol.Width = 50;
+                //imageCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
 
                 for (int i = 0; i < imageList1.Images.Count; i++)
                 {
                     ListViewItem item = new ListViewItem();
                     item.ImageIndex = i;
-                    this.listView1.Items.Add(item);
+                    listView1.Items.Add(item);
 
                 }
             }

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using IDGenerator;
 
 namespace WindowsFormsApp1
 {
@@ -78,13 +77,13 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// Adds an image to the gallery of images if the filepath is empty with a generated ID
+        /// Adds an image to the gallery of images if the filepath is empty with a custom ID
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
         public string AddImage(Image image)
         {
-            string id = (_id += IDGenerator.IDGenerator.RandomPhoneme());
+            string id = _id + "*NoFilePath*";
             AddImage(image, id);
             return id;
         }
