@@ -52,38 +52,54 @@ namespace WindowsFormsApp1
             //listView1.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+
+        //Change into a comand call which calls which adds images if there are not on the list
         private void loadImageButton_Click(object sender, EventArgs e)
         {
-            _loading.Load(_imageGallery, _imagePinkifier.PictureBox, _imfac);
 
-            //Show Image Display Window
+            //DECLARE an ImageCollection to get currently loaded images
+            ImageList.ImageCollection getList = imageList1.Images;
+            //Loadgin all the images and storing them into Data class
+            _loading.Load(_imageGallery, _imagePinkifier.PictureBox, _imfac);
+            //Retrieve Locally loaded images
+            List<Image> tempList = _imageGallery.GetAllImages();
+            //Show the main Image Display Window after the images are loaded
             _imagePinkifier.Show();
 
-            //Locally loaded images
-            _displayList = _imageGallery.GetAllImages();
+            //Setup how the list looks like
+            imageList1.ImageSize = new Size(96, 96);
+            listView1.View = View.LargeIcon;
+            listView1.LargeImageList = this.imageList1;
 
-            if (_displayList != null)
+            if (tempList != null && getList != null)
+                for (int i = 0; i < tempList.Count; i++)
+                {
+                    bool isImageOnList = false;
+                    for (int u = 0; u < getList.Count; u++)
+                    {
+                        if (getList[u] == tempList[i]) isImageOnList = true;
+                    }
+                    if (!isImageOnList)
+                    {
+                        imageList1.Images.Add(tempList[i]);
+                        //_displayList.Add(tempList[i]);
+                    }
+                }
+            else if (_displayList == null)
             {
-                imageList1.ImageSize = new Size(96, 96);
-                listView1.View = View.LargeIcon;
-                listView1.LargeImageList = this.imageList1;
+                _displayList = tempList;
+            }
 
-                for (int i = 0; i < _displayList.Count; i++)
-                {
-                    imageList1.Images.Add(_displayList[i]);
-                }
+            //DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
+            //imageCol.Width = 50;
+            //imageCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
 
-                //DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
-                //imageCol.Width = 50;
-                //imageCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            for (int i = 0; i < imageList1.Images.Count; i++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.ImageIndex = i;
+                listView1.Items.Add(item);
 
-                for (int i = 0; i < imageList1.Images.Count; i++)
-                {
-                    ListViewItem item = new ListViewItem();
-                    item.ImageIndex = i;
-                    listView1.Items.Add(item);
-
-                }
             }
         }
     }

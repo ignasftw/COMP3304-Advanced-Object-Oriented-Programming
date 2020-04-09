@@ -9,6 +9,12 @@ namespace SizeMultiplier
 {
     public static class SizeMultiplier
     {
+        /// <summary>
+        /// Class which modifies the image's size
+        /// </summary>
+        /// <param name="size">Size of current image</param>
+        /// <param name="factor">Factor of image scale</param>
+        /// <returns></returns>
         public static Size Multiply(this Size size, double factor)
         {
             //System.Diagnostics.Debug.WriteLine(size.Width);

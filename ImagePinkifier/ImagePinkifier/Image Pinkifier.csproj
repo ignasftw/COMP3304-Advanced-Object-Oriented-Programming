@@ -134,10 +134,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\IDGenerator\IDGenerator.csproj">
-      <Project>{39cb9ede-5cbe-41d6-85eb-6b0bb931cae8}</Project>
-      <Name>IDGenerator</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\SizeMultiplier\SizeMultiplier.csproj">
       <Project>{b3012de3-2f09-42a2-90fe-ce854db2af88}</Project>
       <Name>SizeMultiplier</Name>
