@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace View
 {
     partial class CollectionView
     {
@@ -69,9 +69,13 @@
             this.imageName.Size = new System.Drawing.Size(96, 20);
             this.imageName.TabIndex = 3;
             this.imageName.Text = "ImageName";
+            this.imageName.Click += new System.EventHandler(this.imageName_Click);
             // 
             // listView1
             // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.HideSelection = false;
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(20, 20);
