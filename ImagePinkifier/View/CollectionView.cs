@@ -50,23 +50,24 @@ namespace View
 
             //listView1.Columns.Add("Item");
             //listView1.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            imageName.Text = "";
+            listView1.View = System.Windows.Forms.View.Details;
+
+            listView1.LabelEdit = true;
+
+            listView1.GridLines = true;
+
+            listView1.Sorting = SortOrder.Ascending;
+
+            AddImageElement();
+
         }
 
 
         //Change into a comand call which calls which adds images if there are not on the list
         private void loadImageButton_Click(object sender, EventArgs e)
         {
-            /*Delegate which returns images and adds to the list*/
-
-
-            //DECLARE an ImageCollection to get currently loaded images
-            ImageList.ImageCollection getList = imageList1.Images;
-            //Loadgin all the images and storing them into Data class
-            //_loading.Load(_imageGallery, _imagePinkifier.PictureBox, _imfac);
-            //Retrieve Locally loaded images
-            List<Image> tempList;
-            //Show the main Image Display Window after the images are loaded
-            _imagePinkifier.Show();
 
             //Setup how the list looks like
             imageList1.ImageSize = new Size(96, 96);
@@ -75,9 +76,6 @@ namespace View
 
         }
 
-        /// <summary>
-        /// Method which updates Classes View
-        /// </summary>
         void UpdateUI()
         {
 
@@ -85,8 +83,22 @@ namespace View
 
         void AddImageElement()
         {
-            PictureBox item;
-            //item.
+            ListViewItem item = new ListViewItem("item1", 0);
+            item.Text = "Image";
+            
+
+            imageList1.Images.Add(Bitmap.FromFile("C:/Users/Viktorija/Documents/GitHub/COMP3304-Advanced-Object-Oriented-Programming/ImagePinkifier/FishAssets/AnglerFish_Lit.png"));
+            imageList1.Images.Add(new Bitmap(100,100));
+
+            
+            //listView1.Items.Add(Image.FromFile("C:/Users/Viktorija/Documents/GitHub/COMP3304-Advanced-Object-Oriented-Programming/ImagePinkifier/ImagePinkifier/ExampleImages/FishAssets/AnglerFish_Lit.png"));
+            //listView1.Items.Add(Image.FromFile());
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

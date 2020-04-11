@@ -67,6 +67,7 @@
     <Compile Include="IImageGallery.cs" />
     <Compile Include="IImageSaver.cs" />
     <Compile Include="ILoader.cs" />
+    <Compile Include="ImageEventArgs.cs" />
     <Compile Include="ImageFactoryLocal.cs" />
     <Compile Include="ImageGallery.cs" />
     <Compile Include="ImageLoader.cs" />

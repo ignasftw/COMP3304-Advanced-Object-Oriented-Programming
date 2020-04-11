@@ -33,7 +33,11 @@ namespace View
         private Action _saveImageDelegate;
 
 
-
+        public ImagePinkifier()
+        {
+            //DEBUG COMPILER FOR TESTS SHOULD BE DELETED
+            InitializeComponent();
+        }
 
         /// <summary>
         /// ImagePinkifier's constructor which will initialise the Component for User-Interface, an ImageGallery, an ImageSaver
