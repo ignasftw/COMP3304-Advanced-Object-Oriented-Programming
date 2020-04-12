@@ -30,12 +30,17 @@ namespace View
         //List of images which has to be displayed
         List<Image> _displayList;
 
+        //DECLARE a Delegate which stores a function to get all images;
+        Func<List<Image>> _ImageList;
+
+        private int _imageid = 0;
+
         private void CollectionView_Load(object sender, EventArgs e)
         {
 
         }
 
-        public CollectionView()
+        public CollectionView(Func<List<Image>> ImageList)
         {
             //Initialises all the buttons and other GUI
             InitializeComponent();
@@ -50,9 +55,9 @@ namespace View
 
             //listView1.Columns.Add("Item");
             //listView1.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.HeaderSize);
+            _ImageList = ImageList;
 
-            imageName.Text = "";
-            listView1.View = System.Windows.Forms.View.Details;
+            //listView1.View = System.Windows.Forms.View.Details;
 
             listView1.LabelEdit = true;
 
@@ -60,7 +65,7 @@ namespace View
 
             listView1.Sorting = SortOrder.Ascending;
 
-            AddImageElement();
+            
 
         }
 
@@ -68,32 +73,24 @@ namespace View
         //Change into a comand call which calls which adds images if there are not on the list
         private void loadImageButton_Click(object sender, EventArgs e)
         {
-
-            //Setup how the list looks like
-            imageList1.ImageSize = new Size(96, 96);
-            //listView1.View = View.LargeIcon;
-            listView1.LargeImageList = this.imageList1;
-
+            UpdateUI();
         }
 
         void UpdateUI()
         {
+            listView1.Controls.Clear();
+            List<Image> templist = _ImageList();
 
-        }
+            imageList1.Images.AddRange(templist.ToArray());
 
-        void AddImageElement()
-        {
-            ListViewItem item = new ListViewItem("item1", 0);
-            item.Text = "Image";
-            
 
-            imageList1.Images.Add(Bitmap.FromFile("C:/Users/Viktorija/Documents/GitHub/COMP3304-Advanced-Object-Oriented-Programming/ImagePinkifier/FishAssets/AnglerFish_Lit.png"));
-            imageList1.Images.Add(new Bitmap(100,100));
-
-            
-            //listView1.Items.Add(Image.FromFile("C:/Users/Viktorija/Documents/GitHub/COMP3304-Advanced-Object-Oriented-Programming/ImagePinkifier/ImagePinkifier/ExampleImages/FishAssets/AnglerFish_Lit.png"));
-            //listView1.Items.Add(Image.FromFile());
-
+            for (int i = 0; i < templist.Count; i++)
+            {
+                ListViewItem tempItem = new ListViewItem();
+                tempItem.Name = _imageid.ToString();
+                Console.WriteLine(listView1.Items.Count.ToString());
+                tempItem.ImageIndex = _imageid;
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)

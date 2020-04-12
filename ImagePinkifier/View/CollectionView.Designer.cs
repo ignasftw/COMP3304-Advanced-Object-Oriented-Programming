@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CollectionView));
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("", 0);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("", 1);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.loadImageButton = new System.Windows.Forms.Button();
             this.imageCounter = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "AquariumBackground.png");
+            this.imageList1.Images.SetKeyName(1, "46502b195b308555391d8c8f6f9c5d23 (1).jpg");
             // 
             // loadImageButton
             // 
@@ -76,7 +78,8 @@
             // 
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem1,
+            listViewItem2});
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(20, 20);
             this.listView1.Name = "listView1";

@@ -17,5 +17,7 @@ namespace Controller
         /// <param name="pictureBox">A PictureBox where the loaded Image will be displayed</param>
         /// <param name="imagefactor">A factory which allows to load the images</param>
         void Load(IImageGallery imageGallery, PictureBox pictureBox, IImageFactoryLocal imagefactor);
+
+        void Load(IImageGallery imageGallery);
     }
 }

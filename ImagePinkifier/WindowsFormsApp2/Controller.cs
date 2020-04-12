@@ -13,7 +13,9 @@ namespace Controller
         public Controller()
         {
             // Fire-up UI by instantiating FishyNotes:
-            Application.Run(new View.CollectionView());
+            new ComponentInitializator();
+
+            //Application.Run(new View.CollectionView());
         }
 
         /// <summary>

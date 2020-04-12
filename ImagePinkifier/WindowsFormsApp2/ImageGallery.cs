@@ -30,13 +30,9 @@ namespace Controller
         /// Contructor for creating an ImageGallery, on default it should contain a default image so using UI early wouldn't throw an exception
         /// </summary>
         /// <param name="imageCounter"></param>
-        public ImageGallery(Label imageCounter, Label imageName, PictureBox pictureBox)
+        public ImageGallery()
         {
-            _pB = pictureBox;
-            _imageCounter = imageCounter;
-            _imageName = imageName;
-            //Begin the list of images with one default image which will be deleted after uploading images
-            _dataStorage.AddImage(new Bitmap(1,1), "");
+
         }
 
         /// <summary>
