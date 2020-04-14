@@ -12,91 +12,96 @@ namespace View
 {
     public partial class CollectionView : Form
     {
-        //Declare an IImageFactoryLocal which would be responsible for returning modified version of an image, call it '_imfac'
-        //private IImageFactoryLocal _imfac;
-
-        //Declare an ILoader which would be responsible for loading images into the galery, call it '_loading'
-        //private ILoader _loading;
-
-        //Declare a factory which will be creating and returning components, call it'_factory'
-        //private Factory.IComponentFactory _factory = new Factory.ComponentFactory();
-
-        //Declare an IImageGallery which will store Image Galery, call it '_imageGallery'
-        //private IImageGallery _imageGallery;
-
-        //Single Image display window
-        private ImagePinkifier _imagePinkifier;
-
         //List of images which has to be displayed
         List<Image> _displayList;
 
         //DECLARE a Delegate which stores a function to get all images;
-        Func<List<Image>> _ImageList;
+        Func<List<Image>> _GetImageList;
 
+        //DECLARE a Delegate which asks to load images into a data class
+        Action _LoadImages;
+
+        //DECLARE a Delegate which asks open an ItemDisplayer
+        Action _displayView;
+
+        //DECLARE an int which is used for putting images into View
         private int _imageid = 0;
+
+        public int _selectedImage;
 
         private void CollectionView_Load(object sender, EventArgs e)
         {
 
         }
 
-        public CollectionView(Func<List<Image>> ImageList)
+        public CollectionView(Action LoadImages, Func<List<Image>> GetImages, Action displayView)
         {
             //Initialises all the buttons and other GUI
             InitializeComponent();
 
-            //_imagePinkifier = new ImagePinkifier();
-            //Initialising ImageFactory Component
-            //_imfac = (IImageFactoryLocal)_factory.Get<ImageFactoryLocal>();
-            //Initialising Image Loader Component
-            //_loading = (ILoader)_factory.Get<ImageLoader>();
-            //Creating through factory doesn't allow to pass any variables
-            //_imageGallery = new ImageGallery(imageCounter, imageName, _imagePinkifier.PictureBox);
+            _GetImageList = GetImages;
 
-            //listView1.Columns.Add("Item");
-            //listView1.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.HeaderSize);
-            _ImageList = ImageList;
+            _LoadImages = LoadImages;
 
-            //listView1.View = System.Windows.Forms.View.Details;
+            _displayView = displayView;
 
-            listView1.LabelEdit = true;
+            ListView1.GridLines = true;
 
-            listView1.GridLines = true;
+            ListView1.Sorting = SortOrder.Ascending;
 
-            listView1.Sorting = SortOrder.Ascending;
-
-            
-
+            ListView1.MultiSelect = false;
         }
 
 
         //Change into a comand call which calls which adds images if there are not on the list
         private void loadImageButton_Click(object sender, EventArgs e)
         {
+            _LoadImages();
+        }
+
+        public void OnDataHasBeenChanged(object sender, EventArgs e)
+        {
             UpdateUI();
         }
 
-        void UpdateUI()
+        private void UpdateUI()
         {
-            listView1.Controls.Clear();
-            List<Image> templist = _ImageList();
-
-            imageList1.Images.AddRange(templist.ToArray());
-
-
-            for (int i = 0; i < templist.Count; i++)
+            _displayList = _GetImageList();
+            if (_displayList != null)
             {
-                ListViewItem tempItem = new ListViewItem();
-                tempItem.Name = _imageid.ToString();
-                Console.WriteLine(listView1.Items.Count.ToString());
-                tempItem.ImageIndex = _imageid;
+                List<ListViewItem> items = new List<ListViewItem>();
+                imageList1.Images.Clear();
+                ListView1.Clear();
+                _imageid = 0;
+
+                imageList1.Images.AddRange(_displayList.ToArray());
+
+                for (int i = 0; i < _displayList.Count; i++)
+                {
+                    if (imageList1.Images[i] != _displayList[i])
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.ImageIndex = _imageid;
+                        item.Tag = _imageid.ToString();
+                        items.Add(item);
+                        _imageid++;
+                    }
+                }
+                ListView1.Items.AddRange(items.ToArray());
             }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (ListView1.SelectedItems.Count > 0)
+            {
+                ImageName.Text = "Image with index: ";
+                ImageName.Text += ListView1.SelectedItems[0].Tag.ToString();
+                ImageName.Text += " was selected";
+                //Turn on ImagePinkifier because image was selected
+                _selectedImage = System.Convert.ToInt32(ListView1.SelectedItems[0].Tag);
+                _displayView();
+            }
         }
     }
 }
-

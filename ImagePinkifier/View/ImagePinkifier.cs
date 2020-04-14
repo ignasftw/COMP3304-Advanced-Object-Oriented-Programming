@@ -37,6 +37,8 @@ namespace View
         {
             //DEBUG COMPILER FOR TESTS SHOULD BE DELETED
             InitializeComponent();
+            pictureBox.AutoSize = true;
+            //pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
         }
 
         /// <summary>
@@ -54,140 +56,46 @@ namespace View
             _saveImageDelegate = saveImageDelegate;
         }
 
+        private void ImagePinkifier_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public PictureBox PictureBox { get { return pictureBox; } }
 
+        private void ScaleButton_Click(object sender, EventArgs e)
+        {
+            _scaleImageDelegate(new Size());
+        }
+
+        private void RotateButton_Click(object sender, EventArgs e)
+        {
+            _rotateImageDelegate(new int());
+        }
+
+        private void FlipButton_Click(object sender, EventArgs e)
+        {
+            _flipImageDelegate();
+        }
+
+        private void MakePinkerButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ResetImageButton_Click(object sender, EventArgs e)
+        {
+
+        }
 
         /// <summary>
-        /// Calling a SaveImage interface after the button is pressed
+        /// Calling a SaveImage Command after the button is pressed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
             _saveImageDelegate();
-        }
-
-        /// <summary>
-        /// Calling a Load interface after the button is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LoadImageButton_Click(object sender, EventArgs e)
-        {
-            //_loading.Load(_imageGallery,pictureBox, _imfac); Collection loads the image
-
-        }
-
-        /// <summary>
-        /// Calling a change to left interface after the button is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LeftButton_Click(object sender, EventArgs e)
-        {
-            /*
-            //Change image from list downwards the list by 1
-            pictureBox.Image = _imageGallery.ChangeImage(-1);
-            //Load the image and update the galery
-            _imfac.Load(pictureBox.Image);
-             */
-        }
-
-        /// <summary>
-        /// Calling a change to right interface after the button is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RightButton_Click(object sender, EventArgs e)
-        {
-            //No need for this button
-        }
-
-
-        /// <summary>
-        /// Calling a auto zoom image interface after the button is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ZoomAutoButton_Click(object sender, EventArgs e)
-        {
-            //Request and return scaled version of an image
-            //No need for this button
-            //pictureBox.Image = _scaling.AutoResizeImage(pictureBox.Size, _imfac);
-        }
-
-
-        /// <summary>
-        /// Calling a zoom-in Image interface after the button is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ZoomInButton_Click(object sender, EventArgs e)
-        {
-            //Request and return Zoomed-In version of an image
-            //No need for this button
-
-            //pictureBox.Image = ((ICustomScale)_scaling).CustomScale(pictureBox.Image, _imfac, 1.1);
-        }
-
-        /// <summary>
-        /// Calling a zoom-out Image interface after the button is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ZoomOutButton_Click(object sender, EventArgs e)
-        {
-            //Request and return Zoomed-Out version of an image
-            //No need for this button
-
-            //pictureBox.Image = ((ICustomScale)_scaling).CustomScale(pictureBox.Image, _imfac, 0.9);
-        }
-
-        /// <summary>
-        /// Calling a pinker Image interface after the button is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MakePinkerButton_Click(object sender, EventArgs e)
-        {
-            //Request a factory to return a pinker version of an Image
-            //_imfac.Tint(Color.Pink);
-            //Load the image and update the galery
-            //pictureBox.Image = _imfac.GetImage;
-
-            //tintimage delegate
-        }
-
-        /// <summary>
-        /// Calling a reload an Image interface after the button is pressed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ReloadButton_Click(object sender, EventArgs e)
-        {
-            //Request the image with the current id
-            //pictureBox.Image = _imageGallery.CurrentImage;
-            //Load the image and update the galery
-            //_imfac.Load(pictureBox.Image);
-        }
-
-        /// <summary>
-        /// Enables buttons which may be used
-        /// </summary>
-        /// <param name="button">Button which requires it's state to be changed</param>
-        private void EnableButton(Button button)
-        {
-            button.Enabled = true;
-        }
-
-        private void ImagePinkifier_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void imageName_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

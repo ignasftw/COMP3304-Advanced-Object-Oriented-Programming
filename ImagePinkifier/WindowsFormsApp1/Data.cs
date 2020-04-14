@@ -13,6 +13,7 @@ namespace Model
     /// </summary>
     public class Data : IData, IAddRemove
     {
+
         //Declare a List of Image, store a list of images and pathfile names, call it '_images'
         private Dictionary<string, Image> _images = new Dictionary<string, Image>();
 
@@ -78,5 +79,21 @@ namespace Model
                 _images.Remove("");
             }
         }
+
+        /// <summary>
+        /// Method which returns all the images contained within this class
+        /// </summary>
+        /// <returns>Array of All Loaded Images</returns>
+        public Image[] GetImages()
+        {
+            List<Image> images = new List<Image>();
+            for (int i = 0; i < _images.Count; i++)
+            {
+                images.Add(_images.ElementAt(i).Value);
+            }
+            return images.ToArray();
+        }
+
+
     }
 }

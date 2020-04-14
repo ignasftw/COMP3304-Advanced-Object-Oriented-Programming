@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
+
 
 namespace Controller
 {
@@ -25,13 +26,6 @@ namespace Controller
         string AddImage(string fileName);
 
         /// <summary>
-        /// Changes the image from the list
-        /// </summary>
-        /// <param name="amount">How much to move in the list. amount = 1 would move forward the list by 1. amount = -1 would go back the list by 1.</param>
-        /// <returns></returns>
-        Image ChangeImage(int amount);
-
-        /// <summary>
         /// Return all images contained insede Data
         /// </summary>
         /// <returns></returns>
@@ -41,5 +35,10 @@ namespace Controller
         /// Removes the current image 
         /// </summary>
         void DeleteImage();
+
+        void Subscribe(EventHandler dataHasBeenChanged);
+
+
+        void Unsubscribe(EventHandler dataHasBeenChanged);
     }
 }

@@ -29,34 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CollectionView));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("", 1);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.loadImageButton = new System.Windows.Forms.Button();
+            this.LoadImageButton = new System.Windows.Forms.Button();
             this.imageCounter = new System.Windows.Forms.Label();
-            this.imageName = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.ImageName = new System.Windows.Forms.Label();
+            this.ListView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // imageList1
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(96, 96);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "AquariumBackground.png");
-            this.imageList1.Images.SetKeyName(1, "46502b195b308555391d8c8f6f9c5d23 (1).jpg");
             // 
-            // loadImageButton
+            // LoadImageButton
             // 
-            this.loadImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadImageButton.AutoSize = true;
-            this.loadImageButton.Location = new System.Drawing.Point(793, 20);
-            this.loadImageButton.Name = "loadImageButton";
-            this.loadImageButton.Size = new System.Drawing.Size(100, 30);
-            this.loadImageButton.TabIndex = 1;
-            this.loadImageButton.Text = "LoadImage";
-            this.loadImageButton.UseVisualStyleBackColor = true;
-            this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
+            this.LoadImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoadImageButton.AutoSize = true;
+            this.LoadImageButton.Location = new System.Drawing.Point(793, 20);
+            this.LoadImageButton.Name = "LoadImageButton";
+            this.LoadImageButton.Size = new System.Drawing.Size(100, 30);
+            this.LoadImageButton.TabIndex = 1;
+            this.LoadImageButton.Text = "LoadImage";
+            this.LoadImageButton.UseVisualStyleBackColor = true;
+            this.LoadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
             // 
             // imageCounter
             // 
@@ -65,39 +61,41 @@
             this.imageCounter.Size = new System.Drawing.Size(100, 23);
             this.imageCounter.TabIndex = 4;
             // 
-            // imageName
+            // ImageName
             // 
-            this.imageName.AutoSize = true;
-            this.imageName.Location = new System.Drawing.Point(16, 439);
-            this.imageName.Name = "imageName";
-            this.imageName.Size = new System.Drawing.Size(96, 20);
-            this.imageName.TabIndex = 3;
-            this.imageName.Text = "ImageName";
+            this.ImageName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ImageName.AutoSize = true;
+            this.ImageName.Location = new System.Drawing.Point(16, 439);
+            this.ImageName.Name = "ImageName";
+            this.ImageName.Size = new System.Drawing.Size(351, 20);
+            this.ImageName.TabIndex = 3;
+            this.ImageName.Text = "Press \'Load\' button to load Files and then select.";
             // 
-            // listView1
+            // ListView1
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(20, 20);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(767, 416);
-            this.listView1.SmallImageList = this.imageList1;
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.ListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListView1.GridLines = true;
+            this.ListView1.HideSelection = false;
+            this.ListView1.LargeImageList = this.imageList1;
+            this.ListView1.Location = new System.Drawing.Point(20, 20);
+            this.ListView1.Name = "ListView1";
+            this.ListView1.Size = new System.Drawing.Size(767, 416);
+            this.ListView1.SmallImageList = this.imageList1;
+            this.ListView1.TabIndex = 5;
+            this.ListView1.UseCompatibleStateImageBehavior = false;
+            this.ListView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // CollectionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 498);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.imageName);
+            this.Controls.Add(this.ListView1);
+            this.Controls.Add(this.ImageName);
             this.Controls.Add(this.imageCounter);
-            this.Controls.Add(this.loadImageButton);
+            this.Controls.Add(this.LoadImageButton);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CollectionView";
             this.Text = "CollectionView";
@@ -110,9 +108,9 @@
         #endregion
 
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Button loadImageButton;
+        private System.Windows.Forms.Button LoadImageButton;
         private System.Windows.Forms.Label imageCounter;
-        private System.Windows.Forms.Label imageName;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label ImageName;
+        private System.Windows.Forms.ListView ListView1;
     }
 }

@@ -19,12 +19,8 @@ namespace Controller
         private string _id = "";
         //Declare an int, this is id of which image is currently selected, call it '_currentImageIndex'
         private int _currentImageIndex = 0;
-        //Declare a Label which will display image count in current select, call it '_imageCounter'
-        private Label _imageCounter;
-        //Declare a Label which will display pathfile name in current select, call it '_imageName'
-        private Label _imageName;
-
-        PictureBox _pB;
+        //Declare an EventHandler which would check whenever the data has been changed, call it 'DataHasChanged'
+        public event EventHandler DataHasChanged;
 
         /// <summary>
         /// Contructor for creating an ImageGallery, on default it should contain a default image so using UI early wouldn't throw an exception
@@ -39,29 +35,6 @@ namespace Controller
         /// Retrieves the current image from the list
         /// </summary>
         public Image CurrentImage { get { return _dataStorage.GetImage(_currentImageIndex); } }
-
-
-
-        /// <summary>
-        /// Changes which image is currently selected
-        /// </summary>
-        /// <param name="amount">The amount to change the index by, can be positive or negative</param>
-        /// <returns>Returns the currently selected image</returns>
-        public Image ChangeImage(int amount)
-        {
-            //Display the previous image on the list
-            _currentImageIndex += amount;
-
-            //Loop around to the last one if you get to the beginning
-            //if (_currentImageIndex < 0) _currentImageIndex = _dataStorage.Count - 1;
-
-            //Loop around to the first one if you get to the end
-            //if (_currentImageIndex > _dataStorage.Count - 1) _currentImageIndex = 0;
-
-            UpdateImageCounter();
-
-            return CurrentImage;
-        }
 
         /// <summary>
         /// Adds an image to the gallery of images from a file
@@ -91,7 +64,7 @@ namespace Controller
         public string AddImage(Image image, string imageName)
         {
             _dataStorage.AddImage(image, imageName);
-            UpdateImageCounter();
+            OnDataHasChanged();
             return imageName;
         }
 
@@ -102,20 +75,13 @@ namespace Controller
         public void DeleteImage()
         {
             _dataStorage.RemoveImage();
-            UpdateImageCounter();
+            OnDataHasChanged();
         }
 
-        /// <summary>
-        /// Updates the text of the image counter GUI element to reflect the count of images, both which is selected and how many there are in total
-        /// </summary>
-        private void UpdateImageCounter()
+        public void OnDataHasChanged()
         {
-            if (_imageCounter != null)
-            {
-
-            }
+            DataHasChanged(this, EventArgs.Empty);
         }
-
 
         /// <summary>
         /// Loading a list of strings of images. Images and pathfile names will be added to storage. After that return a list with pathfile names
@@ -147,11 +113,23 @@ namespace Controller
         public List<Image> GetAllImages()
         {
             List<Image> tempImages = new List<Image>();
-            //for (int i = 0; i < _dataStorage.Count; i++)
-            
-                tempImages.Add(_dataStorage.GetImage(0));
-            
+            for (int i = 0; i < _dataStorage.Count; i++)
+            {
+                tempImages.Add(_dataStorage.GetImage(i));
+            }
             return tempImages;
+        }
+
+
+        public void Subscribe(EventHandler dataHasBeenChanged)
+        {
+            DataHasChanged += dataHasBeenChanged;
+        }
+
+
+        public void Unsubscribe(EventHandler dataHasBeenChanged)
+        {
+            DataHasChanged -= dataHasBeenChanged;
         }
     }
 }
