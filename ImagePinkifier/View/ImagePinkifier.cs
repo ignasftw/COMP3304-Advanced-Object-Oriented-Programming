@@ -1,5 +1,4 @@
-﻿using SizeMultiplier;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,44 +15,36 @@ namespace View
     /// </summary>
     public partial class ImagePinkifier : Form
     {
-        //Declare a factory which will be creating and returning components, call it'_factory'
-        //private Factory.IComponentFactory _factory = new Factory.ComponentFactory();
-
         /*Delegates which will be used as commands*/
         //DECLARE a Delegate which asks to Scale Image
         private Action<Size> _scaleImageDelegate;
 
         //DECLARE a Delegate which asks to Rotate Image
-        private Action<int> _rotateImageDelegate;
+        private Action<float> _rotateImageDelegate;
 
         //DECLARE a Delegate which asks to Flip Image
-        private Action _flipImageDelegate;
+        private Action<bool[]> _flipImageDelegate;
 
         //DECLARE a Delegate which asks to Save Image
-        private Action _saveImageDelegate;
+        private Action<string> _saveImageDelegate;
 
+        //DECLARE a Delegate which reloads the Image
+        private Action _reloadDelegate;
 
-        public ImagePinkifier()
-        {
-            //DEBUG COMPILER FOR TESTS SHOULD BE DELETED
-            InitializeComponent();
-            pictureBox.AutoSize = true;
-            //pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-        }
 
         /// <summary>
         /// ImagePinkifier's constructor which will initialise the Component for User-Interface, an ImageGallery, an ImageSaver
         /// </summary>
-        public ImagePinkifier(Action<Size> scaleImageDelegate, Action<int> rotateImageDelegate, Action flipImageDelegate, Action saveImageDelegate)
+        public ImagePinkifier(Action<Size> scale, Action<float> rotate, Action<bool[]> flip, Action<string> saveImage, Action resetCommand)
         {
             //Initialises all the buttons and other GUI
             InitializeComponent();
 
-            /*Setup Delegates*/
-            _scaleImageDelegate = scaleImageDelegate;
-            _rotateImageDelegate = rotateImageDelegate;
-            _flipImageDelegate = flipImageDelegate;
-            _saveImageDelegate = saveImageDelegate;
+            _scaleImageDelegate = scale;
+            _rotateImageDelegate = rotate;
+            _flipImageDelegate = flip;
+            _saveImageDelegate = saveImage;
+            _reloadDelegate = resetCommand;
         }
 
         private void ImagePinkifier_Load(object sender, EventArgs e)
@@ -65,17 +56,19 @@ namespace View
 
         private void ScaleButton_Click(object sender, EventArgs e)
         {
-            _scaleImageDelegate(new Size());
+            _scaleImageDelegate(new Size(100,100));
         }
 
         private void RotateButton_Click(object sender, EventArgs e)
         {
-            _rotateImageDelegate(new int());
+            _rotateImageDelegate(10);
         }
 
         private void FlipButton_Click(object sender, EventArgs e)
         {
-            _flipImageDelegate();
+            bool[] flip = { true, true };
+
+            _flipImageDelegate(flip);
         }
 
         private void MakePinkerButton_Click(object sender, EventArgs e)
@@ -85,7 +78,7 @@ namespace View
 
         private void ResetImageButton_Click(object sender, EventArgs e)
         {
-
+            _reloadDelegate();
         }
 
         /// <summary>
@@ -95,7 +88,19 @@ namespace View
         /// <param name="e"></param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            _saveImageDelegate();
+            //Open file select dialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                //Let the dialog form assume that the default extension is "jpg"
+                DefaultExt = "jpg"
+            };
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                _saveImageDelegate(saveFileDialog.FileName);
+            }
+
+
         }
     }
 }

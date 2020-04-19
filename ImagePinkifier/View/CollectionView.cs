@@ -40,15 +40,11 @@ namespace View
             InitializeComponent();
 
             _GetImageList = GetImages;
-
             _LoadImages = LoadImages;
-
             _displayView = displayView;
 
             ListView1.GridLines = true;
-
             ListView1.Sorting = SortOrder.Ascending;
-
             ListView1.MultiSelect = false;
         }
 
@@ -95,9 +91,6 @@ namespace View
         {
             if (ListView1.SelectedItems.Count > 0)
             {
-                ImageName.Text = "Image with index: ";
-                ImageName.Text += ListView1.SelectedItems[0].Tag.ToString();
-                ImageName.Text += " was selected";
                 //Turn on ImagePinkifier because image was selected
                 _selectedImage = System.Convert.ToInt32(ListView1.SelectedItems[0].Tag);
                 _displayView();

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using ImageProcessor;
-using SizeMultiplier;
 using System.Windows.Forms;
 
 
@@ -52,7 +51,8 @@ namespace Controller
         {
             try
             {
-                factor.Resize(image.Size.Multiply(scale));
+                Size scaleImageSize = new Size(System.Convert.ToInt16(image.Width * scale), System.Convert.ToInt16(image.Height * scale));
+                factor.Resize(scaleImageSize);
                 image = factor.GetImage;
                 return image;
             }

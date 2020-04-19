@@ -16,6 +16,9 @@ namespace Controller
         //Declare an ImageFactory
         private ImageFactory _imfac = new ImageFactory();
 
+        //Declare an EventHandler which would check whenever the data has been changed, call it 'DataHasChanged'
+        public event EventHandler EffectWasApplied;
+
         /// <summary>
         /// A constructor which creates a library's factory
         /// </summary>
@@ -49,9 +52,10 @@ namespace Controller
         /// </summary>
         /// <param name="imagePath">The absolute path to the image to load.</param>
         /// <returns>The current instance of the ImageProcessor.ImageFactory class.</returns>
-        public ImageFactory Load(string imagePath)
+        public void Load(string imagePath)
         {
-            return _imfac.Load(imagePath);
+            _imfac = _imfac.Load(imagePath);
+            EffectWasApplied(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -60,9 +64,10 @@ namespace Controller
         /// <param name="image">The System.Drawing.Image to load. The original image is untouched during manipulation
         ///                     as a copy is made. Disposal of the input image is the responsibility of the user.</param>
         /// <returns>The current instance of the ImageProcessor.ImageFactory class.</returns>
-        public ImageFactory Load(Image image)
+        public void Load(Image image)
         {
-            return _imfac.Load(image);
+            _imfac = _imfac.Load(image);
+            EffectWasApplied(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -72,9 +77,10 @@ namespace Controller
         /// </summary>
         /// <param name="filePath">The path to save the image to.</param>
         /// <returns>The current instance of the ImageProcessor.ImageFactory class.</returns>
-        public ImageFactory Save(string filePath)
+        public void Save(string filePath)
         {
-            return _imfac.Save(filePath);
+            _imfac = _imfac.Save(filePath);
+            EffectWasApplied(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -82,9 +88,10 @@ namespace Controller
         /// </summary>
         /// <param name="color">The System.Drawing.Color to tint the image with.</param>
         /// <returns>The current instance of the ImageProcessor.ImageFactory class.</returns>
-        public ImageFactory Tint(Color color)
+        public void Tint(Color color)
         {
-            return _imfac.Tint(color);
+            _imfac = _imfac.Tint(color);
+            EffectWasApplied(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -92,9 +99,40 @@ namespace Controller
         /// </summary>
         /// <param name="size">The System.Drawing.Size containing the width and height to set the image to.</param>
         /// <returns>The current instance of the ImageProcessor.ImageFactory class.</returns>
-        public ImageFactory Resize(Size size)
+        public void Resize(Size size)
         {
-            return _imfac.Resize(size);
+            _imfac = _imfac.Resize(size);
+            EffectWasApplied(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Rotates the image to the given rotation value in degrees
+        /// </summary>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
+        public void Rotate(float degrees)
+        {
+            _imfac = _imfac.Rotate(degrees);
+            EffectWasApplied(this, EventArgs.Empty);
+        }
+
+        public void Flip(bool[] flips)
+        {
+            //flips[0] is flipVertically
+            //flips[1] is flip both axis
+            _imfac = _imfac.Flip(flips[0], flips[1]);
+            EffectWasApplied(this, EventArgs.Empty);
+        }
+
+        public void Subscribe(EventHandler dataHasBeenChanged)
+        {
+            EffectWasApplied += dataHasBeenChanged;
+        }
+
+
+        public void Unsubscribe(EventHandler dataHasBeenChanged)
+        {
+            EffectWasApplied -= dataHasBeenChanged;
         }
     }
 }

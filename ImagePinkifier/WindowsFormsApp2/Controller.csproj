@@ -56,6 +56,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="ComponentInitializator.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="DataPackage.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="FactoryLocator.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="IModel.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="IServiceLocator.cs" />
+    <Compile Include="Modifications.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -104,10 +106,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SizeMultiplier\SizeMultiplier.csproj">
-      <Project>{b3012de3-2f09-42a2-90fe-ce854db2af88}</Project>
-      <Name>SizeMultiplier</Name>
-    </ProjectReference>
     <ProjectReference Include="..\View\View.csproj">
       <Project>{45ad6e6e-4b5e-4c82-ae68-c58b2b748275}</Project>
       <Name>View</Name>

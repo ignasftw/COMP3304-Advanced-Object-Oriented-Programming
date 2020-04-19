@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImagePinkifier));
             this.ScaleButton = new System.Windows.Forms.Button();
             this.ResetImageButton = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.MakePinkerButton = new System.Windows.Forms.Button();
             this.RotateButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -102,6 +104,8 @@
             // 
             this.MakePinkerButton.BackColor = System.Drawing.Color.Transparent;
             this.MakePinkerButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MakePinkerButton.Enabled = false;
+            this.MakePinkerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MakePinkerButton.Location = new System.Drawing.Point(155, 22);
             this.MakePinkerButton.Margin = new System.Windows.Forms.Padding(10);
             this.MakePinkerButton.Name = "MakePinkerButton";
@@ -140,6 +144,12 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Functionalities";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // pictureBox
             // 
@@ -186,6 +196,7 @@
         private System.Windows.Forms.Button RotateButton;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 
