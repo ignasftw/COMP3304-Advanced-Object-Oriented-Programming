@@ -112,7 +112,7 @@
             this.MakePinkerButton.Padding = new System.Windows.Forms.Padding(5);
             this.MakePinkerButton.Size = new System.Drawing.Size(160, 52);
             this.MakePinkerButton.TabIndex = 2;
-            this.MakePinkerButton.Text = "Red Tint";
+            this.MakePinkerButton.Text = "Red Tint *Soon*";
             this.MakePinkerButton.UseVisualStyleBackColor = false;
             this.MakePinkerButton.Click += new System.EventHandler(this.MakePinkerButton_Click);
             // 
@@ -153,7 +153,7 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pictureBox.BackColor = System.Drawing.Color.LightSteelBlue;
             this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);

@@ -1,4 +1,4 @@
-﻿namespace View
+﻿namespace View.RequestForms
 {
     partial class ScaleRequestForm
     {
@@ -31,16 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScaleRequestForm));
             this.OkButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.WidthTextbox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Width = new System.Windows.Forms.TextBox();
             this.Height = new System.Windows.Forms.TextBox();
-            this.HeightTextbox = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.WidthTextbox = new System.Windows.Forms.NumericUpDown();
+            this.HeightTextbox = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WidthTextbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HeightTextbox)).BeginInit();
             this.SuspendLayout();
             // 
             // OkButton
@@ -68,20 +70,6 @@
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // WidthTextbox
-            // 
-            this.WidthTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.WidthTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WidthTextbox.Location = new System.Drawing.Point(112, 41);
-            this.WidthTextbox.MaxLength = 5;
-            this.WidthTextbox.MinimumSize = new System.Drawing.Size(141, 34);
-            this.WidthTextbox.Multiline = true;
-            this.WidthTextbox.Name = "WidthTextbox";
-            this.WidthTextbox.Size = new System.Drawing.Size(148, 34);
-            this.WidthTextbox.TabIndex = 2;
             // 
             // panel1
             // 
@@ -122,20 +110,6 @@
             this.Height.TabIndex = 5;
             this.Height.Text = "Height:";
             this.Height.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // HeightTextbox
-            // 
-            this.HeightTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.HeightTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.HeightTextbox.Location = new System.Drawing.Point(112, 81);
-            this.HeightTextbox.MaxLength = 5;
-            this.HeightTextbox.MinimumSize = new System.Drawing.Size(141, 34);
-            this.HeightTextbox.Multiline = true;
-            this.HeightTextbox.Name = "HeightTextbox";
-            this.HeightTextbox.Size = new System.Drawing.Size(148, 34);
-            this.HeightTextbox.TabIndex = 4;
             // 
             // textBox1
             // 
@@ -183,6 +157,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image Size";
             // 
+            // WidthTextbox
+            // 
+            this.WidthTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.WidthTextbox.ForeColor = System.Drawing.SystemColors.MenuBar;
+            this.WidthTextbox.Location = new System.Drawing.Point(112, 43);
+            this.WidthTextbox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.WidthTextbox.Name = "WidthTextbox";
+            this.WidthTextbox.Size = new System.Drawing.Size(148, 26);
+            this.WidthTextbox.TabIndex = 9;
+            this.WidthTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // HeightTextbox
+            // 
+            this.HeightTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.HeightTextbox.ForeColor = System.Drawing.SystemColors.MenuBar;
+            this.HeightTextbox.Location = new System.Drawing.Point(112, 83);
+            this.HeightTextbox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.HeightTextbox.Name = "HeightTextbox";
+            this.HeightTextbox.Size = new System.Drawing.Size(148, 26);
+            this.HeightTextbox.TabIndex = 10;
+            this.HeightTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // ScaleRequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -202,6 +206,8 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WidthTextbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HeightTextbox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -210,13 +216,13 @@
 
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.TextBox WidthTextbox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox Width;
         private System.Windows.Forms.TextBox Height;
-        private System.Windows.Forms.TextBox HeightTextbox;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown HeightTextbox;
+        private System.Windows.Forms.NumericUpDown WidthTextbox;
     }
 }

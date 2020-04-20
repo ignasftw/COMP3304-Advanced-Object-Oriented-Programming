@@ -56,19 +56,21 @@ namespace View
 
         private void ScaleButton_Click(object sender, EventArgs e)
         {
-            _scaleImageDelegate(new Size(100,100));
+            RequestForms.ScaleRequestForm scaleRequest = new RequestForms.ScaleRequestForm(_scaleImageDelegate);
+            scaleRequest.PutPictureNumbers(PictureBox.Image.Width, PictureBox.Image.Height);
+            scaleRequest.Show();
         }
 
         private void RotateButton_Click(object sender, EventArgs e)
         {
-            _rotateImageDelegate(10);
+            RequestForms.RotateRequestForm rotateRequest = new RequestForms.RotateRequestForm(_rotateImageDelegate);
+            rotateRequest.Show();
         }
 
         private void FlipButton_Click(object sender, EventArgs e)
         {
-            bool[] flip = { true, true };
-
-            _flipImageDelegate(flip);
+            RequestForms.FlipRequestForm flipRequest = new RequestForms.FlipRequestForm(_flipImageDelegate);
+            flipRequest.Show();
         }
 
         private void MakePinkerButton_Click(object sender, EventArgs e)

@@ -12,14 +12,25 @@ namespace View.RequestForms
 {
     public partial class RotateRequestForm : Form
     {
-        public RotateRequestForm()
+
+        Action<float> _sendRotate;
+
+        public RotateRequestForm(Action<float> sendRotate)
         {
             InitializeComponent();
+
+            _sendRotate = sendRotate;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
+            _sendRotate(float.Parse(AngleTextbox.Text));
+            this.Hide();
+        }
 
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

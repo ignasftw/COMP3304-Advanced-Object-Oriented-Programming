@@ -8,24 +8,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace View
+namespace View.RequestForms
 {
     public partial class ScaleRequestForm : Form
     {
-        public ScaleRequestForm()
+        Action<Size> _sendScale;
+
+        public ScaleRequestForm(Action<Size> sendScale)
         {
             InitializeComponent();
+            _sendScale = sendScale;
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            //Check if Width is not null and more than zero
-                //Send Height and Width to Controller
+            _sendScale(new Size(GetTextWidth, GetTextHeight));
+            this.Hide();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
             //Close or Hide the Window
+            this.Hide();
         }
+
+        public void PutPictureNumbers(int X, int Y)
+        {
+            WidthTextbox.Text = X.ToString();
+            HeightTextbox.Text = Y.ToString();
+        }
+
+        public int GetTextWidth { get { return System.Convert.ToInt16(WidthTextbox.Value); } }
+
+        public int GetTextHeight { get { return System.Convert.ToInt16(HeightTextbox.Value); } }
     }
 }

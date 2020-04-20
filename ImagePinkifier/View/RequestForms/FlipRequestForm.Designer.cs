@@ -33,12 +33,12 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.HorizontalFlip = new System.Windows.Forms.CheckBox();
             this.VerticalFlip = new System.Windows.Forms.CheckBox();
+            this.HorizontalFlip = new System.Windows.Forms.CheckBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +54,7 @@
             this.OkButton.TabIndex = 0;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = false;
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // CancelButton
             // 
@@ -66,6 +67,7 @@
             this.CancelButton.TabIndex = 1;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // panel1
             // 
@@ -93,20 +95,51 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Flip";
             // 
-            // textBox2
+            // VerticalFlip
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox2.Location = new System.Drawing.Point(59, 28);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(112, 31);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "Horizontal";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.VerticalFlip.AutoSize = true;
+            this.VerticalFlip.Location = new System.Drawing.Point(211, 87);
+            this.VerticalFlip.Name = "VerticalFlip";
+            this.VerticalFlip.Size = new System.Drawing.Size(22, 21);
+            this.VerticalFlip.TabIndex = 12;
+            this.VerticalFlip.UseVisualStyleBackColor = true;
+            // 
+            // HorizontalFlip
+            // 
+            this.HorizontalFlip.AutoSize = true;
+            this.HorizontalFlip.Location = new System.Drawing.Point(211, 28);
+            this.HorizontalFlip.Name = "HorizontalFlip";
+            this.HorizontalFlip.Size = new System.Drawing.Size(22, 21);
+            this.HorizontalFlip.TabIndex = 11;
+            this.HorizontalFlip.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.textBox4.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox4.Location = new System.Drawing.Point(177, 68);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(27, 45);
+            this.textBox4.TabIndex = 10;
+            this.textBox4.Text = "⍐";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.textBox3.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox3.Location = new System.Drawing.Point(177, 14);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(27, 45);
+            this.textBox3.TabIndex = 9;
+            this.textBox3.Text = "⍈";
             // 
             // textBox1
             // 
@@ -123,51 +156,20 @@
             this.textBox1.Text = "Vertical";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox3
+            // textBox2
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.textBox3.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox3.Location = new System.Drawing.Point(177, 14);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(27, 45);
-            this.textBox3.TabIndex = 9;
-            this.textBox3.Text = "⍈";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.textBox4.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox4.Location = new System.Drawing.Point(177, 68);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(27, 45);
-            this.textBox4.TabIndex = 10;
-            this.textBox4.Text = "⍐";
-            // 
-            // HorizontalFlip
-            // 
-            this.HorizontalFlip.AutoSize = true;
-            this.HorizontalFlip.Location = new System.Drawing.Point(211, 28);
-            this.HorizontalFlip.Name = "HorizontalFlip";
-            this.HorizontalFlip.Size = new System.Drawing.Size(22, 21);
-            this.HorizontalFlip.TabIndex = 11;
-            this.HorizontalFlip.UseVisualStyleBackColor = true;
-            // 
-            // VerticalFlip
-            // 
-            this.VerticalFlip.AutoSize = true;
-            this.VerticalFlip.Location = new System.Drawing.Point(211, 87);
-            this.VerticalFlip.Name = "VerticalFlip";
-            this.VerticalFlip.Size = new System.Drawing.Size(22, 21);
-            this.VerticalFlip.TabIndex = 12;
-            this.VerticalFlip.UseVisualStyleBackColor = true;
+            this.textBox2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.textBox2.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox2.Location = new System.Drawing.Point(59, 28);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(112, 31);
+            this.textBox2.TabIndex = 7;
+            this.textBox2.Text = "Horizontal";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // FlipRequestForm
             // 

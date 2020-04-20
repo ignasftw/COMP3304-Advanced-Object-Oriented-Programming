@@ -31,14 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RotateRequestForm));
             this.OkButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.WidthTextbox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Width = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.AngleTextbox = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AngleTextbox)).BeginInit();
             this.SuspendLayout();
             // 
             // OkButton
@@ -52,6 +53,7 @@
             this.OkButton.TabIndex = 0;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = false;
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // CancelButton
             // 
@@ -64,20 +66,7 @@
             this.CancelButton.TabIndex = 1;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
-            // 
-            // WidthTextbox
-            // 
-            this.WidthTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.WidthTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WidthTextbox.Location = new System.Drawing.Point(112, 41);
-            this.WidthTextbox.MaxLength = 5;
-            this.WidthTextbox.MinimumSize = new System.Drawing.Size(141, 34);
-            this.WidthTextbox.Multiline = true;
-            this.WidthTextbox.Name = "WidthTextbox";
-            this.WidthTextbox.Size = new System.Drawing.Size(141, 34);
-            this.WidthTextbox.TabIndex = 2;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // panel1
             // 
@@ -110,7 +99,7 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox1.Location = new System.Drawing.Point(266, 41);
+            this.textBox1.Location = new System.Drawing.Point(215, 41);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -121,8 +110,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.AngleTextbox);
             this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.WidthTextbox);
             this.groupBox1.Controls.Add(this.Width);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -147,7 +136,21 @@
             this.textBox2.TabIndex = 7;
             this.textBox2.Text = "Angle";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // AngleTextbox
+            // 
+            this.AngleTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.AngleTextbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AngleTextbox.Location = new System.Drawing.Point(112, 44);
+            this.AngleTextbox.Maximum = new decimal(new int[] {
+            36000,
+            0,
+            0,
+            0});
+            this.AngleTextbox.Name = "AngleTextbox";
+            this.AngleTextbox.Size = new System.Drawing.Size(97, 26);
+            this.AngleTextbox.TabIndex = 8;
+            this.AngleTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // RotateRequestForm
             // 
@@ -165,6 +168,7 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AngleTextbox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -173,11 +177,11 @@
 
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.TextBox WidthTextbox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox Width;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.NumericUpDown AngleTextbox;
     }
 }
