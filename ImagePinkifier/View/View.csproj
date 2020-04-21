@@ -55,6 +55,8 @@
     <Compile Include="CollectionView.Designer.cs">
       <DependentUpon>CollectionView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Command.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="ImagePinkifier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,14 +90,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="RequestForms\FlipRequestForm.resx">
       <DependentUpon>FlipRequestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,9 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\65685440_482545109167949_8525188015847374848_n.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,16 +26,17 @@ namespace View
         private Action<bool[]> _flipImageDelegate;
 
         //DECLARE a Delegate which asks to Save Image
-        private Action<string> _saveImageDelegate;
+        private ICommand _saveImageDelegate;
 
         //DECLARE a Delegate which reloads the Image
         private Action _reloadDelegate;
 
+        private Action<ICommand> _executeCommand;
 
         /// <summary>
         /// ImagePinkifier's constructor which will initialise the Component for User-Interface, an ImageGallery, an ImageSaver
         /// </summary>
-        public ImagePinkifier(Action<Size> scale, Action<float> rotate, Action<bool[]> flip, Action<string> saveImage, Action resetCommand)
+        public ImagePinkifier(Action<Size> scale, Action<float> rotate, Action<bool[]> flip, ICommand saveImage, Action resetCommand, Action<ICommand> execute)
         {
             //Initialises all the buttons and other GUI
             InitializeComponent();
@@ -45,6 +46,8 @@ namespace View
             _flipImageDelegate = flip;
             _saveImageDelegate = saveImage;
             _reloadDelegate = resetCommand;
+
+            _executeCommand = execute;
         }
 
         private void ImagePinkifier_Load(object sender, EventArgs e)
@@ -90,19 +93,7 @@ namespace View
         /// <param name="e"></param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //Open file select dialog
-            SaveFileDialog saveFileDialog = new SaveFileDialog
-            {
-                //Let the dialog form assume that the default extension is "jpg"
-                DefaultExt = "jpg"
-            };
-
-            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                _saveImageDelegate(saveFileDialog.FileName);
-            }
-
-
+            _executeCommand(_saveImageDelegate);
         }
     }
 }

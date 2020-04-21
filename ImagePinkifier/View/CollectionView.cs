@@ -12,9 +12,6 @@ namespace View
 {
     public partial class CollectionView : Form
     {
-        //List of images which has to be displayed
-        List<Image> _displayList;
-
         //DECLARE a Delegate which stores a function to get all images;
         Func<List<Image>> _GetImageList;
 
@@ -24,10 +21,7 @@ namespace View
         //DECLARE a Delegate which asks open an ItemDisplayer
         Action _displayView;
 
-        //DECLARE an int which is used for putting images into View
-        private int _imageid = 0;
-
-        public int _selectedImage;
+        public int _selectedImage { get { return System.Convert.ToInt32(ListView1.SelectedItems[0]?.Tag); } }
 
         private void CollectionView_Load(object sender, EventArgs e)
         {
@@ -43,8 +37,8 @@ namespace View
             _LoadImages = LoadImages;
             _displayView = displayView;
 
-            ListView1.GridLines = true;
-            ListView1.Sorting = SortOrder.Ascending;
+            //ListView1.GridLines = true;
+            //ListView1.Sorting = SortOrder.Ascending;
             ListView1.MultiSelect = false;
         }
 
@@ -55,36 +49,16 @@ namespace View
             _LoadImages();
         }
 
-        public void OnDataHasBeenChanged(object sender, EventArgs e)
+        public void SetListView(ListViewItem[] items)
         {
-            UpdateUI();
+            ListView1.Items.Clear();
+            ListView1.Items.AddRange(items);
         }
 
-        private void UpdateUI()
+        public void SetImageList(Image[] images)
         {
-            _displayList = _GetImageList();
-            if (_displayList != null)
-            {
-                List<ListViewItem> items = new List<ListViewItem>();
-                imageList1.Images.Clear();
-                ListView1.Clear();
-                _imageid = 0;
-
-                imageList1.Images.AddRange(_displayList.ToArray());
-
-                for (int i = 0; i < _displayList.Count; i++)
-                {
-                    if (imageList1.Images[i] != _displayList[i])
-                    {
-                        ListViewItem item = new ListViewItem();
-                        item.ImageIndex = _imageid;
-                        item.Tag = _imageid.ToString();
-                        items.Add(item);
-                        _imageid++;
-                    }
-                }
-                ListView1.Items.AddRange(items.ToArray());
-            }
+            imageList1.Images.Clear();
+            imageList1.Images.AddRange(images);
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,7 +66,6 @@ namespace View
             if (ListView1.SelectedItems.Count > 0)
             {
                 //Turn on ImagePinkifier because image was selected
-                _selectedImage = System.Convert.ToInt32(ListView1.SelectedItems[0].Tag);
                 _displayView();
             }
         }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controller
+namespace View
 {
-    class Command : ICommand
+    public class Command : ICommand
     {
         private Action _action;
 
@@ -31,7 +31,7 @@ namespace Controller
     /// <summary>
     /// Command class which requires no parameters
     /// </summary>
-    class Command<T> : ICommand
+    public class Command<T> : ICommand
     {
         //DECLARE an Action which will be used to execute, call it '_action'
         private Action<T> _action;

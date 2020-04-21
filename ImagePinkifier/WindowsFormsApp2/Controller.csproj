@@ -53,15 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
     <Compile Include="ComponentInitializator.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="DataPackage.cs" />
-    <Compile Include="Delegates.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="FactoryLocator.cs" />
     <Compile Include="IAutoScale.cs" />
-    <Compile Include="ICommand.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="ICustomScale.cs" />
     <Compile Include="IFactory.cs" />
