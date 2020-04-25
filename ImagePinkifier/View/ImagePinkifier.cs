@@ -26,7 +26,7 @@ namespace View
         private Action<bool[]> _flipImageDelegate;
 
         //DECLARE a Delegate which asks to Save Image
-        private ICommand _saveImageDelegate;
+        private Action _saveImageDelegate;
 
         //DECLARE a Delegate which reloads the Image
         private Action _reloadDelegate;
@@ -36,7 +36,7 @@ namespace View
         /// <summary>
         /// ImagePinkifier's constructor which will initialise the Component for User-Interface, an ImageGallery, an ImageSaver
         /// </summary>
-        public ImagePinkifier(Action<Size> scale, Action<float> rotate, Action<bool[]> flip, ICommand saveImage, Action resetCommand, Action<ICommand> execute)
+        public ImagePinkifier(Action<Size> scale, Action<float> rotate, Action<bool[]> flip, Action saveImage, Action resetCommand, Action<ICommand> execute)
         {
             //Initialises all the buttons and other GUI
             InitializeComponent();
@@ -72,7 +72,7 @@ namespace View
 
         private void FlipButton_Click(object sender, EventArgs e)
         {
-            RequestForms.FlipRequestForm flipRequest = new RequestForms.FlipRequestForm(_flipImageDelegate);
+            RequestForms.FlipRequestForm flipRequest = new RequestForms.FlipRequestForm(_flipImageDelegate, _executeCommand);
             flipRequest.Show();
         }
 
@@ -83,7 +83,7 @@ namespace View
 
         private void ResetImageButton_Click(object sender, EventArgs e)
         {
-            _reloadDelegate();
+            _executeCommand(new Command(_reloadDelegate));
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace View
         /// <param name="e"></param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            _executeCommand(_saveImageDelegate);
+            _executeCommand(new Command(_saveImageDelegate));
         }
     }
 }

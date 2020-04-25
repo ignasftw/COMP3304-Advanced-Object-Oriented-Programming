@@ -38,20 +38,10 @@ namespace Controller
             _loader = new ImageLoader();
             _saver = new ImageSaver(_imageFactory);
 
-            //Create commands for UserInputs______________________________
-            Size scaleDimensions = new Size(400, 10);
-            float rotateAngle = 3456f;
-            bool[] flip = { false, true };
-            Command resetCommand = new Command(SingleItemDisplay);
-            Command<Size> scaleCommand = new Command<Size>(_imageFactory.Resize, scaleDimensions);
-            Command<float> rotateCommand = new Command<float>(_imageFactory.Rotate, rotateAngle);
-            Command<bool[]> flipCommand = new Command<bool[]>(_imageFactory.Flip, flip);
-            Command<string> saveCommand = new Command<string>(_imageFactory.Save, "C:/Users/Viktorija/Desktop");
-
             //Create EventHandler for loading an image_____________________
-            _collectionView = new View.CollectionView(LoadImages, GetImages, SingleItemDisplay);
+            _collectionView = new View.CollectionView(LoadImages, SingleItemDisplay, ExecuteCommand);
             //IF any of the commands are pressed then open request window
-            _displayView = new View.ImagePinkifier(_imageFactory.Resize, _imageFactory.Rotate, _imageFactory.Flip, saveCommand, SingleItemDisplay, ExecuteCommand);
+            _displayView = new View.ImagePinkifier(_imageFactory.Resize, _imageFactory.Rotate, _imageFactory.Flip, SaveImage, SingleItemDisplay, ExecuteCommand);
 
 
             //SUBSCRIBE to _imageGallery, so it tells when there are changes in Data
@@ -61,6 +51,42 @@ namespace Controller
 
             //INITIALIZE the main window___________________________________
             Application.Run(_collectionView);
+        }
+
+        /// <summary>
+        /// Load Images from ImageGallery
+        /// </summary>
+        public void LoadImages()
+        {
+            //Ask to load images
+            _loader.Load(_imageGallery);
+        }
+
+        /// <summary>
+        /// Get all the images which will be used to put into CollectionView
+        /// </summary>
+        /// <returns></returns>
+        public List<Image> GetImages()
+        {
+            //Return a list of images
+            return _imageGallery.GetAllImages();
+        }
+
+        /// <summary>
+        /// Get all the images converted into thumbnails because it would look streched on collection View
+        /// </summary>
+        /// <returns></returns>
+        public List<Image> GetThumbnails()
+        {
+            //Return a list of images
+            List<Image> temp = _imageGallery.GetAllImages();
+            for (int i = 0; i < temp.Count; i++)
+            {
+                _imageFactory.Load(temp[i]);
+                _imageFactory.Resize(new Size(temp[i].Width, temp[i].Width));
+                temp[i] = _imageFactory.GetImage;
+            }
+            return temp;
         }
 
         /// <summary>
@@ -81,18 +107,26 @@ namespace Controller
         /// <param name="e"></param>
         public void UpdateImage(object sender, EventArgs e)
         {
-            //Ask the factory to return the current Image
+            //Ask the factory to return the current Image after modification
             _displayView.PictureBox.Image = _imageFactory.GetImage;
         }
 
+        /// <summary>
+        /// Event receiver from ImageGallery if any changes happened in Data class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void OnDataHasBeenChanged(object sender, EventArgs e)
         {
             UpdateUI();
         }
 
+        /// <summary>
+        /// METHOD which updates form's images with the one's being loaded
+        /// </summary>
         private void UpdateUI()
         {
-            List<Image> displayList = GetImages();
+            List<Image> displayList = GetThumbnails();
             if (displayList != null)
             {
                 ImageList imageList1 = new ImageList();
@@ -112,6 +146,7 @@ namespace Controller
                     ListViewItem item = new ListViewItem();
                     item.ImageIndex = imageid;
                     item.Tag = imageid.ToString();
+                    item.Name = imageid.ToString();
                     items.Add(item);
                     imageid++;
                 }
@@ -121,41 +156,11 @@ namespace Controller
         }
 
         /// <summary>
-        /// Load Images from ImageGallery
-        /// </summary>
-        public void LoadImages()
-        {
-            //Ask to load images
-            _loader.Load(_imageGallery);
-        }
-
-        /// <summary>
         /// Save an image to save a file to pathfile name
         /// </summary>
         public void SaveImage()
         {
-            //Ask an ImageSaver to save a file to pathfile name
-            //Open file select dialog
-            SaveFileDialog saveFileDialog = new SaveFileDialog
-            {
-                //Let the dialog form assume that the default extension is "jpg"
-                DefaultExt = "jpg"
-            };
-
-            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                _saver.SaveImage();
-            }
-        }
-
-        /// <summary>
-        /// Get all the images which will be used to put into CollectionView
-        /// </summary>
-        /// <returns></returns>
-        public List<Image> GetImages()
-        {
-            //Return a list of images
-            return _imageGallery.GetAllImages();
+            _saver.SaveImage();
         }
 
         /// <summary>

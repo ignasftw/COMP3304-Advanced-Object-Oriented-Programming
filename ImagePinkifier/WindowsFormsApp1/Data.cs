@@ -17,6 +17,9 @@ namespace Model
         //Declare a List of Image, store a list of images and pathfile names, call it '_images'
         private Dictionary<string, Image> _images = new Dictionary<string, Image>();
 
+        //Declare a List of Image, store a list of images and pathfile names, call it '_images'
+        //private Dictionary<string, VideoFormat> _videos = new Dictionary<string, VideoFormat>();
+
         /// <summary>
         /// Property which returns amount of currently stored images
         /// </summary>

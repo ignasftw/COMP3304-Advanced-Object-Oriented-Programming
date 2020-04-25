@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CollectionView));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.LoadImageButton = new System.Windows.Forms.Button();
@@ -53,7 +54,7 @@
             this.LoadImageButton.TabIndex = 1;
             this.LoadImageButton.Text = "LoadImage";
             this.LoadImageButton.UseVisualStyleBackColor = true;
-            this.LoadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
+            this.LoadImageButton.Click += new System.EventHandler(this.LoadImageButton_Click);
             // 
             // imageCounter
             // 
@@ -77,16 +78,21 @@
             this.ListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListView1.GridLines = true;
             this.ListView1.HideSelection = false;
+            this.ListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
             this.ListView1.LargeImageList = this.imageList1;
             this.ListView1.Location = new System.Drawing.Point(20, 20);
+            this.ListView1.Margin = new System.Windows.Forms.Padding(0);
+            this.ListView1.MultiSelect = false;
             this.ListView1.Name = "ListView1";
             this.ListView1.Size = new System.Drawing.Size(767, 416);
             this.ListView1.SmallImageList = this.imageList1;
+            this.ListView1.StateImageList = this.imageList1;
             this.ListView1.TabIndex = 5;
+            this.ListView1.TileSize = new System.Drawing.Size(96, 96);
             this.ListView1.UseCompatibleStateImageBehavior = false;
-            this.ListView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.ListView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
             // 
             // CollectionView
             // 

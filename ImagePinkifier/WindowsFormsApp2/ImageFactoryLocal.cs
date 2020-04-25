@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ImageProcessor;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Controller
 {
@@ -79,8 +80,18 @@ namespace Controller
         /// <returns>The current instance of the ImageProcessor.ImageFactory class.</returns>
         public void Save(string filePath)
         {
-            _imfac = _imfac.Save(filePath);
-            EffectWasApplied(this, EventArgs.Empty);
+            try
+            {
+                _imfac = _imfac.Save(filePath);
+                EffectWasApplied(this, EventArgs.Empty);
+            }
+            catch (Exception e)
+            {
+                //Let the User know that the file was not saved
+                MessageBox.Show("This file is already in use, please change the name. \nError: " + e.Message + " \nIf you think that is a bug please contant the developer.", "Please select different name." ,
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Console.WriteLine("Error: {0}", e);
+            }
         }
 
         /// <summary>

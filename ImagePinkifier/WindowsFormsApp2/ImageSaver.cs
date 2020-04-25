@@ -41,9 +41,18 @@ namespace Controller
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 //Save the image currently shown to whatever path
-                _imageFactory.Save(saveFileDialog.FileName);
+                try
+                {
+                    _imageFactory.Save(saveFileDialog.FileName);
+
+                }
+                catch (Exception e)
+                {
+                    SaveImage();
+                }
             }
         }
+    }
 
 }
-}
+
