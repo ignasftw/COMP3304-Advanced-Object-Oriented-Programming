@@ -33,13 +33,10 @@ namespace Controller
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                //Delete placeholder image
-                if (imageGallery.CurrentImage.Width == 1 && imageGallery.CurrentImage.Height == 1) imageGallery.DeleteImage();
-
                 ((IModel)imageGallery).Load(openFileDialog.FileNames);
 
                 //Display the most recently added image
-                pictureBox.Image = imageGallery.CurrentImage;
+                pictureBox.Image = imageGallery.GetImage();
 
                 //Load the current image to the imageprocessor (ready to be processed)
                 imagefactor.Load(pictureBox.Image);

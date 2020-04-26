@@ -12,9 +12,9 @@ namespace View.RequestForms
 {
     public partial class ScaleRequestForm : Form
     {
-        Action<Size> _sendScale;
+        Action<int[]> _sendScale;
 
-        public ScaleRequestForm(Action<Size> sendScale)
+        public ScaleRequestForm(Action<int[]> sendScale)
         {
             InitializeComponent();
             _sendScale = sendScale;
@@ -22,7 +22,7 @@ namespace View.RequestForms
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            _sendScale(new Size(GetTextWidth, GetTextHeight));
+            _sendScale(new int[] { GetTextWidth, GetTextHeight });
             this.Hide();
         }
 

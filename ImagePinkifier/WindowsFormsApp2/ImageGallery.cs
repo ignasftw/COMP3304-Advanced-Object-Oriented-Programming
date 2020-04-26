@@ -17,8 +17,6 @@ namespace Controller
         Model.Data _dataStorage = new Model.Data();
         //Declare an int, this is id of the image, call it '_id'
         private string _id = "";
-        //Declare an int, this is id of which image is currently selected, call it '_currentImageIndex'
-        private int _currentImageIndex = 0;
         //Declare an EventHandler which would check whenever the data has been changed, call it 'DataHasChanged'
         public event EventHandler DataHasChanged;
 
@@ -34,7 +32,7 @@ namespace Controller
         /// <summary>
         /// Retrieves the current image from the list
         /// </summary>
-        public Image CurrentImage { get { return _dataStorage.GetImage(_currentImageIndex); } }
+        public int ImageIndex { set; get; } = 0;
 
         /// <summary>
         /// Adds an image to the gallery of images from a file
@@ -108,6 +106,25 @@ namespace Controller
         public Image GetImage(string key, int frameWidth, int frameHeight)
         {
             return _dataStorage.GetImage(key);
+        }
+
+        public void CheckRequestType()
+        {
+
+            //Check if it is image
+                //call method which return image
+            //Check if it is video
+                //call method which returns video
+        }
+
+        /// <summary>
+        /// Implementing IModel which required to return an image of certain width and height, but this is done in a separate class because of Single Responsability Principle
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public Image GetImage()
+        {
+            return _dataStorage.GetImage(ImageIndex);
         }
 
         public List<Image> GetAllImages()

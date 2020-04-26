@@ -104,7 +104,6 @@
             // 
             this.MakePinkerButton.BackColor = System.Drawing.Color.Transparent;
             this.MakePinkerButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.MakePinkerButton.Enabled = false;
             this.MakePinkerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MakePinkerButton.Location = new System.Drawing.Point(155, 22);
             this.MakePinkerButton.Margin = new System.Windows.Forms.Padding(10);
@@ -112,7 +111,7 @@
             this.MakePinkerButton.Padding = new System.Windows.Forms.Padding(5);
             this.MakePinkerButton.Size = new System.Drawing.Size(160, 52);
             this.MakePinkerButton.TabIndex = 2;
-            this.MakePinkerButton.Text = "Red Tint *Soon*";
+            this.MakePinkerButton.Text = "Pink Tint";
             this.MakePinkerButton.UseVisualStyleBackColor = false;
             this.MakePinkerButton.Click += new System.EventHandler(this.MakePinkerButton_Click);
             // 

@@ -9,8 +9,7 @@ namespace Controller
 {
     public class DataPackage
     {
-        public Image _modifyImage;
         public string _modificationName;
-        public object[] _parameters;
+        public int[] _parameters;
     }
 }

@@ -11,7 +11,7 @@ namespace Controller
     public interface IImageGallery
     {
         //Returns a currently selected image
-        Image CurrentImage { get; }
+        int ImageIndex { get; set; }
 
         /// <summary>
         /// Adds an image 
@@ -30,6 +30,21 @@ namespace Controller
         /// </summary>
         /// <returns></returns>
         List<Image> GetAllImages();
+
+        /// <summary>
+        /// Return currently loaded image within given Size
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="frameWidth"></param>
+        /// <param name="frameHeight"></param>
+        /// <returns></returns>
+        Image GetImage(string key, int frameWidth, int frameHeight);
+
+        /// <summary>
+        /// Return currently loaded image
+        /// </summary>
+        /// <returns></returns>
+        Image GetImage();
 
         /// <summary>
         /// Removes the current image 

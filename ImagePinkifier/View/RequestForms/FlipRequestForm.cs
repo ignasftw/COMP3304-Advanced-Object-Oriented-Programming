@@ -14,9 +14,9 @@ namespace View.RequestForms
     {
         Action<ICommand> _executor;
 
-        Action<bool[]> _sendFlip;
+        Action<int[]> _sendFlip;
 
-        public FlipRequestForm(Action<bool[]> sendFlip, Action<ICommand> executor)
+        public FlipRequestForm(Action<int[]> sendFlip, Action<ICommand> executor)
         {
             InitializeComponent();
             _sendFlip = sendFlip;
@@ -28,17 +28,17 @@ namespace View.RequestForms
 
             if (VerticalFlip.Checked)
             {
-                bool[] flip = { false, false };
-                flip[0] = true;
-                _executor(new Command<bool[]>((_sendFlip), flip));
+                int[] flip = { 0, 0 };
+                flip[0] = 1;
+                _executor(new Command<int[]>((_sendFlip), flip));
             }
             if (HorizontalFlip.Checked)
             {
-                bool[] flip = { false, false };
-                flip[0] = true;
-                _executor(new Command<bool[]>((_sendFlip), flip));
-                flip[1] = true;
-                _executor(new Command<bool[]>((_sendFlip), flip));
+                int[] flip = { 0, 0 };
+                flip[0] = 1;
+                _executor(new Command<int[]>((_sendFlip), flip));
+                flip[1] = 1;
+                _executor(new Command<int[]>((_sendFlip), flip));
             }
             this.Hide();
         }

@@ -9,27 +9,27 @@ namespace Controller
 {
     class Modifications
     {
-        private ImageFactoryLocal _imageFactory;
-        private Dictionary<String, Func<Image,object[],ImageFactoryLocal, ImageFactoryLocal>> _modifications;
+        private IImageFactoryLocal _imageFactory;
+        private Dictionary<String, Action<int[]>> _modifications;
 
-        public Modifications()
+        public Modifications(IImageFactoryLocal imageFactory)
         {
-            _imageFactory = new ImageFactoryLocal();
-            _modifications = new Dictionary<string, Func<Image, object[], ImageFactoryLocal, ImageFactoryLocal>>();
+            _imageFactory = imageFactory;
+            _modifications = new Dictionary<string, Action<int[]>>();
         }
 
-        public void AddModification(string name, Func<Image, object[], ImageFactoryLocal, ImageFactoryLocal> del)
+        public void AddModification(string name, Action<int[]> del)
         {
             _modifications.Add(name, del);
         }
 
-        public void ApplyModification(DataPackage data)
+        public void ApplyModification(string modificationName, params int[] data)
         {
-            Func<Image, object[], ImageFactoryLocal, ImageFactoryLocal> modify = _modifications[data._modificationName];
-            _imageFactory = modify(data._modifyImage,data._parameters, _imageFactory);
+            Action<int[]> modify = _modifications[modificationName];
+            modify(data);
         }
 
-        public Func<Image, object[], ImageFactoryLocal, ImageFactoryLocal> GetModification(string name)
+        public Action<int[]> GetModification(string name)
         {
             return _modifications[name];
         }

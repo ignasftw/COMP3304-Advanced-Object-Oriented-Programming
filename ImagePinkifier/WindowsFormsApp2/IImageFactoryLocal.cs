@@ -59,6 +59,7 @@ namespace Controller
         /// <param name="color">The System.Drawing.Color to tint the image with.</param>
         /// <returns>The current instance of the ImageProcessor.ImageFactory class.</returns>
         void Tint(Color color);
+        void Tint(params int[] color);
 
         /// <summary>
         /// Resizes the current image to the given dimensions.
@@ -66,6 +67,7 @@ namespace Controller
         /// <param name="size">The System.Drawing.Size containing the width and height to set the image to.</param>
         /// <returns>The current instance of the ImageProcessor.ImageFactory class.</returns>
         void Resize(Size size);
+        void Resize(params int[] size);
 
         /// <summary>
         /// 
@@ -73,6 +75,7 @@ namespace Controller
         /// <param name="degrees"></param>
         /// <returns></returns>
         void Rotate(float degrees);
+        void Rotate(params int[] degrees);
 
         /// <summary>
         /// 
@@ -81,6 +84,11 @@ namespace Controller
         /// <param name="flipBoth"></param>
         /// <returns></returns>
         void Flip(bool[] flips);
+        void Flip(params int[] flips);
+
+
+        void Subscribe(EventHandler dataHasBeenChanged);
+        void Unsubscribe(EventHandler dataHasBeenChanged);
 
     }
 }

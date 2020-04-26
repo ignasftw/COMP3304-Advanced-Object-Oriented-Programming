@@ -83,7 +83,7 @@
             listViewItem1});
             this.ListView1.LargeImageList = this.imageList1;
             this.ListView1.Location = new System.Drawing.Point(20, 20);
-            this.ListView1.Margin = new System.Windows.Forms.Padding(0);
+            this.ListView1.Margin = new System.Windows.Forms.Padding(1);
             this.ListView1.MultiSelect = false;
             this.ListView1.Name = "ListView1";
             this.ListView1.Size = new System.Drawing.Size(767, 416);

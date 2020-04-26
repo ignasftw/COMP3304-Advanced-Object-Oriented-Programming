@@ -24,10 +24,10 @@ namespace Controller
         //DECLARE an IImageGallery which will store interface for dealing with changes in data, call it '_imageGallery'
         IImageGallery _imageGallery;
         //DECLARE a ImageFactoryLocal for making modifications to the Images, call it '_imageFactory'
-        ImageFactoryLocal _imageFactory;
+        IImageFactoryLocal _imageFactory;
 
         //DECLARE a Modifications for storing and using Delegates which will be used to modify Images, call it '_modify'
-        //Modifications _modify;
+        Modifications _modify;
 
         public Controller()
         {
@@ -37,17 +37,27 @@ namespace Controller
             _imageGallery = new ImageGallery();
             _loader = new ImageLoader();
             _saver = new ImageSaver(_imageFactory);
+            _modify = new Modifications(_imageFactory);
+
+            //TODO: create a separate class which inplements use of int[] into proper class 
+            //Add a modification into a modification list
+            _modify.AddModification("Rotate", _imageFactory.Rotate);
+            _modify.AddModification("Scale", _imageFactory.Resize);
+            _modify.AddModification("Flip", _imageFactory.Flip);
+            _modify.AddModification("Tint", _imageFactory.Tint);
 
             //Create EventHandler for loading an image_____________________
             _collectionView = new View.CollectionView(LoadImages, SingleItemDisplay, ExecuteCommand);
             //IF any of the commands are pressed then open request window
-            _displayView = new View.ImagePinkifier(_imageFactory.Resize, _imageFactory.Rotate, _imageFactory.Flip, SaveImage, SingleItemDisplay, ExecuteCommand);
+            _displayView = new View.ImagePinkifier(_modify.GetModification("Scale"), _modify.GetModification("Rotate"), _modify.GetModification("Flip"), _modify.GetModification("Tint"), SaveImage, SingleItemDisplay, ExecuteCommand);
 
 
             //SUBSCRIBE to _imageGallery, so it tells when there are changes in Data
             _imageGallery.Subscribe(OnDataHasBeenChanged);
             //SUBSCRIBE to _imageFactory so it tells when any of the modifications were done
             _imageFactory.Subscribe(UpdateImage);
+
+            //Video.VideoModify vid = new Video.VideoModify(_imageFactory.Rotate, _imageFactory, ExecuteCommand, _imageFactory.Rotate);
 
             //INITIALIZE the main window___________________________________
             Application.Run(_collectionView);
@@ -83,7 +93,7 @@ namespace Controller
             for (int i = 0; i < temp.Count; i++)
             {
                 _imageFactory.Load(temp[i]);
-                _imageFactory.Resize(new Size(temp[i].Width, temp[i].Width));
+                _imageFactory.Resize(_collectionView._thumbnailSize);
                 temp[i] = _imageFactory.GetImage;
             }
             return temp;
@@ -94,9 +104,15 @@ namespace Controller
         /// </summary>
         public void SingleItemDisplay()
         {
-            Image selectedImage = _imageGallery.GetAllImages()[_collectionView._selectedImage];
+            //Tell gallery which image is currently selected
+            _imageGallery.ImageIndex = _collectionView._selectedImageIndex;
+            //Get item from the gallery accordingly which item id was selected
+            Image selectedImage = _imageGallery.GetImage();
+            //Display Form which shows a single item
             _displayView.Show();
+            //Set pictureBox to the selected image
             _displayView.PictureBox.Image = selectedImage;
+            //Load that image to image factory
             _imageFactory.Load(selectedImage);
         }
 
@@ -139,7 +155,6 @@ namespace Controller
 
                 imageList1.Images.AddRange(displayList.ToArray());
                 _collectionView.SetImageList(displayList.ToArray());
-
 
                 for (int i = 0; i < displayList.Count; i++)
                 {

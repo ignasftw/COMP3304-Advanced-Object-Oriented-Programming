@@ -24,7 +24,10 @@ namespace View
         /// <summary>
         /// PROPERTY which tell outside classes which image is currently selected
         /// </summary>
-        public int _selectedImage { get { return System.Convert.ToInt32(ListView1.SelectedItems[0]?.Tag); } }
+        public int _selectedImageIndex { get { return System.Convert.ToInt32(ListView1.SelectedItems[0]?.Tag); } }
+
+        public Size _thumbnailSize { get { return imageList1.ImageSize; } }
+
 
         private void CollectionView_Load(object sender, EventArgs e)
         {
@@ -44,7 +47,7 @@ namespace View
             //Allow selecting one image at the time
             ListView1.MultiSelect = false;
         }
-
+ 
         /// <summary>
         /// Clears what is loaded in ImageList and Loads new array of Images that are in Data
         /// </summary>

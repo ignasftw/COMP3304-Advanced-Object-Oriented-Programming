@@ -105,6 +105,12 @@ namespace Controller
             EffectWasApplied(this, EventArgs.Empty);
         }
 
+        public void Tint(params int[] color)
+        {
+            Tint(Color.DeepPink);
+        }
+
+
         /// <summary>
         /// Resizes the current image to the given dimensions.
         /// </summary>
@@ -116,6 +122,11 @@ namespace Controller
             EffectWasApplied(this, EventArgs.Empty);
         }
 
+        public void Resize(params int[] size)
+        {
+            Resize(new Size(size[0], size[1]));
+        }
+
         /// <summary>
         /// Rotates the image to the given rotation value in degrees
         /// </summary>
@@ -124,7 +135,12 @@ namespace Controller
         public void Rotate(float degrees)
         {
             _imfac = _imfac.Rotate(degrees);
+            //Cannot convert object[] to float
             EffectWasApplied(this, EventArgs.Empty);
+        }
+        public void Rotate(params int[] degrees)
+        {
+            Rotate((float) degrees[0]);
         }
 
         public void Flip(bool[] flips)
@@ -133,6 +149,11 @@ namespace Controller
             //flips[1] is flip both axis
             _imfac = _imfac.Flip(flips[0], flips[1]);
             EffectWasApplied(this, EventArgs.Empty);
+        }
+
+        public void Flip(params int[] flip)
+        {
+            Flip(new bool[] {Convert.ToBoolean(flip[0]), Convert.ToBoolean(flip[1])});
         }
 
         public void Subscribe(EventHandler dataHasBeenChanged)
