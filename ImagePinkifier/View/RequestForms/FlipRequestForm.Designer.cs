@@ -193,7 +193,9 @@
         #endregion
 
         private System.Windows.Forms.Button OkButton;
+#pragma warning disable CS0108 // 'FlipRequestForm.CancelButton' hides inherited member 'Form.CancelButton'. Use the new keyword if hiding was intended.
         private System.Windows.Forms.Button CancelButton;
+#pragma warning restore CS0108 // 'FlipRequestForm.CancelButton' hides inherited member 'Form.CancelButton'. Use the new keyword if hiding was intended.
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox2;

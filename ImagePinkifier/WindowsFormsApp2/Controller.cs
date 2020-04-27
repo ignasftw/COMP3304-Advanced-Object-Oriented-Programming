@@ -134,6 +134,8 @@ namespace Controller
                 string selectedVideo = _imageGallery.GetPathName;
                 //Display Form which shows a single item
                 _displayView.Show();
+                _displayView.PictureBox.Hide();
+                //_displayView.Vi
                 //Load Video to the display window
                 //_displayView.Controls.Add.
             }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace View
@@ -47,7 +41,7 @@ namespace View
             //Allow selecting one image at the time
             ListView1.MultiSelect = false;
         }
- 
+
         /// <summary>
         /// Clears what is loaded in ImageList and Loads new array of Images that are in Data
         /// </summary>

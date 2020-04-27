@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace View
@@ -82,7 +75,7 @@ namespace View
 
         private void MakePinkerButton_Click(object sender, EventArgs e)
         {
-            _executeCommand(new Command<int[]>(_tintImageDelegate,new int[] { }));
+            _executeCommand(new Command<int[]>(_tintImageDelegate, new int[] { }));
         }
 
         private void ResetImageButton_Click(object sender, EventArgs e)
@@ -98,6 +91,26 @@ namespace View
         private void SaveButton_Click(object sender, EventArgs e)
         {
             _executeCommand(new Command(_saveImageDelegate));
+        }
+
+        public void SetVideo(string name)
+        {
+            //videoPlayer.VideoSource = name;
+        }
+
+        private void PlayButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StopButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PauseButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

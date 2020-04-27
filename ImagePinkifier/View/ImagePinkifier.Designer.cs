@@ -39,6 +39,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.videoPlayerBox = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -163,12 +164,23 @@
             this.pictureBox.TabIndex = 11;
             this.pictureBox.TabStop = false;
             // 
+            // videoPlayerBox
+            // 
+            this.videoPlayerBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoPlayerBox.Location = new System.Drawing.Point(0, 0);
+            this.videoPlayerBox.Name = "videoPlayerBox";
+            this.videoPlayerBox.Size = new System.Drawing.Size(976, 494);
+            this.videoPlayerBox.TabIndex = 13;
+            this.videoPlayerBox.TabStop = false;
+            this.videoPlayerBox.Text = "VideoPlayer";
+            // 
             // ImagePinkifier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(976, 571);
             this.ControlBox = false;
+            this.Controls.Add(this.videoPlayerBox);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -196,6 +208,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.GroupBox videoPlayerBox;
     }
 }
 
