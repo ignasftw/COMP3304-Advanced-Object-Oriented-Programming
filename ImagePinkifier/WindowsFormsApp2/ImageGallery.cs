@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using AForge.Video.FFMPEG;
 
 namespace Controller
 {
@@ -14,7 +16,7 @@ namespace Controller
     public class ImageGallery : IImageGallery, IComponent, IModel
     {
         //Declare a Data class, for storing Image/Imagepathfile dictionary, call it '_dataStorage'
-        Model.Data _dataStorage = new Model.Data();
+        Model.IData _dataStorage = new Model.Data();
         //Declare an int, this is id of the image, call it '_id'
         private string _id = "";
         //Declare an EventHandler which would check whenever the data has been changed, call it 'DataHasChanged'
@@ -34,6 +36,8 @@ namespace Controller
         /// </summary>
         public int ImageIndex { set; get; } = 0;
 
+        public string GetPathName { get { return _dataStorage.GetFileName(ImageIndex); } }
+
         /// <summary>
         /// Adds an image to the gallery of images from a file
         /// </summary>
@@ -42,6 +46,19 @@ namespace Controller
         {
             return AddImage(Image.FromFile(fileName), fileName);
         }
+
+        /// <summary>
+        /// Adds an image to the gallery of images from a file
+        /// </summary>
+        /// <param name="fileName">The path of the file to add</param>
+        public string AddVideo(string fileName)
+        {
+            VideoFileReader _reader = new VideoFileReader();
+            _reader.Open(fileName);
+            return AddImage(_reader.ReadVideoFrame() as Image, fileName);
+        }
+
+
 
         /// <summary>
         /// Adds an image to the gallery of images if the filepath is empty with a custom ID
@@ -61,7 +78,7 @@ namespace Controller
         /// <param name="image">The image to add</param>
         public string AddImage(Image image, string imageName)
         {
-            _dataStorage.AddImage(image, imageName);
+            (_dataStorage as Model.IAddRemove).AddImage(image, imageName);
             OnDataHasChanged();
             return imageName;
         }
@@ -72,7 +89,7 @@ namespace Controller
         /// </summary>
         public void DeleteImage()
         {
-            _dataStorage.RemoveImage();
+            (_dataStorage as Model.IAddRemove).RemoveImage();
             OnDataHasChanged();
         }
 
@@ -88,10 +105,38 @@ namespace Controller
         /// <returns>A list of strings with pathfile names</returns>
         public IList<string> Load(IList<string> pathfilenames)
         {
+            //Get a new list where pathnames will be stores
             IList<string> ids = new List<string>();
+            //Cycle through every selected pathfilename
             foreach (string s in pathfilenames)
             {
-                ids.Add(AddImage(s));
+                //Get the extension name
+                string ext = Path.GetExtension(s);
+                try
+                {
+                    switch (ext)
+                    {
+                        //Check image types
+                        case (".jpg"):
+                        case (".jpeg"):
+                        case (".jpe"):
+                        case (".jfif"):
+                        case (".png"):
+                            ids.Add(AddImage(s));
+                            break;
+                        default:
+                            //Assume it is video
+                            ids.Add(AddVideo(s));
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    //Let the User know that something went wrong
+                    MessageBox.Show("Error: " + e.Message + " \nIf you think that is a bug please contant the developer.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    Console.WriteLine("Error: {0}", e);
+                }
             }
             return ids;
         }
@@ -106,15 +151,6 @@ namespace Controller
         public Image GetImage(string key, int frameWidth, int frameHeight)
         {
             return _dataStorage.GetImage(key);
-        }
-
-        public void CheckRequestType()
-        {
-
-            //Check if it is image
-                //call method which return image
-            //Check if it is video
-                //call method which returns video
         }
 
         /// <summary>

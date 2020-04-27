@@ -10,7 +10,7 @@ namespace Model
     /// <summary>
     /// IData inteface which allows to retrieve information from the class
     /// </summary>
-    interface IData
+    public interface IData
     {
         /// <summary>
         /// Property which returns amount of currently stored images

@@ -13,6 +13,9 @@ namespace Controller
         //Returns a currently selected image
         int ImageIndex { get; set; }
 
+        //Returns a pathname of the file
+        string GetPathName { get; }
+
         /// <summary>
         /// Adds an image 
         /// </summary>

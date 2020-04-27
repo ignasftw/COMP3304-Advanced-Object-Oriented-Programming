@@ -11,27 +11,25 @@ namespace Controller.Video
 {
     class VideoModify
     {
-        //Video for testing purposes
-        private string _loadedVideo = "C:/Users/Viktorija/Desktop/OOP/small.mp4";
-        //Default savepath
-        private string _savepath = "C:/Users/Viktorija/Desktop/OOP/";
         //DECLARE a VideoFileReader which will read the loaded video, call it '_reader'
-        private VideoFileReader _reader = new VideoFileReader();
+        private VideoFileReader _reader;
         //DECLARE a VideoFileWriter which will write a new video from frames, call it '_writer'
-        private VideoFileWriter _writer = new VideoFileWriter();
+        private VideoFileWriter _writer;
+        //DECLARE an IImageFactoryLocal which will store a reference for imagemodification class
+        private IImageFactoryLocal _imageFactory;
 
         Action<View.ICommand> _execute;
-        Action<float> _rotate;
         Size videoDimensions = new Size(640, 360);
 
-        public VideoModify(Action<float> RotationDel, IImageFactoryLocal factor, Action<View.ICommand> execute, Action<float> rotate)
+        public VideoModify(IImageFactoryLocal factor, Action<View.ICommand> execute)
         {
+            _reader = new VideoFileReader();
+            _writer = new VideoFileWriter();
             _execute = execute;
-            _rotate = rotate;
-            ApplyModification(_loadedVideo, _savepath, "filename.avi", RotationDel, factor);
+            _imageFactory = factor;
         }
 
-        public void ApplyModification(string video, string savepath, string filename, Action<float> RotationDel, IImageFactoryLocal factor)
+        public void ApplyModification(string video, string savepath, string filename, Action<int[]> modification)
         {
             //Open Video which will be modified
             _reader.Open(video);
@@ -41,21 +39,18 @@ namespace Controller.Video
             progressBar.SetBar(0, System.Convert.ToInt32(_reader.FrameCount));
             progressBar.Show();
             //Modify through every frame of the video
-            //for (int i = 0; i < _reader.FrameCount/10; i++)
-            for (int i = 0; i < 69; i++)
+            for (int i = 0; i < _reader.FrameCount; i+=3)
             {
                 //Load current frame to modification factory
-                factor.Load(_reader.ReadVideoFrame() as Image);
-
-                View.ICommand rotateCom = new View.Command<float>(_rotate, i);
+                _imageFactory.Load(_reader.ReadVideoFrame() as Image);
+                //Create a command which applies the effect
+                View.ICommand rotateCom = new View.Command<int[]>(modification, new int[] { i});
+                //Execute the command
                 _execute(rotateCom);
-
-                //TINT the image
-                factor.Tint(Color.HotPink);
                 //Keep resolution
-                factor.Resize(new Size(_writer.Width, _writer.Height));
+                _imageFactory.Resize(new Size(_writer.Width, _writer.Height));
                 //Write a modified image
-                _writer.WriteVideoFrame(factor.GetImage as Bitmap);
+                _writer.WriteVideoFrame(_imageFactory.GetImage as Bitmap);
 
                 progressBar.Step();
                 string text = i.ToString();
@@ -65,7 +60,7 @@ namespace Controller.Video
             }
             progressBar.Hide();
             //Let the User know that the file was not saved
-            MessageBox.Show("Process has been completed.","Success",
+            MessageBox.Show("Process has been completed.", "Success",
             MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             //Close the reader to prevent memory leakage

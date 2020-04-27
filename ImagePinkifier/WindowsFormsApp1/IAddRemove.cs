@@ -10,7 +10,7 @@ namespace Model
     /// <summary>
     /// IAddRemove interface which adds and removes images
     /// </summary>
-    interface IAddRemove
+    public interface IAddRemove
     {
         /// <summary>
         /// Method which adds an image to the storage. Then it returns an ID for later ID generation if it's empty

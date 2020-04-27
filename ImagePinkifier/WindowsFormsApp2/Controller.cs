@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using View;
+using System.IO;
 
 namespace Controller
 {
@@ -57,7 +58,17 @@ namespace Controller
             //SUBSCRIBE to _imageFactory so it tells when any of the modifications were done
             _imageFactory.Subscribe(UpdateImage);
 
-            //Video.VideoModify vid = new Video.VideoModify(_imageFactory.Rotate, _imageFactory, ExecuteCommand, _imageFactory.Rotate);
+            Video.VideoModify vid = new Video.VideoModify(_imageFactory, ExecuteCommand);
+            //Video for testing purposes
+            string input = "C:/Users/Viktorija/Desktop/OOP/small.mp4";
+            //Default savepath
+            string output = "C:/Users/Viktorija/Desktop/OOP/";
+            //DEFAULT filename
+            string filename = "filename.avi";
+            //Modification which should be applied
+            Action<int[]> modification = _modify.GetModification("Tint");
+            //Video modification method
+            //vid.ApplyModification(input, output, filename, modification);
 
             //INITIALIZE the main window___________________________________
             Application.Run(_collectionView);
@@ -106,14 +117,58 @@ namespace Controller
         {
             //Tell gallery which image is currently selected
             _imageGallery.ImageIndex = _collectionView._selectedImageIndex;
-            //Get item from the gallery accordingly which item id was selected
-            Image selectedImage = _imageGallery.GetImage();
-            //Display Form which shows a single item
-            _displayView.Show();
-            //Set pictureBox to the selected image
-            _displayView.PictureBox.Image = selectedImage;
-            //Load that image to image factory
-            _imageFactory.Load(selectedImage);
+            if (CheckType(_imageGallery.GetPathName) == "Image")
+            {
+                //Get item from the gallery accordingly which item id was selected
+                Image selectedImage = _imageGallery.GetImage();
+                //Display Form which shows a single item
+                _displayView.Show();
+                //Set pictureBox to the selected image
+                _displayView.PictureBox.Image = selectedImage;
+                //Load that image to image factory
+                _imageFactory.Load(selectedImage);
+            }
+            if (CheckType(_imageGallery.GetPathName) == "Video")
+            {
+                //Get item from the gallery accordingly which item id was selected
+                string selectedVideo = _imageGallery.GetPathName;
+                //Display Form which shows a single item
+                _displayView.Show();
+                //Load Video to the display window
+                //_displayView.Controls.Add.
+            }
+        }
+
+        public string CheckType(string pathname)
+        {
+            //Get the extension name
+            string ext = Path.GetExtension(pathname);
+            try
+            {
+                switch (ext)
+                {
+                    //Check image types
+                    case (".jpg"):
+                    case (".jpeg"):
+                    case (".jpe"):
+                    case (".jfif"):
+                    case (".png"):
+                        return "Image";
+                        break;
+                    default:
+                        //Assume it is video
+                        return "Video";
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                //Let the User know that something went wrong
+                MessageBox.Show("Error: " + e.Message + " \nIf you think that is a bug please contant the developer.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Console.WriteLine("Error: {0}", e);
+            }
+            return "";
         }
 
         /// <summary>
