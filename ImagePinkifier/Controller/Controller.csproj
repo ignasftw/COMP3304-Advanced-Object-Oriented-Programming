@@ -94,11 +94,14 @@
     <Compile Include="ImageSaver.cs" />
     <Compile Include="ImageScale.cs" />
     <Compile Include="IModel.cs" />
+    <Compile Include="IModifications.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="IServiceLocator.cs" />
     <Compile Include="Modifications.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Video\IVideoModify.cs" />
+    <Compile Include="Video\ModificationAppliedArgs.cs" />
     <Compile Include="Video\VideoModify.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,13 +128,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{ff9f55c9-53df-4b3f-b7dd-2f37208d3135}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\View\View.csproj">
       <Project>{45ad6e6e-4b5e-4c82-ae68-c58b2b748275}</Project>
       <Name>View</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WindowsFormsApp1\Model.csproj">
-      <Project>{ff9f55c9-53df-4b3f-b7dd-2f37208d3135}</Project>
-      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

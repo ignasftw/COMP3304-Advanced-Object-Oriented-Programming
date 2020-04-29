@@ -7,9 +7,9 @@ namespace View.RequestForms
     {
         Action<ICommand> _executor;
 
-        Action<int[]> _sendFlip;
+        Action<string, int[]> _sendFlip;
 
-        public FlipRequestForm(Action<int[]> sendFlip, Action<ICommand> executor)
+        public FlipRequestForm(Action<string,int[]> sendFlip, Action<ICommand> executor)
         {
             InitializeComponent();
             _sendFlip = sendFlip;
@@ -18,21 +18,18 @@ namespace View.RequestForms
 
         private void OkButton_Click(object sender, EventArgs e)
         {
+            int[] flip = { 0, 0 };
 
             if (VerticalFlip.Checked)
             {
-                int[] flip = { 0, 0 };
                 flip[0] = 1;
-                _executor(new Command<int[]>((_sendFlip), flip));
             }
             if (HorizontalFlip.Checked)
             {
-                int[] flip = { 0, 0 };
-                flip[0] = 1;
-                _executor(new Command<int[]>((_sendFlip), flip));
-                flip[1] = 1;
-                _executor(new Command<int[]>((_sendFlip), flip));
+                flip[1]= 1;
             }
+            _executor(new Command<string, int[]>(_sendFlip, "Flip", flip));
+
             this.Hide();
         }
 

@@ -40,8 +40,11 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.videoPlayerBox = new System.Windows.Forms.GroupBox();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.videoPlayerBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // ScaleButton
@@ -166,6 +169,7 @@
             // 
             // videoPlayerBox
             // 
+            this.videoPlayerBox.Controls.Add(this.axWindowsMediaPlayer1);
             this.videoPlayerBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoPlayerBox.Location = new System.Drawing.Point(0, 0);
             this.videoPlayerBox.Name = "videoPlayerBox";
@@ -173,6 +177,16 @@
             this.videoPlayerBox.TabIndex = 13;
             this.videoPlayerBox.TabStop = false;
             this.videoPlayerBox.Text = "VideoPlayer";
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(3, 22);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(970, 469);
+            this.axWindowsMediaPlayer1.TabIndex = 0;
             // 
             // ImagePinkifier
             // 
@@ -193,6 +207,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.videoPlayerBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,6 +225,7 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.GroupBox videoPlayerBox;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 

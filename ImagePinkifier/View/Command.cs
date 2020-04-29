@@ -54,4 +54,38 @@ namespace View
             _action(_data);
         }
     }
+
+    /// <summary>
+    /// Command class which requires no parameters
+    /// </summary>
+    public class Command<A,T> : ICommand
+    {
+        //DECLARE an Action which will be used to execute, call it '_action'
+        private Action<A,T> _action;
+
+        //DECLARE Generic Type, which will store parameters of method, call it '_data'
+        private T _data;
+
+        private A _name;
+
+        /// <summary>
+        /// Constructor which requires an action and Generic Type to work
+        /// </summary>
+        /// <param name="action">An action which will be used to execute</param>
+        /// <param name="data">Type which describes parameters</param>
+        public Command(Action<A,T> action,A name, T data)
+        {
+            _action = action;
+            _data = data;
+            _name = name;
+        }
+
+        /// <summary>
+        /// Executes the command with the data inside
+        /// </summary>
+        public void Execute()
+        {
+            _action(_name, _data);
+        }
+    }
 }

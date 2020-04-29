@@ -36,6 +36,9 @@ namespace Controller
         /// </summary>
         public int ImageIndex { set; get; } = 0;
 
+        /// <summary>
+        /// PROPERTY tells the pathfilename which is currently loaded
+        /// </summary>
         public string GetPathName { get { return _dataStorage.GetFileName(ImageIndex); } }
 
         /// <summary>
@@ -93,7 +96,10 @@ namespace Controller
             OnDataHasChanged();
         }
 
-        public void OnDataHasChanged()
+        /// <summary>
+        /// METHOD: setting up DataHasChanged Event
+        /// </summary>
+        private void OnDataHasChanged()
         {
             DataHasChanged(this, EventArgs.Empty);
         }
@@ -163,6 +169,10 @@ namespace Controller
             return _dataStorage.GetImage(ImageIndex);
         }
 
+        /// <summary>
+        /// METHOD: returns all the images contained within the Data
+        /// </summary>
+        /// <returns></returns>
         public List<Image> GetAllImages()
         {
             List<Image> tempImages = new List<Image>();
@@ -173,13 +183,19 @@ namespace Controller
             return tempImages;
         }
 
-
+        /// <summary>
+        /// SUBSCRIBE to DataHasChanged event
+        /// </summary>
+        /// <param name="dataHasBeenChanged"></param>
         public void Subscribe(EventHandler dataHasBeenChanged)
         {
             DataHasChanged += dataHasBeenChanged;
         }
 
-
+        /// <summary>
+        /// UNSUBSCRIBE to DataHasChanged event
+        /// </summary>
+        /// <param name="dataHasBeenChanged"></param>
         public void Unsubscribe(EventHandler dataHasBeenChanged)
         {
             DataHasChanged -= dataHasBeenChanged;

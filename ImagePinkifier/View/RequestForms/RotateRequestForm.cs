@@ -6,9 +6,9 @@ namespace View.RequestForms
     public partial class RotateRequestForm : Form
     {
 
-        Action<int[]> _sendRotate;
+        Action<string, int[]> _sendRotate;
 
-        public RotateRequestForm(Action<int[]> sendRotate)
+        public RotateRequestForm(Action<string,int[]> sendRotate)
         {
             InitializeComponent();
 
@@ -17,7 +17,7 @@ namespace View.RequestForms
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            _sendRotate(new int[] { System.Convert.ToInt32(AngleTextbox.Text) });
+            _sendRotate("Rotate",new int[] { System.Convert.ToInt32(AngleTextbox.Text) });
             this.Hide();
         }
 

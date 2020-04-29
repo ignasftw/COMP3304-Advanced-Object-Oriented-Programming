@@ -12,8 +12,6 @@ namespace Controller
 {
     class Controller
     {
-        //DECLARE an IServiceLocator to refer to the factory locator, call it _factoryLocator:
-        IServiceLocator _factoryLocator;
         //DECLARE an ILoader which is loading images to the Data, call it '_loader'
         ILoader _loader;
         //DECLARE an IImageSaver which is saving images to the pathfile, call it '_saver'
@@ -27,18 +25,20 @@ namespace Controller
         //DECLARE a ImageFactoryLocal for making modifications to the Images, call it '_imageFactory'
         IImageFactoryLocal _imageFactory;
 
+        Video.IVideoModify _vid;
+
         //DECLARE a Modifications for storing and using Delegates which will be used to modify Images, call it '_modify'
-        Modifications _modify;
+        IModifications _modify;
 
         public Controller()
         {
             //Create main objects_________________________________________
             _imageFactory = new ImageFactoryLocal();
-            _factoryLocator = new FactoryLocator();
             _imageGallery = new ImageGallery();
             _loader = new ImageLoader();
             _saver = new ImageSaver(_imageFactory);
-            _modify = new Modifications(_imageFactory);
+            _vid = new Video.VideoModify(_imageFactory, ExecuteCommand);
+            _modify = new Modifications(_imageGallery,_vid, CheckType);
 
             //TODO: create a separate class which inplements use of int[] into proper class 
             //Add a modification into a modification list
@@ -49,30 +49,45 @@ namespace Controller
 
             //Create EventHandler for loading an image_____________________
             _collectionView = new View.CollectionView(LoadImages, SingleItemDisplay, ExecuteCommand);
+
+
             //IF any of the commands are pressed then open request window
-            _displayView = new View.ImagePinkifier(_modify.GetModification("Scale"), _modify.GetModification("Rotate"), _modify.GetModification("Flip"), _modify.GetModification("Tint"), SaveImage, SingleItemDisplay, ExecuteCommand);
-
-
+            _displayView = new View.ImagePinkifier(_modify.ApplyModification, SaveImage, SingleItemDisplay, ExecuteCommand);
             //SUBSCRIBE to _imageGallery, so it tells when there are changes in Data
             _imageGallery.Subscribe(OnDataHasBeenChanged);
             //SUBSCRIBE to _imageFactory so it tells when any of the modifications were done
             _imageFactory.Subscribe(UpdateImage);
-
-            Video.VideoModify vid = new Video.VideoModify(_imageFactory, ExecuteCommand);
-            //Video for testing purposes
-            string input = "C:/Users/Viktorija/Desktop/OOP/small.mp4";
-            //Default savepath
-            string output = "C:/Users/Viktorija/Desktop/OOP/";
-            //DEFAULT filename
-            string filename = "filename.avi";
-            //Modification which should be applied
-            Action<int[]> modification = _modify.GetModification("Tint");
-            //Video modification method
-            //vid.ApplyModification(input, output, filename, modification);
-
+            //SUBSCRIBE to _vid, so it tells when a modification to a video has been applied
+            _vid.Subscribe(UpdateVideo);
             //INITIALIZE the main window___________________________________
             Application.Run(_collectionView);
         }
+
+        /// <summary>
+        /// METHOD: after calling modification this method check if it is being appleid to image or video
+        /// </summary>
+        /// <param name="modification">ImageFactory method which modifies the image</param>
+        /// <param name="data">int array data which describes what should be done</param>
+        //public void ModificationRedirector(Action<int[]> modification, params int[] data)
+        //{
+        //    try
+        //    {
+        //        Console.WriteLine("PATHFILENAME: " + _imageGallery.GetPathName);
+        //        if (CheckType(_imageGallery.GetPathName) == "Image")
+        //        {
+        //            modification(data);
+        //        }
+        //        else
+        //        {
+        //            _vid.SaveVideo(_imageGallery.GetPathName, modification,_imageGallery.GetImage().Size, data);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("Error something went wrong: " + e.Message);
+        //    }
+
+        //}
 
         /// <summary>
         /// Load Images from ImageGallery
@@ -91,6 +106,15 @@ namespace Controller
         {
             //Return a list of images
             return _imageGallery.GetAllImages();
+        }
+
+        /// <summary>
+        /// Returns a pathfilename of a video
+        /// </summary>
+        /// <returns></returns>
+        public string GetVideo()
+        {
+            return _imageGallery.GetPathName;
         }
 
         /// <summary>
@@ -119,10 +143,12 @@ namespace Controller
             _imageGallery.ImageIndex = _collectionView._selectedImageIndex;
             if (CheckType(_imageGallery.GetPathName) == "Image")
             {
+                _displayView.Show();
+                _displayView.HidePlayer();
                 //Get item from the gallery accordingly which item id was selected
                 Image selectedImage = _imageGallery.GetImage();
                 //Display Form which shows a single item
-                _displayView.Show();
+                _displayView.PictureBox.Show();
                 //Set pictureBox to the selected image
                 _displayView.PictureBox.Image = selectedImage;
                 //Load that image to image factory
@@ -135,12 +161,19 @@ namespace Controller
                 //Display Form which shows a single item
                 _displayView.Show();
                 _displayView.PictureBox.Hide();
-                //_displayView.Vi
-                //Load Video to the display window
-                //_displayView.Controls.Add.
+
+                _displayView.SetVideo(selectedVideo);
+
+                //Action<int[]> modification = _modify.GetModification("Tint");
+                //vid.ApplyModification(selectedVideo, output, filename, modification);
             }
         }
-
+         
+        /// <summary>
+        /// METHOD: which gets the pathfile name and tells(or assumes) what type of media it is
+        /// </summary>
+        /// <param name="pathname">Pathfile name of file (must have extension for ex. .mp4 or .png)</param>
+        /// <returns></returns>
         public string CheckType(string pathname)
         {
             //Get the extension name
@@ -192,6 +225,18 @@ namespace Controller
         public void OnDataHasBeenChanged(object sender, EventArgs e)
         {
             UpdateUI();
+        }
+
+        /// <summary>
+        /// Event receiver from Video.IVideoModify after the modification has been applied a new path has been returned
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void UpdateVideo(object sender, Video.ModificationAppliedArgs e)
+        {
+            Console.WriteLine("PAth: " + e.Pathfile);
+            _imageGallery.AddImage(e.Pathfile);
+            _displayView.SetVideo(e.Pathfile);
         }
 
         /// <summary>

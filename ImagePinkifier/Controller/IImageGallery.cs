@@ -56,7 +56,6 @@ namespace Controller
 
         void Subscribe(EventHandler dataHasBeenChanged);
 
-
         void Unsubscribe(EventHandler dataHasBeenChanged);
     }
 }

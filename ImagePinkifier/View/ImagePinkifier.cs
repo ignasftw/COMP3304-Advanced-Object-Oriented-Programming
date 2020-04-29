@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace View
@@ -9,17 +10,6 @@ namespace View
     public partial class ImagePinkifier : Form
     {
         /*Delegates which will be used as commands*/
-        //DECLARE a Delegate which asks to Scale Image
-        private Action<int[]> _scaleImageDelegate;
-
-        //DECLARE a Delegate which asks to Rotate Image
-        private Action<int[]> _rotateImageDelegate;
-
-        //DECLARE a Delegate which asks to Flip Image
-        private Action<int[]> _flipImageDelegate;
-
-        //DECLARE a Delegate which asks to Flip Image
-        private Action<int[]> _tintImageDelegate;
 
         //DECLARE a Delegate which asks to Save Image
         private Action _saveImageDelegate;
@@ -27,23 +17,21 @@ namespace View
         //DECLARE a Delegate which reloads the Image
         private Action _reloadDelegate;
 
+        Action<string, int[]> _applyMod;
+
         private Action<ICommand> _executeCommand;
 
         /// <summary>
         /// ImagePinkifier's constructor which will initialise the Component for User-Interface, an ImageGallery, an ImageSaver
         /// </summary>
-        public ImagePinkifier(Action<int[]> scale, Action<int[]> rotate, Action<int[]> flip, Action<int[]> tint, Action saveImage, Action resetCommand, Action<ICommand> execute)
+        public ImagePinkifier(Action<string, int[]> applyMod, Action saveImage, Action resetCommand, Action<ICommand> execute)
         {
             //Initialises all the buttons and other GUI
             InitializeComponent();
-
-            _scaleImageDelegate = scale;
-            _rotateImageDelegate = rotate;
-            _flipImageDelegate = flip;
-            _tintImageDelegate = tint;
             _saveImageDelegate = saveImage;
             _reloadDelegate = resetCommand;
 
+            _applyMod = applyMod;
             _executeCommand = execute;
         }
 
@@ -56,26 +44,26 @@ namespace View
 
         private void ScaleButton_Click(object sender, EventArgs e)
         {
-            RequestForms.ScaleRequestForm scaleRequest = new RequestForms.ScaleRequestForm(_scaleImageDelegate);
+            RequestForms.ScaleRequestForm scaleRequest = new RequestForms.ScaleRequestForm(_applyMod);
             scaleRequest.PutPictureNumbers(PictureBox.Image.Width, PictureBox.Image.Height);
             scaleRequest.Show();
         }
 
         private void RotateButton_Click(object sender, EventArgs e)
         {
-            RequestForms.RotateRequestForm rotateRequest = new RequestForms.RotateRequestForm(_rotateImageDelegate);
+            RequestForms.RotateRequestForm rotateRequest = new RequestForms.RotateRequestForm(_applyMod);
             rotateRequest.Show();
         }
 
         private void FlipButton_Click(object sender, EventArgs e)
         {
-            RequestForms.FlipRequestForm flipRequest = new RequestForms.FlipRequestForm(_flipImageDelegate, _executeCommand);
+            RequestForms.FlipRequestForm flipRequest = new RequestForms.FlipRequestForm(_applyMod, _executeCommand);
             flipRequest.Show();
         }
 
         private void MakePinkerButton_Click(object sender, EventArgs e)
         {
-            _executeCommand(new Command<int[]>(_tintImageDelegate, new int[] { }));
+            _executeCommand(new Command<string, int[]>(_applyMod, "Tint",new int[] { }));
         }
 
         private void ResetImageButton_Click(object sender, EventArgs e)
@@ -93,24 +81,16 @@ namespace View
             _executeCommand(new Command(_saveImageDelegate));
         }
 
-        public void SetVideo(string name)
+            public void SetVideo(string name)
         {
-            //videoPlayer.VideoSource = name;
+            videoPlayerBox.Show();
+            axWindowsMediaPlayer1.URL = name;
+            axWindowsMediaPlayer1.settings.autoStart = true;
         }
 
-        private void PlayButton_Click(object sender, EventArgs e)
+        public void HidePlayer()
         {
-
-        }
-
-        private void StopButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PauseButton_Click(object sender, EventArgs e)
-        {
-
+            videoPlayerBox.Hide();
         }
     }
 }

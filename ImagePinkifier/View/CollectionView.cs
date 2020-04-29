@@ -22,11 +22,11 @@ namespace View
 
         public Size _thumbnailSize { get { return imageList1.ImageSize; } }
 
-
         private void CollectionView_Load(object sender, EventArgs e)
         {
 
         }
+
         //CONSTRUCTOR of CollectionView which sets given commands
         public CollectionView(Action LoadImages, Action displayView, Action<ICommand> executor)
         {
