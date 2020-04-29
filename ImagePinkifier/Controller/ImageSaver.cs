@@ -12,7 +12,7 @@ namespace Controller
     /// <summary>
     /// This class takes an ImageFactory and prepares to save that factory's current image to a file using a file dialog
     /// </summary>
-    public class ImageSaver : IImageSaver, IComponent
+    public class ImageSaver : IImageSaver, IService
     {
         /// <summary>
         /// This is the factory that will be used to save the image
@@ -48,6 +48,10 @@ namespace Controller
                 }
                 catch (Exception e)
                 {
+                    //Let the User know that something went wrong
+                    MessageBox.Show("Error: " + e.Message + " \nIf you think that is a bug please contant the developer.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    Console.WriteLine("Error: {0}", e);
                     SaveImage();
                 }
             }

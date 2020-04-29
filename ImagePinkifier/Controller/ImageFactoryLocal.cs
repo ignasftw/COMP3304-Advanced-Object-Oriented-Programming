@@ -12,7 +12,7 @@ namespace Controller
     /// <summary>
     /// Class which contains library class, so it could implement an interface without modifying a library and keeping encapsulation
     /// </summary>
-    public class ImageFactoryLocal : IImageFactoryLocal, IComponent, IDisposable
+    public class ImageFactoryLocal : IImageFactoryLocal, IDisposable, IService
     {
         //Declare an ImageFactory
         private ImageFactory _imfac = new ImageFactory();

@@ -11,7 +11,7 @@ namespace Controller
     /// <summary>
     /// Class which is responsible for loading images from pathfile
     /// </summary>
-    public class ImageLoader : ILoader, IComponent
+    public class ImageLoader : ILoader,IService
     {
         public ImageLoader()
         {

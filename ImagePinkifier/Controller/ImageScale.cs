@@ -13,7 +13,7 @@ namespace Controller
     /// <summary>
     /// Purpose of this class is to return a scaled image upon request
     /// </summary>
-    public class ImageScale : IAutoScale, ICustomScale, IComponent
+    public class ImageScale : IAutoScale, ICustomScale
     {
         public ImageScale()
         {

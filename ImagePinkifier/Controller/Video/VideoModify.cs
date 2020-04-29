@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Controller.Video
 {
-    class VideoModify : IVideoModify
+    class VideoModify : IVideoModify, IService
     {
         //DECLARE a VideoFileReader which will read the loaded video, call it '_reader'
         private VideoFileReader _reader;

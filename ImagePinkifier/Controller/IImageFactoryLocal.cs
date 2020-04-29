@@ -10,6 +10,8 @@ namespace Controller
 {
     /*
      Code snippets were taken out of SizeMultiplier project to create an interface for IImageFactoryLocal
+     Jackson-South, J., 2020. Imageprocessor 2.9.0. [online] Nuget.org. 
+     Available at: <https://www.nuget.org/packages/ImageProcessor/2.9.0/> [Accessed 18 April 2020].
          */
     public interface IImageFactoryLocal
     {

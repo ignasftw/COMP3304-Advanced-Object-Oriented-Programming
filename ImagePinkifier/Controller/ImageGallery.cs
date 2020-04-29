@@ -13,7 +13,7 @@ namespace Controller
     /// <summary>
     /// ImageGallery stores a gallery of images
     /// </summary>
-    public class ImageGallery : IImageGallery, IComponent, IModel
+    public class ImageGallery : IImageGallery, IModel, IService
     {
         //Declare a Data class, for storing Image/Imagepathfile dictionary, call it '_dataStorage'
         Model.IData _dataStorage = new Model.Data();

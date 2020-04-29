@@ -10,7 +10,7 @@ namespace Controller
     /// Interface for a factory that returns implementations of a specific abstraction (eg interface) E
     /// </summary>
     /// <typeparam name="E"></typeparam>
-    public interface IFactory<E> : IService
+    public interface IFactory<E>
     {
         /// <summary>
         /// Instantiate and return an object that supports the Interface 'T'

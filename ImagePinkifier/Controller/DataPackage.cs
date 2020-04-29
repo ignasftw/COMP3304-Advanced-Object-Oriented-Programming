@@ -9,7 +9,7 @@ namespace Controller
 {
     public class DataPackage
     {
-        public string _modificationName;
-        public int[] _parameters;
+        //public string _modificationName;
+        //public int[] _parameters;
     }
 }

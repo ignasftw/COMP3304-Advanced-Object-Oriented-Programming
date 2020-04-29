@@ -9,7 +9,7 @@ namespace View.RequestForms
 
         Action<string, int[]> _sendFlip;
 
-        public FlipRequestForm(Action<string,int[]> sendFlip, Action<ICommand> executor)
+        public FlipRequestForm(Action<string, int[]> sendFlip, Action<ICommand> executor)
         {
             InitializeComponent();
             _sendFlip = sendFlip;
@@ -18,18 +18,11 @@ namespace View.RequestForms
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            int[] flip = { 0, 0 };
-
-            if (VerticalFlip.Checked)
-            {
-                flip[0] = 1;
-            }
-            if (HorizontalFlip.Checked)
-            {
-                flip[1]= 1;
-            }
-            _executor(new Command<string, int[]>(_sendFlip, "Flip", flip));
-
+            //Check the inputs of a window and send with a created command
+            _executor(new Command<string, int[]>(
+                _sendFlip,
+                "Flip",
+                new int[] { System.Convert.ToInt16(VerticalFlip.Checked), System.Convert.ToInt16(HorizontalFlip.Checked) }));
             this.Hide();
         }
 

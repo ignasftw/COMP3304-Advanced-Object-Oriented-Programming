@@ -24,18 +24,18 @@ namespace Controller
         IImageGallery _imageGallery;
         //DECLARE a ImageFactoryLocal for making modifications to the Images, call it '_imageFactory'
         IImageFactoryLocal _imageFactory;
-
+        //DECLARE a Video.IVideoModify for video modifying process, call it '_vid'
         Video.IVideoModify _vid;
-
         //DECLARE a Modifications for storing and using Delegates which will be used to modify Images, call it '_modify'
         IModifications _modify;
 
         public Controller()
         {
+            Factory<IService> factory = new Factory<IService>();
             //Create main objects_________________________________________
-            _imageFactory = new ImageFactoryLocal();
-            _imageGallery = new ImageGallery();
-            _loader = new ImageLoader();
+            _imageFactory = (factory.Create<ImageFactoryLocal>()) as ImageFactoryLocal;
+            _imageGallery = (factory.Create<ImageGallery>()) as ImageGallery;
+            _loader = (factory.Create<ImageLoader>()) as ImageLoader;
             _saver = new ImageSaver(_imageFactory);
             _vid = new Video.VideoModify(_imageFactory, ExecuteCommand);
             _modify = new Modifications(_imageGallery,_vid, CheckType);
@@ -62,32 +62,6 @@ namespace Controller
             //INITIALIZE the main window___________________________________
             Application.Run(_collectionView);
         }
-
-        /// <summary>
-        /// METHOD: after calling modification this method check if it is being appleid to image or video
-        /// </summary>
-        /// <param name="modification">ImageFactory method which modifies the image</param>
-        /// <param name="data">int array data which describes what should be done</param>
-        //public void ModificationRedirector(Action<int[]> modification, params int[] data)
-        //{
-        //    try
-        //    {
-        //        Console.WriteLine("PATHFILENAME: " + _imageGallery.GetPathName);
-        //        if (CheckType(_imageGallery.GetPathName) == "Image")
-        //        {
-        //            modification(data);
-        //        }
-        //        else
-        //        {
-        //            _vid.SaveVideo(_imageGallery.GetPathName, modification,_imageGallery.GetImage().Size, data);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Error something went wrong: " + e.Message);
-        //    }
-
-        //}
 
         /// <summary>
         /// Load Images from ImageGallery
@@ -163,9 +137,6 @@ namespace Controller
                 _displayView.PictureBox.Hide();
 
                 _displayView.SetVideo(selectedVideo);
-
-                //Action<int[]> modification = _modify.GetModification("Tint");
-                //vid.ApplyModification(selectedVideo, output, filename, modification);
             }
         }
          
@@ -189,11 +160,9 @@ namespace Controller
                     case (".jfif"):
                     case (".png"):
                         return "Image";
-                        break;
                     default:
                         //Assume it is video
                         return "Video";
-                        break;
                 }
             }
             catch (Exception e)
@@ -234,9 +203,9 @@ namespace Controller
         /// <param name="e"></param>
         public void UpdateVideo(object sender, Video.ModificationAppliedArgs e)
         {
-            Console.WriteLine("PAth: " + e.Pathfile);
-            _imageGallery.AddImage(e.Pathfile);
-            _displayView.SetVideo(e.Pathfile);
+            //This should be used to update the Window with loading with a new video
+            //But the video has to be loaded first 
+            //Currently it can only be loaded manually
         }
 
         /// <summary>
@@ -251,13 +220,16 @@ namespace Controller
                 ListView ListView1 = new ListView();
                 List<ListViewItem> items = new List<ListViewItem>();
 
+                //Clear the list
                 imageList1.Images.Clear();
                 ListView1.Clear();
                 int imageid = 0;
 
+                //Get images that the list will be made out of
                 imageList1.Images.AddRange(displayList.ToArray());
                 _collectionView.SetImageList(displayList.ToArray());
 
+                //Create a new item of the list
                 for (int i = 0; i < displayList.Count; i++)
                 {
                     ListViewItem item = new ListViewItem();
